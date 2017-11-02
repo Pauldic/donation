@@ -1,0 +1,12 @@
+{% extends "core/includes/base_back.html" %}
+
+{% block content_body %}
+        <div class="error-page text-center">
+            <div class="container">
+                <h1>403</h1>
+                <h2>Access Denied</h2>
+                <p>{{ execrption }}</p>
+                <a href="{% url 'core:index' %}" class="btn btn-custom2 btn-lg min-width">Back to Home</a>
+            </div><!-- End .container -->
+        </div><!-- End .error-page -->
+{% endblock %}

@@ -1,0 +1,152 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static admin_list admin_tags %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/changelists.css" %}"/>
+    {% if cl.formset %}
+        <link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}"/>
+    {% endif %}
+    {% if cl.formset or action_form %}
+        <script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+    {% endif %}
+    {{ media.css }}
+    {% if not actions_on_top and not actions_on_bottom %}
+        <style>
+            #changelist table thead th:first-child {
+                width: inherit
+            }
+        </style>
+    {% endif %}
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    {{ media.js }}
+{% endblock %}
+
+{% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} change-list{% endblock %}
+
+{#{% if not is_popup %}#}
+{#    {% block breadcrumbs %}#}
+{#        <div class="breadcrumbs">#}
+{#            <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>#}
+{#            &rsaquo; <a href="{% url 'admin:app_list' app_label=cl.opts.app_label %}">{{ cl.opts.app_config.verbose_name }}</a>#}
+{#            &rsaquo; {{ cl.opts.verbose_name_plural|capfirst }}#}
+{#        </div>#}
+{#    {% endblock %}#}
+{#{% endif %}#}
+
+
+{% block content_header %}
+    {% if not is_popup %}
+        {% block breadcrumbs %}
+            <ol class="breadcrumb">
+                <li><a href="{% url 'admin:index' %}"><i class="fa fa-dashboard"></i> {% trans 'Home' %}</a></li>
+                <li><a href="{% url 'admin:app_list' app_label=cl.opts.app_label %}">{{ cl.opts.app_config.verbose_name }}</a></li>
+                <li>{{ cl.opts.verbose_name_plural|capfirst }}</li>
+            </ol>
+        {% endblock %}
+    {% endif %}
+        <!-- Content Header (Page header) -->
+
+
+        <div class="navbar navbar-default">
+            <div class="navbar-inner">
+                {% block pretitle %}{% endblock %}
+                <div class="navbar-header">
+                    {% block content-navbar-collapse %}
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#content-navbar-collapse" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    {% endblock %}
+                    {% block content_title %}
+                        {% if title %}
+                            <span class="navbar-brand">{% render_with_template_if_exist title|lower|add:"/admin_app_name.html" title %}</span>
+                        {% endif %}
+                    {% endblock %}
+                </div>
+                {% block object-tools %}
+                    <div id="content-navbar-collapse" class="navbar-collapse collapse">
+                        <ul class="object-tools_ nav navbar-nav">
+                            {% block object-tools-items %}
+                                {% if has_add_permission %}
+                                    <li>
+                                        {% url cl.opts|admin_urlname:'add' as add_url %}
+                                        <a role="button" href="{% add_preserved_filters add_url is_popup %}" class="btn btn-primary">
+                                            <span class="glyphicon glyphicon-plus"></span> {% blocktrans with cl.opts.verbose_name|title as name %}Add {{ name }}{% endblocktrans %}
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            {% endblock %}
+                        </ul>
+
+                        {% if cl.has_filters %}
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans 'Filter' %} <span class="caret"></span></a>
+                                    <ul class="dropdown-menu scrollable-dropdown-menu">
+                                        {% for spec in cl.filter_specs %}
+                                            {% admin_list_filter cl spec %}
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                            </ul>
+                        {% endif %}
+                        {% block search %}{% search_form cl %}{% endblock %}
+                    </div>
+                {% endblock %}
+            </div>
+        </div>
+{% endblock %}
+
+
+
+{% block coltype %}flex{% endblock %}
+
+
+
+
+
+{% block content %}
+
+
+
+
+    <div id="content-main">
+
+
+
+
+
+
+
+        {% if cl.formset.errors %}
+            <p class="errornote">
+                {% if cl.formset.total_error_count == 1 %}{% trans "Please correct the error below." %}{% else %}{% trans "Please correct the errors below." %}{% endif %}
+            </p>
+            {{ cl.formset.non_form_errors }}
+        {% endif %}
+
+        <div class="module{% if cl.has_filters %} filtered{% endif %}" id="changelist">
+            {% block date_hierarchy %}{% date_hierarchy cl %}{% endblock %}
+
+            <form id="changelist-form" method="post"{% if cl.formset.is_multipart %} enctype="multipart/form-data"{% endif %} novalidate>{% csrf_token %}
+
+                {% if cl.formset %}
+                    <div>{{ cl.formset.management_form }}</div>
+                {% endif %}
+
+                {% block result_list %}
+                    {% if action_form and actions_on_top and cl.show_admin_actions %}{% admin_actions %}{% endif %}
+                    {% result_list cl %}
+                    {% if action_form and actions_on_bottom and cl.show_admin_actions %}{% admin_actions %}{% endif %}
+                {% endblock %}
+                {% block pagination %}{% pagination cl %}{% endblock %}
+            </form>
+        </div>
+    </div>
+{% endblock %}

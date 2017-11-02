@@ -1,0 +1,46 @@
+{% extends "registration/base.html" %}
+{% load i18n %}
+
+{% block body %}
+    <h3 class="white">Sign Up</h3>
+            {% if sponsor %}
+                <h4 class="white">Sponsor:
+                    <small class="white" style="font-style: italic">{{ sponsor.phone }}</small>
+                </h4>
+            {% endif %}
+            <form class="popup-form" action="{% url 'core:pre-register-plain' %}" role="form" method="POST" id="registerForm">
+                {% csrf_token %}
+                {{ form.first_name }}
+                {{ form.email }}
+                {{ form.phone }}
+                {{ form.username }}
+                {{ form.password }}
+                {{ form.sponsor }}
+
+                {#					<div class="dropdown">#}
+                {#						<button id="dLabel" class="form-control form-white dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
+                {#							Package Plans#}
+                {#						</button>#}
+                {#						<ul class="dropdown-menu animated fadeIn" role="menu" aria-labelledby="dLabel">#}
+                {#                            {% for p in packages %}#}
+                {#							    <li class="animated lightSpeedIn"><a href="#" onclick="setValue({{ p.amount }})" data-value="{{ p.amount }}">{{ p.name }} - ₦ {{ p.amount }} </a></li>#}
+                {#							{% endfor %}#}
+                {#						</ul>#}
+                {#					</div>#}
+                <div class="checkbox-holder text-left">
+                    <div class="checkbox">
+                        <input type="checkbox" value="Yes" id="squaredOne" name="check"/>
+                        <label for="squaredOne"><span>I have read the <strong><a href="{% url 'core:warning' %}" style="color: #fff" target="_blank"> warning</a></strong> & agree </span></label>
+                    </div>
+                </div>
+                <div>
+                    <a href="{% url 'core:login' %}" style="color: #fff">Ready Registered? <b>Sign In</b></a>
+                </div>
+                <button type="submit" class="btn btn-submit">Submit</button>
+            </form>
+
+    <style>
+        .breadcrumb{display: none;}
+        .form-control{padding: 10px 15px;}
+    </style>
+{% endblock %}

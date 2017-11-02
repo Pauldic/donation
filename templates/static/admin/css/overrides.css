@@ -1,0 +1,9 @@
+
+        .deletelink, .changelink, .addlink {
+            padding-left: 0;
+            background-position-y: 6px;
+        }
+        .submit-row a.deletelink {
+            height: auto;
+        }
+        .row1, .row2{  background: transparent;  }

@@ -1,0 +1,192 @@
+{% extends "core/includes/base.html" %}
+{% load i18n static bootstrap humanize %}
+
+
+{% block content_body %}
+    <!-- End Navbar -->
+    <div class="wrapper" style="background: url({% static 'front/img/body_bg.gif' %}) left top repeat;">
+        <div class="main">
+            <div class="section section-tabs">
+                <div class="container">
+                    <div class="row" >
+                        <div class="col-md-3">
+
+                        </div>
+                        <div class="col-md-9">
+                            <form method="post" class="form-horizontal" id="registerationForm" action="." novalidate_>
+                                <legend>REGISTRATION<br>
+                                    <small>{{ notice }}</small>
+                                    <small style="font-size: 14px; line-height: 22px;">
+                                        You may register by filling in the form <br>
+                                        Or you may ask FundFastTrack guiders to help you. <br>
+                                    </small>
+                                    {% if sponsor and not '_system' %}
+                                        <span class="float: right"><small style="font-style: italic;float: right;font-size: 0.7em;"><b>Sponsor: </b>{{ sponsor }}</small></span>{% else %}
+            {#                            <small style="font-size: 0.6em;font-style: italic;float: right;">Please fill all fields correctly</small>#}
+                                    {% endif %}
+                                </legend>
+                                {% csrf_token %}
+                                {{ form|bootstrap_horizontal:'col-lg-4' }}
+                                <div>
+                                    <label for="showPasswordLink">
+                                        <input type="checkbox" id="showPasswordLink" name="squaredOne" value="">
+                                        <span>Confirm Password</span>
+                                    </label><br>
+                                    <label for="agreement">
+                                        <input type="checkbox" id="agreement" name="agreement" value="">
+                                        <span>I am upto 18years and I agree to receive EMails on my transactions.  </span>
+                                    </label>
+                                </div>
+
+                                <div class="btn-group btn-group-justified" role="group" style="margin-bottom: 65px; margin-top: 30px">
+            {#                        <div class="btn-group hidden-xs" role="group">#}
+            {#                            <button type="reset" class="btn btn-default btn-lg">Reset</button>#}
+            {#                        </div>#}
+            {#                                                <div class="btn-group" role="group">#}
+            {#                                                    <button type="button" id="verify-send-btn" class="btn btn-default btn-lg" data-urll="{% url 'core:phone-verify' email token '08000000000' '000000' %}">Verify Phone</button>#}
+            {#                                                </div>#}
+                                    <div class="btn-group" role="group">
+                                        <button type="submit" class="btn btn-primary btn-lg" id="submit" disabled>Register in FastTrack</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- End Section Tabs -->
+            <div class="section section-pagination">
+                <div class="container">
+                    <div class="row" >
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <!--  End Modal -->
+        <footer class="footer" data-background-color="black">
+            <div class="container">
+                <nav>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="{% url 'core:register' %}" >Registration</a></li>
+                        <li><a href="{% url 'core:login' %}" >Login To FundFastTrack</a></li>
+                    </ul>
+                </nav>
+                <div class="copyright">
+                    Note: <i>We are not in anyway related or associated with MMM</i>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+{% endblock %}
+
+
+{% block more_footer %}
+    <script src="{% static 'bootstrap-notify/bootstrap-notify.min.js' %}"></script>
+    <script src="{% static 'bootbox/bootbox.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            $("#showPasswordLink").click(function(){
+                if($("#showPasswordLink").is(":checked")){
+                    $("#id_password").prop('type', 'text')
+                }else {
+                    $("#id_password").prop('type', 'password')
+                }
+            });
+
+            $("#agreement").click(function(){
+                if($("#agreement").is(":checked")){
+                    $("#registerationForm button[type='submit']").prop('disabled', false)
+                }else {
+                    $("#registerationForm button[type='submit']").prop('disabled', true)
+                }
+            });
+
+
+            $("#registerationForm").submit(function (event) {
+                event.preventDefault();
+                if (validate().length>0){
+                    $.each(errors, function (i,v) {
+                        $.notify({icon: "fa fa-exclamation-triangle", title: "", message: v}, {type: 'warning', z_index: 9999999});
+                    });
+                    return false;
+                }
+{#                processFeed(url, data, blocking, method, successCallback, errorCallback) {#}
+                processFeed(location.href, $('#registerationForm').serialize(), null, false, 'POST', function (d) {
+                    vv = d;
+                    html = "<br/><dl>";
+                    if (d.errors) {
+                        p = JSON.parse(d.errors)
+                        for (var key in p) {
+                            if (p.hasOwnProperty(key)) {
+                                html += "<dt>" + key.toUpperCase() + "</dt>"
+                                $.each(p[key], function (i, v) {
+                                    html += "<dd>" + v.message + "</dd>"
+                                });
+                            }
+                        }
+                        html += "</dl>";
+                    }
+
+                    if (d.type == "Success") {
+                        $('#registerationForm')[0].reset();
+                        $.notify({icon: "fa fa-exclamation-triangle", title: "", message: d.msg}, {type: 'success', z_index: 9999999});
+                        $('#registerationForm button[type="submit"]').text('Redirecting...').attr('disable', true);
+                        setTimeout(function () {
+                            window.location = "{% url 'core:login' %}";
+                        }, 4000)
+                    } else {
+                        $.notify({icon: "fa fa-exclamation-triangle", title: "", message: d.msg}, {type: 'warning', z_index: 9999999});
+                        console.log(d.errors)
+                    }
+                }, function (d) {
+                    $.notify({icon: "fa fa-exclamation-triangle", title: "", message: d.responseText}, {type: 'danger', z_index: 9999999});
+                });
+            });
+
+
+            function validate() {
+                errors = [];
+                if ($("#id_email").val().length < 8 || !($("#id_email").val().includes("@")) || !($("#id_email").val().includes("."))) {
+                    errors.push("Email has wrong entry. Don't try manipulating this, you will NOT pass our Server integrity check")
+                }
+                if (isNaN($("#id_phone").val()) || $("#id_phone").val().length != 11) {
+                    errors.push("Phone has wrong entry, expected format: 08034567890");
+                }
+{#                if ($("#id_first_name").val().length === 0 || $("#id_first_name").val().trim().split(" ").length < 2) {#}
+{#                    errors.push("Bank Account Name Not a valid name. Please make a valid entry");#}
+{#                }#}
+{#                if ($("#id_bank_name").val().length === 0) {#}
+{#                    errors.push("Please select your Bank Name");#}
+{#                }#}
+{#                if (isNaN($("#id_account_number").val()) || $("#id_account_number").val().length != 10) {#}
+{#                    errors.push("Bank Account Number has wrong entry, please provide your NUBAN 10 digits account number");#}
+{#                }#}
+{#                if ($("#id_country").val().length === 0) {#}
+{#                    errors.push("Please select your Country of residence");#}
+{#                }#}
+{#                if ($("#id_state").val().length === 0) {#}
+{#                    errors.push("Please select your State of residence");#}
+{#                }#}
+{#                if ($("#id_address").val().trim().length === 0) {#}
+{#                    errors.push("Please select your City of residence");#}
+{#                }#}
+                if ($("#id_username").val().trim().length < 4) {
+                    errors.push("Enter username (character length greater than 3)");
+                }
+                if ($("#id_password").val().trim().length < 6) {
+                    errors.push("Enter password (character length greater than 5)");
+                }
+                return errors;
+            }
+        });
+    </script>
+{% endblock %}

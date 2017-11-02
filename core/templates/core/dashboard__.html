@@ -1,0 +1,1078 @@
+{% extends "core/includes/base.html" %}
+{% load i18n static bootstrap humanize %}
+
+
+{% block content_body %}
+
+    {% if request.user.member.status in 'Blocked,Suspended' %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="text-danger text-center " style="font-size: 2em; padding-top: 2em">{{ request.user.member.first_name }}, your account is blocked </h2>
+                    <h2 class="text-warning text-center" style="font-size: 2em; padding-top: 2em">Your profile will be deleted {{ request.user.member.delete_on|naturaltime }}</h2>
+                    <h2 class="text-primary text-center" style="font-size: 2em; padding-top: 2em">Contact support if you have good reason why this account should not be deleted</h2>
+                </div>
+            </div>
+        </div>
+    {% elif request.user.member.is_fake %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="text-danger " style="font-size: 2em; padding-top: 2em">Hello {{ request.user.member.first_name }}, your account has been stampped "Fake" by our Identity Verification System.
+                        We understand that sometimes we get this wrong, please contact our support team if you feel we are wrong at this with the details below or SMS same details to 08028559173:
+                        <ul>
+                            <li>Full Name</li>
+                            <li>Phone</li>
+                            <li>Email</li>
+                            <li>Account Number</li>
+                            <li>Bank Name</li>
+                        </ul>
+                    </h2>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="content">
+            <!-- Start info box -->
+            <div class="row top-summary">
+                <div class="col-lg-3 col-md-6">
+                    <div class="widget pink-1 animated fadeInDown">
+                        <div class="widget-content padding">
+                            <div class="widget-icon"><i class="fa fa-dollar"></i></div>
+                            <div class="text-box">
+                                <p class="maindata">TOTAL <b>HELP PROVIDED</b></p>
+                                <h2>₦<span class="animate-number" data-value="{{ total_paid }}" data-duration="3000">0</span></h2>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="widget-footer">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <i class="fa fa-caret-down rel-change"></i> <b>Mill Funds Family</b>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="widget green-1 animated fadeInDown">
+                        <div class="widget-content padding">
+                            <div class="widget-icon"><i class="fa fa-dollar"></i></div>
+                            <div class="text-box">
+                                <p class="maindata">TOTAL <b>HELP RECIEVED</b></p>
+                                <h2>₦<span class="animate-number" data-value="{{ total_received }}" data-duration="3000">0</span></h2>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="widget-footer">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <i class="fa fa-caret-down rel-change"></i> <b>Mill Funds Family</b>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="widget lightblue-1 animated fadeInDown">
+                        <div class="widget-content padding">
+                            <div class="widget-icon"><i class="fa fa-users"></i></div>
+                            <div class="text-box">
+                                <p class="maindata">TOTAL <b>USERS REFERED</b></p>
+                                <h2><span class="animate-number" data-value="{{ referral_count }}" data-duration="3000">0</span></h2>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="widget-footer">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <i class="fa fa-caret-up rel-change"></i> <b>Mill Funds Family</b>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="widget green-1 animated fadeInDown">
+                        <div class="widget-content padding">
+                            <div class="widget-icon"><i class="icon-globe-inv"></i></div>
+                            <div class="text-box">
+                                <p class="maindata">SPEED <b>BONUS</b></p>
+                                <h2>₦<span class="animate-number" data-value="{{ total_speed_bonus }}" data-duration="3000">0</span></h2>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="widget-footer">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <i class="fa fa-caret-up rel-change"></i> <b>Mill Funds Family</b>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- End of info box -->
+
+            <div class="row">
+                <div class="col-lg-8 portlets">
+                    <div id="website-statistics1" class="widget">
+                        <div class="widget-header transparent">
+                            <!-- <h2><i class="icon-chart-line"></i> <strong></strong></h2> -->
+                            <div class="additional-btn">
+                                <a href="#" class="hidden reload"><i class="icon-ccw-1"></i></a>
+                                <a class="hidden" id="dropdownMenu1" data-toggle="dropdown">
+                                    <i class="fa fa-cogs"></i>
+                                </a>
+                                <!-- <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
+                                  <li><a href="#">Action</a></li>
+                                  <li><a href="#">Another action</a></li>
+                                  <li><a href="#">Something else here</a></li>
+                                  <li class="divider"></li>
+                                  <li><a href="#">Separated link</a></li>
+                                </ul> -->
+                                <a href="#" class="widget-popout hidden tt" title="Pop Out/In"><i class="icon-publish"></i></a>
+                                <a href="#" class="widget-maximize hidden"><i class="icon-resize-full-1"></i></a>
+                                <a href="#" class="widget-toggle"><i class="icon-down-open-2"></i></a>
+                                <a href="#" class="widget-close"><i class="icon-cancel-3"></i></a>
+                            </div>
+                        </div>
+                        <div class="widget-content">
+                            <div id="website-statistic" class="statistic-chart">
+                                <div class="row stacked">
+                                    <div class="col-sm-12">
+                                        <div class="toolbar">
+                                            <div class="pull-left">
+                                                <div class="btn-group">
+                                                    <div class="alert alert-success alert-dismissable">
+                                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                        <a href="#" class="alert-link">Millers Family Notification Board: {{ request.user.first_name }}, you have completed {{ cycle_counter }} recycles
+                                                        value at {{ request.user.member.gh_balance }}.<br> Your Money will be due for GH after 10 Recycles</a>.
+                                                        {% if cycle_counter > 0 %}<br><br>
+                                                            <b>Good day great miller,</b>
+                                                            <p>We have noticed lots of defaulters on our system and we wouldn't wish to go down because of that.We have the interest of every miller at
+                                                                heart and so we are advised to move into this new <a href="https://t.me/joinchat/F0yf60RPZ9gnT-__Mdi9kg" target="_blank">group</a>  for further discussion and updates
+                                                                <code>https://t.me/joinchat/F0yf60RPZ9gjuWcUqihq3Q</code>
+                                                            </p>
+                                                        {% endif %}
+                                                    </div>
+                                                    <!-- <a href="#" class="btn btn-default btn-xs">Daily</a>
+                                                    <a href="#" class="btn btn-default btn-xs active">Monthly</a>
+                                                    <a href="#" class="btn btn-default btn-xs">Yearly</a> -->
+                                                </div>
+                                            </div>
+                                            <div class="pull-right">
+                                                <div class="btn-group">
+                                                    <!-- <a class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                                      Export <i class="icon-down-open-2"></i>
+                                                    </a> -->
+                                                    <!-- <ul class="dropdown-menu pull-right" role="menu">
+                                                      <li><a href="#">Export as PDF</a></li>
+                                                      <li><a href="#">Export as CSV</a></li>
+                                                      <li><a href="#">Export as PNG</a></li>
+                                                      <li class="divider"></li>
+                                                      <li><a href="#">Separated link</a></li>
+                                                    </ul> -->
+                                                </div>
+                                                <!-- <a href="#" class="btn btn-primary btn-xs"><i class="icon-cog-2"></i></a> -->
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <!-- <div id="morris-home" class="morris-chart" style="height: 270px;"></div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="col-lg-4 portlets">
+                    <div class="widget darkblue-3">
+                        <div class="widget-header transparent">
+                            <!-- <h2><strong>ongoing</strong> Status</h2> -->
+                            <div class="additional-btn">
+                                <a href="#" class="hidden reload"><i class="icon-ccw-1"></i></a>
+                                <a class="hidden" id="dropdownMenu1" data-toggle="dropdown">
+                                    <i class="fa fa-cogs"></i>
+                                </a>
+                                <!-- <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
+                                  <li><a href="#">Action</a></li>
+                                  <li><a href="#">Another action</a></li>
+                                  <li><a href="#">Something else here</a></li>
+                                  <li class="divider"></li>
+                                  <li><a href="#">Separated link</a></li>
+                                </ul> -->
+                                <!--  <a href="#" class="widget-popout hidden tt" title="Pop Out/In"><i class="icon-publish"></i></a>
+                                <a href="#" class="widget-maximize hidden"><i class="icon-resize-full-1"></i></a>
+                                <a href="#" class="widget-toggle"><i class="icon-down-open-2"></i></a>
+                                <a href="#" class="widget-close"><i class="icon-cancel-3"></i></a> -->
+                            </div>
+                        </div>
+                        <div class="widget-content">
+                            <div id="website-statistic2" class="statistic-chart">
+
+                                <div class="col-sm-12 stacked">
+                                    <h4><i class="fa fa-circle-o text-green-1"></i> Mill Funds ROI - <b>60% Return of Investment</b></h4>
+                                    <h4><i class="fa fa-circle-o text-green-1"></i> Mill Funds SpeedBonus - <b>N500 Cashable at 10k</b></h4>
+                                    <h4><i class="fa fa-circle-o text-green-1"></i> Mill Funds ReferalBonus - <b>10k for 20Peeps Reffered</b></h4>
+                                    <div class="col-sm-8 status-data">
+
+                                        <!-- <div class="col-xs-12">
+                                            <div class="row stacked">
+                                                <div class="col-xs-4 text-center right-border">
+                                                    Processes<br>
+                                                    <span class="animate-number" data-value="322" data-duration="3000">0</span>
+                                                </div>
+                                                <div c
+                                                lass="col-xs-4 text-center right-border">
+                                                    Connections<br>
+                                                    <span class="animate-number" data-value="4789" data-duration="3000">0</span>
+                                                </div>
+                                                <div class="col-xs-4 text-center">
+                                                    Avg. Load<br>
+                                                    <span class="animate-number" data-value="76" data-duration="3000">0</span>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                        <div class="clearfix"></div>
+                                        <!-- / -->
+                                    </div>
+                                    <!-- <div class="col-sm-4 text-center">
+                                        <div class="ws-load echart" data-percent="50"><span class="percent"></span></div>
+                                    </div> -->
+                                </div>
+                                <div class="clearfix"></div>
+                                <div id="home-chart-2"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-8 portlets">
+                    <div class="widget">
+                        <div class="widget-header">
+                            <!-- <h2><i class="icon-chart-pie-1"></i> <strong>Sales</strong> Report</h2> -->
+                            <div class="additional-btn">
+                                <a href="#" class="hidden reload"><i class="icon-ccw-1"></i></a>
+                                <a class="hidden" id="dropdownMenu1" data-toggle="dropdown">
+                                    <i class="fa fa-cogs"></i>
+                                </a>
+                                <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="dropdownMenu1">
+                                    <li><a href="#">Action</a></li>
+                                    <li><a href="#">Another action</a></li>
+                                    <li><a href="#">Something else here</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Separated link</a></li>
+                                </ul>
+                                <a href="#" class="widget-popout hidden tt" title="Pop Out/In"><i class="icon-publish"></i></a>
+                                <a href="#" class="widget-maximize hidden"><i class="icon-resize-full-1"></i></a>
+                                <a href="#" class="widget-toggle"><i class="icon-down-open-2"></i></a>
+                                <a href="#" class="widget-close"><i class="icon-cancel-3"></i></a>
+                            </div>
+                        </div>
+                        <div class="widget-content">
+                            <div class="row stacked">
+
+
+
+                {% for ph in pending_phs %}
+                    <div class="col-xs-12">
+                        {% if ph.status == 'Awaiting Payment' %}
+                            <div class="panel panel-white post panel-shadow">
+                                <div class="post-heading">
+{#                                    <div class="pull-left image">#}
+{#                                        <i class="fa fa-envelope text-warning"></i>#}
+{#                                    </div>#}
+                                    <div class="meta">
+                                        <div class="title h5">
+                                            <a href="javascript:;"><b>Hello {{ request.user.member.first_name }} {{ request.user.member.surname }}</b> you are matched to pay
+                                                <i>{{ ph.transaction.owner.first_name }} {{ ph.transaction.owner.surname }}</i>  ‎₦ {{ ph.amount|intcomma }}</a>
+                                        </div>
+                                        <h6 class="text-muted time">Created {{ ph.created|naturaltime }} </h6>
+                                    </div>
+                                </div>
+                                <div class="post-description">
+                                    <div class="time-to-pay text-center" data-expires="{{ ph.expires }}" data-type="PH-WP" data-transaction-detail="{{ ph.id }}"></div>
+                                    <p>Transaction: {{ ph.id }}</p>
+                                    <div class="row no-margin">
+                                        <a href="javascript:;" class="btn btn-warning stat-item refuse-to-pay" data-type="PH-WP-No" data-transaction-detail="{{ ph.id }}" style="margin-bottom: 5px">
+{#                                            <i class="fa fa-thumbs-down icon white"></i> #}
+                                            I No Go Pay
+                                        </a>
+                                        <a href="javascript:;" class="btn btn-success stat-item agree-to-pay" data-type="PH-WP-Yes" data-transaction-detail="{{ ph.id }}">
+{#                                            <i class="fa fa-thumbs-up icon white"></i> #}
+                                            I Will Pay
+                                        </a>
+        {#                                <small><i>Total: ‎₦ {{ ph.transaction.amount|intcomma }} Bal.: ‎₦ {{ ph.transaction.balance|intcomma }}</i></small>#}
+                                    </div>
+                                </div>
+                            </div>
+                        {% elif ph.status == 'Awaiting Confirmation' %}
+                            <div class="panel panel-white post panel-shadow">
+                                <div class="post-heading">
+{#                                    <div class="pull-left image">#}
+{#                                        <i class="fa fa-hourglass-2 text-success"></i>#}
+{#                                    </div>#}
+                                    <div class="meta">
+                                        <div class="title h5">
+                                            <a href="javascript:;">Hello {{ request.user.member.first_name }} {{ request.user.member.surname }}, <i>{{ ph.transaction.owner.first_name }}
+                                                {{ ph.transaction.owner.surname }}</i> has been contacted and we are waiting for his confirmation to place you on GH Queue</a>
+                                        </div>
+                                        <h6 class="text-muted time">Created {{ ph.proof_date|naturaltime }} </h6>
+                                    </div>
+                                </div>
+                                <div class="post-description">
+                                    <div class="time-to-pay text-center" data-expires="{{ ph.proof_date }}" data-type="PH-WC" data-transaction-detail="{{ ph.id }}"></div>
+                                    <p>Transaction: {{ ph.id }}</p>
+                                    <div class="row no-margin">
+                                        {#                        <a href="javascript:;" class="btn btn-warning stat-item refuse-to-pay" data-type="PH-WC-Yes" data-transaction-detail="{{ ph.id }}" style="margin-bottom: 5px">#}
+                                        {#                            <i class="fa fa-thumbs-down icon white"></i> I Decline to Pay this Participant#}
+                                        {#                        </a>#}
+                                        <a href="javascript:;" class="btn btn-success stat-item agree-to-pay" data-type="PH-WC-Yes" data-transaction-detail="{{ ph.id }}">
+{#                                            <i class="fa fa-thumbs-up icon white"></i> #}
+                                            See Payment Details
+                                        </a>
+        {#                                <small><i>Total: ‎₦ {{ ph.transaction.amount|intcomma }} Bal.: ‎₦ {{ ph.transaction.balance|intcomma }}</i></small>#}
+                                    </div>
+                                </div>
+                            </div>
+                        {% elif ph.status == 'Exception' %}
+                            <div class="panel panel-white post panel-shadow">
+                                <div class="post-heading">
+{#                                    <div class="pull-left image">#}
+{#                                        <i class="fa fa-warning text-warning"></i>#}
+{#                                    </div>#}
+                                    <div class="meta">
+                                        <div class="title h5">
+                                            <a href="javascript:;"><b>Hello {{ request.user.member.first_name }} {{ request.user.member.surname }}</b> Your claimed Payment has been contexted by the beneficiary
+                                                ‎₦ {{ ph.amount|intcomma }}</a>
+                                        </div>
+                                        <h6 class="text-muted time">Created {{ ph.proof_acknowledge_date|naturaltime }} </h6>
+                                    </div>
+                                </div>
+                                <div class="post-description">
+                                    <div class="time-to-pay_ text-center text-danger" data-expires="{{ ph.expires }}" data-type="PH-EX" data-transaction-detail="{{ ph.id }}">Get your Bank Stamped Statement Ready
+                                    </div>
+                                    <p>Transaction: {{ ph.id }}</p>
+                                    <div class="row no-margin">
+                                        <a href="javascript:;" class="btn btn-success stat-item agree-to-pay" data-type="PH-EX-Yes" data-transaction-detail="{{ ph.id }}" data-tdid="{{ ph.id }}">
+{#                                            <i class="fa fa-window-restore icon white"></i> #}
+                                            See Payment Details
+                                        </a>
+        {#                                <small><i>Total: ‎₦ {{ ph.transaction.amount|intcomma }} Bal.: ‎₦ {{ ph.transaction.balance|intcomma }}</i></small>#}
+                                    </div>
+                                </div>
+                            </div>
+                        {% elif ph.status == 'Cancelled' %}
+                            <div class="panel panel-white post panel-shadow">
+                                <div class="post-heading">
+{#                                    <div class="pull-left image">#}
+{#                                        <i class="fa fa-ban text-danger"></i>#}
+{#                                    </div>#}
+                                    <div class="meta">
+                                        <div class="title h5">
+                                            <a href="javascript:;"><b>Hello {{ request.user.member.first_name }} {{ request.user.member.surname }}</b> this transaction ‎₦ {{ ph.amount|intcomma }} has been
+                                                cancelled</a>
+                                        </div>
+                                        <h6 class="text-muted time">Created {{ ph.proof_acknowledge_date|naturaltime }} </h6>
+                                    </div>
+                                </div>
+                                <div class="post-description">
+                                    <div class="time-to-pay_ text-center" data-expires="{{ ph.expires }}" data-type="PH-CX" data-transaction-detail="{{ ph.id }}">Cancelled Transaction</div>
+                                    <p>Transaction: {{ ph.id }}</p>
+                                    <div class="row no-margin">
+                                        <a href="javascript:;" class="btn btn-success stat-item agree-to-pay" data-type="PH-CX-Yes" data-transaction-detail="{{ ph.id }}" data-tdid="{{ ph.id }}">
+{#                                            <i class="fa fa-window-restore icon white"></i> #}
+                                            See Payment Details
+                                        </a>
+        {#                                <small><i>Total: ‎₦ {{ ph.transaction.amount|intcomma }} Bal.: ‎₦ {{ ph.transaction.balance|intcomma }}</i></small>#}
+                                    </div>
+                                </div>
+                            </div>
+                        {% elif ph.status == 'Confirmed' %}
+                            <div class="panel panel-white post panel-shadow">
+                                <div class="post-heading">
+{#                                    <div class="pull-left image">#}
+{#                                        <i class="fa fa-check-square text-success"></i>#}
+{#                                    </div>#}
+                                    <div class="meta">
+                                        <div class="title h5">
+                                            <a href="javascript:;"><b>Hello {{ request.user.member.first_name }} {{ request.user.member.surname }}</b> this transaction ‎(₦ {{ ph.amount|intcomma }}) has been completed</a>
+                                        </div>
+                                        <h6 class="text-muted time">Created {{ ph.proof_acknowledge_date|naturaltime }} </h6>
+                                    </div>
+                                </div>
+                                <div class="post-description">
+                                    <div class="time-to-pay text-center" data-expires="{{ ph.expires }}" data-type="PH-CO" data-transaction-detail="{{ ph.id }}">Completed Transaction</div>
+                                    <p>Transaction: {{ ph.id }}</p>
+                                    <div class="row no-margin">
+                                        <a href="javascript:;" class="btn btn-success stat-item agree-to-pay" data-type="PH-CO-Yes" data-transaction-detail="{{ ph.id }}" data-tdid="{{ ph.id }}">
+{#                                            <i class="fa fa-window-restore icon white"></i> #}
+                                            See Payment Details
+                                        </a>
+        {#                                <small><i>Total: ‎₦ {{ ph.transaction.amount|intcomma }} Bal.: ‎₦ {{ ph.transaction.balance|intcomma }}</i></small>#}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+
+
+
+
+
+                {% for gh in pending_ghs %}
+                    <div class="col-xs-12">
+                        {% if gh.status == 'Awaiting Payment' %}
+                            <div class="panel panel-white post panel-shadow">
+                                <div class="post-heading">
+{#                                    <div class="pull-left image">#}
+{#                                        <i class="fa fa-envelope text-primary"></i>#}
+{#                                    </div>#}
+                                    <div class="meta">
+                                        <div class="title h5">
+                                            <a href="javascript:;"><b>Hello {{ request.user.member.first_name }}, </b> <i>{{ gh.sender.first_name }} {{ gh.sender.surname }}</i>
+                                                will pay you ‎₦ {{ gh.amount|intcomma }}</a>
+                                        </div>
+                                        <h6 class="text-muted time">Created {{ gh.created|naturaltime }}</h6>
+                                    </div>
+                                </div>
+                                <div class="post-description">
+                                    <div class="time-to-pay text-center" data-expires="{{ gh.expires }}" data-type="GH-WP" data-transaction-detail="{{ gh.id }}"></div>
+                                    <p>Transaction: {{ gh.id }}</p>
+                                    <div class="row no-margin">
+                                        <a href="javascript:;" class="btn btn-success stat-item agree-to-pay" data-type="GH-WP-Yes" data-transaction-detail="{{ gh.id }}">
+{#                                            <i class="fa fa-thumbs-up icon white"></i> #}
+                                            See Payment Details
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% elif gh.status == 'Awaiting Confirmation' %}
+                            <div class="panel panel-white post panel-shadow">
+                                <div class="post-heading">
+{#                                    <div class="pull-left image">#}
+{#                                        <i class="fa fa-hourglass-2 text-success"></i>#}
+{#                                    </div>#}
+                                    <div class="meta">
+                                        <div class="title h5">
+                                            <a href="javascript:;">Hello {{ request.user.member.first_name }} {{ request.user.member.surname }}, ‎₦ {{ gh.amount|intcomma }} was paid by
+                                                {{ gh.sender.first_name }}, confirm</a>
+                                        </div>
+                                        <h6 class="text-muted time">Created {{ gh.proof_date|naturaltime }}</h6>
+                                    </div>
+                                </div>
+                                <div class="post-description">
+                                    <div class="time-to-pay text-center" data-expires="{{ gh.proof_date }}" data-type="GH-WC" data-transaction-detail="{{ gh.id }}"></div>
+                                    <p>Transaction: {{ gh.id }}</p>
+                                    <div class="row no-margin">
+                                        <a href="javascript:;" class="btn btn-warning stat-item refuse-to-pay" data-type="GH-WC-No" data-transaction-detail="{{ gh.id }}">
+{#                                            <i class="fa fa-thumbs-down icon white"></i> #}
+                                            I No Get Any Money
+                                        </a>
+                                        <a href="javascript:;" class="btn btn-success stat-item agree-to-pay" data-type="GH-WC-Yes" data-transaction-detail="{{ gh.id }}">
+{#                                            <i class="fa fa-thumbs-up icon white"></i> #}
+                                            I got the Money
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% elif gh.status == 'Exception' %}
+                            <div class="panel panel-white post panel-shadow">
+                                <div class="post-heading">
+{#                                    <div class="pull-left image">#}
+{#                                        <i class="fa fa-warning text-warning"></i>#}
+{#                                    </div>#}
+                                    <div class="meta">
+                                        <div class="title h5">
+                                            <a href="javascript:;">Hello {{ request.user.member.first_name }} {{ request.user.member.surname }}, you have contexted this transaction
+                                                ‎₦ {{ gh.amount|intcomma }} </a>
+                                        </div>
+                                        <h6 class="text-muted time">Created {{ gh.created|naturaltime }}</h6>
+                                    </div>
+                                </div>
+                                <div class="post-description">
+                                    <div class="time-to-pay_ text-center text-warning" data-expires="{{ gh.expires }}" data-type="GH-EX" data-transaction-detail="{{ gh.id }}">Get your Bank Stamped Statement Ready</div>
+                                    <p>Transaction: {{ gh.id }}</p>
+                                    <div class="row no-margin">
+                                        <a href="javascript:;" class="btn btn-success stat-item agree-to-pay" data-type="GH-EX-Yes" data-transaction-detail="{{ gh.id }}">
+{#                                            <i class="fa fa-thumbs-up icon white"></i> #}
+                                            I have see the money
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% elif gh.status == 'Cancelled' %}
+                            <div class="panel panel-white post panel-shadow">
+                                <div class="post-heading">
+{#                                    <div class="pull-left image">#}
+{#                                        <i class="fa fa-ban text-danger"></i>#}
+{#                                    </div>#}
+                                    <div class="meta">
+                                        <div class="title h5">
+                                            <a href="javascript:;"><b>Hello {{ request.user.member.first_name }} {{ request.user.member.surname }}, </b> <i>{{ gh.sender.first_name }} {{ gh.sender.surname }}</i>
+                                                has been matched to pay you ‎₦ {{ gh.amount|intcomma }}</a>
+                                        </div>
+                                        <h6 class="text-muted time">Created {{ gh.created|naturaltime }}</h6>
+                                    </div>
+                                </div>
+                                <div class="post-description">
+                                    <div>Created {{ gh.proof_date|naturaltime }}</div>
+                                    <p>Transaction: {{ gh.id }}</p>
+                                    <div class="row no-margin">
+                                        <a href="javascript:;" class="btn btn-success stat-item agree-to-pay" data-type="GH-CX-Yes" data-transaction-detail="{{ gh.id }}">
+{#                                            <i class="fa fa-thumbs-up icon white"></i> #}
+                                            See Payment Details
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% elif gh.status == 'Confirmed' %}
+                            <div class="panel panel-white post panel-shadow">
+                                <div class="post-heading">
+{#                                    <div class="pull-left image">#}
+{#                                        <i class="fa fa-ban text-danger"></i>#}
+{#                                    </div>#}
+                                    <div class="meta">
+                                        <div class="title h5">
+                                            <a href="javascript:;"><b>Hello {{ request.user.member.first_name }} {{ request.user.member.surname }}, </b> <i>{{ gh.sender.first_name }} {{ gh.sender.surname }}</i>
+                                                has been matched to pay you ‎₦ {{ gh.amount|intcomma }}</a>
+                                        </div>
+                                        <h6 class="text-muted time">Created {{ gh.created|naturaltime }}</h6>
+                                    </div>
+                                </div>
+                                <div class="post-description">
+                                    <div>Created {{ gh.proof_date|naturaltime }}</div>
+                                    <p>Transaction: {{ gh.id }}</p>
+                                    <div class="row no-margin">
+                                        <a href="javascript:;" class="btn btn-success stat-item agree-to-pay" data-type="GH-CO-Yes" data-transaction-detail="{{ gh.id }}">
+{#                                            <i class="fa fa-thumbs-up icon white"></i> #}
+                                            See Payment Details
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <!-- <div id="vector-map" style="height:370px"></div> -->
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div id="sales-report" class="collapse in hidden-xs">
+                        <div class="table-responsive">
+                            <table data-sortable class="table table-striped">
+                                <!-- <thead>
+                                    <tr><th width="70">No</th><th data-sortable="false" width="40"><input type="checkbox" id="select-all-rows"></th><th width="120">Transaction ID</th><th>Buyer</th><th width="100">Status</th><th width="150">Location</th><th width="120">Total</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>1</td><td><input type="checkbox" class="rows-check"></td><td>#0021</td><td><a href="#">John Doe</a></td><td><span class="label label-primary">Transaction</span></td><td>Yogyakarta, ID</td><td><strong class="text-primary">&#36; 1,245</strong></td></tr>
+                                    <tr><td>2</td><td><input type="checkbox" class="rows-check"></td><td>#0022</td><td><a href="#">Johnny Depp</a></td><td><span class="label label-success">Payment</span></td><td>London, UK</td><td><strong class="text-success">&#36; 1,245</strong></td></tr>
+                                    <tr><td>3</td><td><input type="checkbox" class="rows-check"></td><td>#0023</td><td><a href="#">Scarlett Johansson</a></td><td><span class="label label-success">Payment</span></td><td>Canbera, AU</td><td><strong class="text-success">&#36; 1,245</strong></td></tr>
+                                    <tr><td>4</td><td><input type="checkbox" class="rows-check"></td><td>#0024</td><td><a href="#">Hanna Barbara</a></td><td><span class="label label-danger">Cancel</span></td><td>Bali, ID</td><td><strong class="text-danger">&#36; 1,245</strong></td></tr>
+                                    <tr><td>5</td><td><input type="checkbox" class="rows-check"></td><td>#0025</td><td><a href="#">Ali Larter</a></td><td><span class="label label-primary">Transaction</span></td><td>Bandung, ID</td><td><strong class="text-primary">&#36; 1,245</strong></td></tr>
+                                    <tr><td>6</td><td><input type="checkbox" class="rows-check"></td><td>#0026</td><td><a href="#">Willy Wonka</a></td><td><span class="label label-danger">Cancel</span></td><td>Semarang, ID</td><td><strong class="text-danger">&#36; 1,245</strong></td></tr>
+                                    <tr><td>7</td><td><input type="checkbox" class="rows-check"></td><td>#0027</td><td><a href="#">Chris Isaac</a></td><td><span class="label label-warning">Waiting</span></td><td>New York, US</td><td><strong class="text-warning">&#36; 1,245</strong></td></tr>
+                                    <tr><td>8</td><td><input type="checkbox" class="rows-check"></td><td>#0028</td><td><a href="#">Jenny Doe</a></td><td><span class="label label-primary">Transaction</span></td><td>Boston, US</td><td><strong class="text-primary">&#36; 1,245</strong></td></tr>
+                                    <tr><td>9</td><td><input type="checkbox" class="rows-check"></td><td>#0029</td><td><a href="#">Ban ki moon</a></td><td><span class="label label-danger">Cancel</span></td><td>Boston, US</td><td><strong class="text-danger">&#36; 1,245</strong></td></tr>
+
+                                </tbody> -->
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+        <div class="col-sm-12">
+            <div id="notes-app" class="widget">
+                <div class="notes-line"></div>
+                <div class="widget-header centered transparent">
+                    <div class="left-btn btn-group"><a class="btn btn-sm btn-primary add-note"><i class="fa fa-plus"></i></a><a class="btn btn-sm btn-primary back-note-list"><i
+                            class="icon-align-justify"></i></a></div>
+                    <h2>Notes</h2>
+                    <div class="additional-btn">
+                        <a href="#" class="hidden reload"><i class="icon-ccw-1"></i></a>
+                        <a href="#" class="widget-popout hidden tt" title="Pop Out/In"><i class="icon-publish"></i></a>
+                        <a href="#" class="widget-maximize hidden"><i class="icon-resize-full-1"></i></a>
+                        <a href="#" class="widget-toggle"><i class="icon-down-open-2"></i></a>
+                        <a href="#" class="widget-close"><i class="icon-cancel-3"></i></a>
+                    </div>
+                </div>
+                <div class="widget-content padding-sm">
+                    <div id="notes-list">
+                        <div class="scroller">
+                            <ul class="list-unstyled">
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="note-data">
+                        <form>
+                            <textarea class="form-control" id="note-text" placeholder="Your note..."></textarea>
+                        </form>
+                    </div>
+                    <div class="status-indicator">Saved</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <style>
+        .panel.post{
+            padding: 10px 15px;
+        }
+        .post-description .no-margin{
+            margin-left: 5px;
+        }
+
+        .ph-gh-actions i{
+            font-size: 2.2em;
+        }
+        .ph-gh-actions a{
+            padding: 25px 10px;
+            font-size: 2.4em;
+        }
+        .no-margin {
+            margin: 0;
+        }
+
+        .info-box {
+            display: block;
+            min-height: 90px;
+            background: #fff;
+            width: 100%;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+            border-radius: 2px;
+            margin-bottom: 15px;
+        }
+
+        .profile-user-info {
+            display: table;
+            width: 98%;
+            width: calc(100% - 24px);
+            margin: 0 auto;
+        }
+
+        .profile-info-row {
+            display: table-row;
+        }
+
+        .profile-info-row:first-child .profile-info-name, .profile-info-row:first-child .profile-info-value {
+            border-top: none;
+        }
+
+        .profile-info-name {
+            text-align: right;
+            font-weight: 400;
+            color: #667E99;
+            background-color: transparent;
+            width: 110px;
+            vertical-align: middle;
+        }
+
+        .profile-info-name, .profile-info-value {
+            display: table-cell;
+            border-top: 1px dotted #D5E4F1;
+            padding: 3px 10px;
+        }
+    </style>
+
+
+    <script src="{% static 'bootstrap-notify/bootstrap-notify.min.js' %}"></script>
+    <script src="{% static 'bootbox/bootbox.js' %}"></script>
+    <script src="{% static 'js-cookie/js-cookie.js' %}"></script>
+        <script src="{% static 'jquery.countdown/jquery.countdown.min.js' %}"></script>
+
+
+    <script>
+
+
+        $(document).ready(function () {
+                var packages = [];
+                var getClass = function (m, timmeout) {
+                    var rate = m / (timmeout * 60) * 100;
+                    if (rate > 66.66) {
+                        return "text-primary";
+                    } else if (rate > 33.33) {
+                        return "text-warning";
+                    } else {
+                        return "text-danger";
+                    }
+                };
+
+                $.each($("div.time-to-pay"), function (i, v) {
+                    var endDate = $(v).data('expires');
+                    var type = $(this).data('type');
+                    var phTimeoutHours = parseInt('{{ phTimeoutHours }}');
+                    if (type == 'GH-WC' || type == 'PH-WC') {
+                        endDate = new Date(endDate).addHours(parseInt('{{ popConfirmTimeout }}'));
+                        phTimeoutHours = parseInt('{{ popConfirmTimeout }}');
+                    }
+                    console.log(endDate)
+                    $(v).countdown(endDate)
+                        .on('update.countdown', function (event) {
+                            {#                            console.log(event.offset.totalMinutes)#}
+                            $(this).text(event.strftime('%I Hours: %M Minutes: %S Seconds')).removeClass('text-warning text-primary text-danger').addClass(getClass(event.offset.totalMinutes, phTimeoutHours));
+                        })
+                        .on('finish.countdown', function (event) {
+                            var urll = "";
+                            var block_reason = "";
+
+                            switch ($(this).data('type')) {
+                                case ('PH-WP'): {
+                                    $(this).html("<small>Sorry, your time has elapsed & this account will be deleted within the next 72hrs <br>To unblock your account, please write to support</small>");
+                                    urll = "{% url 'core:account-block' 'TD0000000000000000' %}";
+                                    block_reason = "***TIMEOUT***";
+                                    break;
+                                }
+                                case ('PH-WC'):
+                                case('GH-WC'): {
+                                    $(this).html("<small>This case will now be presented to admin</small>");
+{#                                    urll = "{% url 'core:auto-confirm-payment' 'TD0000000000000000' 'True' %}";#}
+                                    block_reason = "***TIMEOUT***";
+                                    return;
+                                }
+                                case('GH-WP'): {
+                                    $(this).html("<small>Sorry, this user will be blocked. Do not panic, the system will rematch you with another participant</small>");
+                                    urll = "{% url 'core:account-block' 'TD0000000000000000' %}";
+                                    block_reason = "***TIMEOUT***";
+                                    return;
+                                }
+                            }
+
+                            processFeed(urll.replace("TD0000000000000000", $(this).data('transaction-detail')), {tdid: $(this).data('transaction-detail'), reason: block_reason}, "Please Wait...", false, 'POST', function (d) {
+                                bootbox.alert("<b>" + d.msg + "</b>");
+                            }, function (d) {
+                                bootbox.alert(d.responseText)
+                            });
+                        });
+                });
+
+                $("a.refuse-to-pay").click(function () {
+                    console.log($(this).data('type'));
+                    tdid = $(this).data('transaction-detail');
+                    switch ($(this).data('type')) {
+                        {#                    case ('GH-WP-No'): {#}
+                        {#                        //TODO: Delete#}
+                        {#                        bootbox.prompt("Please Confirm from Bank Statement First!!! <div style='font-size: .6em;font-weight: normal;font-style: italic;'>If you have confirmed this user did not pay you. Please make a note for the admin. You will be rematched once your claim is asserted true!</div>", function (result) {#}
+                        {#                            if (result != null) {#}
+                        {#                                processFeed("{% url 'core:payment-exception' 'TD0000000000000000' %}".replace("TD0000000000000000", tdid), {#}
+                        {#                                    id: tdid,#}
+                        {#                                    note: result#}
+                        {#                                }, "Please Wait...", false, 'POST', function (d) {#}
+                        {#                                    bootbox.alert("<b>" + d.msg + "</b>", function (d) {#}
+                        {#                                        location.href = ".";#}
+                        {#                                    });#}
+                        {#                                }, function (d) {#}
+                        {#                                    bootbox.alert(d.responseText)#}
+                        {#                                });#}
+                        {#                            }#}
+                        {#                        });#}
+                        {#                        bootbox.prompt("Why do you reject to Pay? <div style='font-size: .6em;font-weight: normal;font-style: italic;'>Be assured we will assist you if need be, you can contact our Support Team via our FaceBook page or support if you have any concern</div>", function (result) {#}
+                        {#                            if (result != null) {#}
+                        {#                                console.log("......")#}
+                        {#                            }#}
+                        {#                        });#}
+                        {#                        break;#}
+                        {#                    }#}
+                        case ('PH-WP-No'): {
+                            bootbox.prompt("Why do you reject to Pay? <div style='font-size: .6em;font-weight: normal;font-style: italic;'>Be assured we will assist you if need be, you can contact our Support Team if you have any concern</div>", function (result) {
+                                if (result != null) {
+                                    processFeed("{% url 'core:account-block' 'TD0000000000000000' %}".replace("TD0000000000000000", tdid), {
+                                        tdid: tdid,
+                                        reason: result
+                                    }, "Please Wait...", false, 'POST', function (d) {
+                                        bootbox.alert("<b>" + d.msg + "</b>", function (d) {
+                                            location.href = ".";
+                                        });
+                                    }, function (d) {
+                                        bootbox.alert(d.responseText)
+                                    });
+                                }
+                            });
+                            break
+                        }
+                        case ('GH-WC-No'): {
+                            bootbox.prompt("Please Confirm From Your Bank Statement First!!! <div style='font-size: .6em;font-weight: normal;font-style: italic;'>If you have confirmed this user did not pay you. Please make a note for the admin. You will be rematched once your claim is asserted true!</div>", function (result) {
+                                if (result != null) {
+                                    processFeed("{% url 'core:payment-exception' 'TD0000000000000000' %}".replace("TD0000000000000000", tdid), {
+                                        tdid: tdid,
+                                        note: result
+                                    }, "Please Wait...", false, 'POST', function (d) {
+                                        bootbox.alert("<b>" + d.msg + "</b>", function (d) {
+                                            location.href = ".";
+                                        });
+                                    }, function (d) {
+                                        bootbox.alert(d.responseText)
+                                    });
+                                }
+                            });
+                            break;
+                        }
+                    }
+                });
+
+                $("a.agree-to-pay").click(function () {
+                    var tdid = $(this).data('transaction-detail');
+                    switch ($(this).data('type')) {
+                        case ('PH-WC-Yes'):
+                        case ('PH-EX-Yes'):
+                        case ('PH-CX-Yes'):
+                        case ('PH-CO-Yes'):
+                        case ('GH-WP-Yes'):
+                        case ('GH-WC-Yes'):
+                        case ('GH-EX-Yes'):
+                        case ('GH-CX-Yes'):
+                        case ('GH-CO-Yes'): {
+                            var dialog = bootbox.dialog({title: 'Payment Details ', size: 'large', message: '<p><i class="fa fa-spin fa-spinner"></i> Loading...</p>'});
+                            {#                        dialog.init(function () {#}
+                            {#                            dialog.find(".bootbox-body").html($(".bootbox-body").load("{% url 'core:receiver-details' 'TD0000000000000000' %}".replace('TD0000000000000000', tdid)));#}
+                            {#                        }, function (result) {#}
+                            {#                            console.log(result);#}
+                            {#                        });#}
+                            break;
+                        }
+                        case ('PH-WP-Yes'): {
+                            var dialog = bootbox.dialog({title: 'Beneficiary Details ', size: 'large', message: '<p><i class="fa fa-spin fa-spinner"></i> Loading...</p>'});
+                            break
+                        }
+                    }
+
+                    dialog.init(function () {
+                        dialog.find(".bootbox-body").load("{% url 'core:receiver-details' 'TD0000000000000000' %}".replace('TD0000000000000000', tdid));
+                        {#                    dialog.find(".bootbox-body").html($(".bootbox-body").load("{% url 'core:receiver-details' 'TD0000000000000000' %}".replace('TD0000000000000000', tdid)));#}
+                    }, function (result) {
+                        console.log(result);
+                    });
+                });
+
+            $('#resend-email').click(function () {
+                processFeed('{% url 'core:resend-email' %}', {}, 'Resending Mail.....', false, 'POST', function (d) {
+                    if (d.type == 'Success') {
+                      bootbox.alert(d.msg, function () {
+                        location.href = location.href;
+                      });
+                    } else {
+                        bootbox.alert(d.msg);
+                    }
+                  }, function (d) {
+                        bootbox.alert(d.responseText);
+                });
+            });
+
+            $('#code-btn').click(function () {
+                if($("#code").val().trim().length<4){
+                  bootbox.alert("Please enter the code sent to your phone");
+                }
+              processFeed('{% url 'core:verify-phone-code' %}', {verify: true, code: $("#code").val()}, 'Verifying.....', false, 'POST', function (d) {
+                    if (d.type == 'Success') {
+                      bootbox.alert(d.msg, function () {
+                        location.href = location.href;
+                      });
+                    } else {
+                      bootbox.alert(d.msg)
+                    }
+                }, function (d) {
+                    bootbox.alert(d.responseText)
+              });
+            });
+
+            $('#resend-code').click(function () {
+              processFeed('{% url 'core:resend-code' %}', {verify: true, }, 'Verifying.....', false, 'POST', function (d) {
+                    if (d.type == 'Success') {
+                      bootbox.alert(d.msg, function () {
+                        location.href = location.href;
+                      });
+                    } else {
+                      bootbox.alert(d.msg)
+                    }
+                }, function (d) {
+                    bootbox.alert(d.responseText)
+              });
+            });
+
+            $("#ph-btn").click(function () {
+                amount = parseInt($("#ph-amount").val());
+                min_ph = parseInt("{{ request.user.member.min_ph }}");
+                max_ph = parseInt("{{ request.user.member.max_ph }}");
+
+                if(amount < min_ph || amount > max_ph){
+                    bootbox.alert("Your PH must be within the range of ₦ "+ formatMoney(min_ph) +" & ₦ "+formatMoney(max_ph));
+                    return
+                }
+                if((amount%parseInt('{{ ph_multiple }}')) > 0){
+                    bootbox.alert("<center>Your PH 'MUST' be in multiple ₦"+formatMoney(parseInt({{ ph_multiple }}))+" ONLY <br>&<br>between the range of ₦ "+ formatMoney(min_ph) +" to ₦ "+formatMoney(max_ph)+"</center>");
+                    return
+                }
+                bootbox.confirm("Please confirm your PH Request (₦ "+formatMoney(amount)+")", function(result){
+                  if(result){
+                    processFeed("{% url 'core:ph' '000000' %}".replace("000000", amount), {}, "Processing...", false, 'POST', function (d) {
+                        if (d.type == 'Info') {
+                            bootbox.alert("<b>" + d.msg + "</b>")
+                        } else if (d.type == 'Refresh') {
+                            bootbox.alert("<b>" + d.msg + "</b>", function (d) {
+                                console.log(d);
+                                location.href = ".";
+                            });
+                        }
+                    }, function (d) {
+                        $.notify({icon: "fa fa-exclamation-triangle", title: "", message: d.responseText}, {type: 'danger', z_index: 9999999});
+                    });
+                  }
+                });
+
+            });
+
+            $("#gh-btn").click(function () {
+                amount = parseInt($("#gh-amount").val());
+                if((amount%1000) > 0){
+                    bootbox.alert("<center>Your GH 'MUST' be in multiple ₦"+formatMoney(1000)+" ONLY </center>");
+                    return
+                }
+                bootbox.confirm("Please confirm your GH Request (₦ "+formatMoney(amount)+")", function(result){
+                  if(result){
+                    processFeed("{% url 'core:gh' %}", {'type': 'GH', 'amount': amount}, "Processing...", false, 'POST', function (d) {
+                        if (d.type == 'Info') {
+                            bootbox.alert("<b>" + d.msg + "</b>")
+                        } else if (d.type == 'Success') {
+                            bootbox.alert("<b>" + d.msg + "</b>", function (d) {
+                                console.log(d);
+                                location.href = ".";
+                            });
+                        }
+                    }, function (d) {
+                        $.notify({icon: "fa fa-exclamation-triangle", title: "", message: d.responseText}, {type: 'danger', z_index: 9999999});
+                    });
+                  }
+                });
+
+            });
+          });
+
+
+
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+
+        function pwd(msg) {
+            var pleaseWaitDialog = bootbox.dialog({
+                message: '<p class="text-center">'+msg+'</p>',
+                closeButton: false
+            });
+            return pleaseWaitDialog;
+        }
+
+        function processFeed(url, data, blocking, asJSON, method, successCallback, errorCallback) {
+            {#        var data = $("#searchform").serialize();#}
+            {#        $('#searchform').on('submit',function(event){#}
+
+            var pwDialog = null;
+            $.ajax({
+                type: method,
+                url: url,
+                data: data,
+                dataType: "json",
+                beforeSend: function (xhr, settings) {
+                    console.log(this.data)
+                    var csrftoken = Cookies.get('csrftoken');
+                    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    }
+                    console.log("sending to: ", this.url)
+                    if (blocking != null) {
+                        pwDialog = pwd(blocking);
+                    }
+                },
+                success: function (d) {
+                    if (typeof successCallback === "function") {
+                        successCallback(d);
+                    }
+                },
+                error: function (d) {
+                    if (typeof errorCallback === "function") {
+                        errorCallback(d);
+                    }
+                },
+                complete: function (d) {
+                    if (blocking != null) {
+                        pwDialog.modal('hide');
+                    }
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            $("a.my-link").click(function () {
+                bootbox.dialog({message: '<p class="text-center">'+location.protocol+"//"+location.host+"{% url 'core:register' request.user.username|default:'_system' %}</p>",closeButton: true});
+            });
+            $("a.my-profile").click(function () {
+                var dialog = bootbox.dialog({
+                    title: 'Profile Details <small>',
+                    size: 'large',
+                    message: '<p><i class="fa fa-spin fa-spinner"></i> Loading...</p>'
+                });
+                dialog.init(function () {
+                    $(".bootbox-body").load("{% url 'core:profile' %}");
+                }, function(result) {
+                    console.log(result);
+                });
+            });
+        });
+
+        Date.prototype.addHours = function(h) {
+           this.setTime(this.getTime() + (h*60*60*1000));
+           return this;
+        };
+
+        function loadHtml(url, callback) {
+            $.ajax({
+                url: url,
+                dataType: "html",
+                success: function (data) {
+                    callback(data);
+                }
+            });
+        }
+
+        function formatMoney(num, decimalPlace, currency) {
+            if (typeof decimalPlace === 'undefined') {
+                decimalPlace = 0;
+                var p = num.toFixed(2).split(".");
+            } else {
+                var p = [num + ""]
+            }
+            if (typeof currency === 'undefined') {
+                currency = '';
+            }
+
+            return currency + p[0].split("").reverse().reduce(function (acc, num, i, orig) {
+                    return num == "-" ? acc : num + (i && !(i % 3) ? "," : "") + acc;
+                }, "") + ((decimalPlace == 0) ? "" : "." + p[1]);
+        }
+    </script>
+
+{% endblock %}

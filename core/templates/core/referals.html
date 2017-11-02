@@ -1,0 +1,56 @@
+{% extends "core/includes/base_back.html" %}
+{% load i18n static %}
+
+{% block content_body %}
+    <div data-options="region:'center'">
+         <table class="easyui-datagrid" title="Referrals" data-options="rownumbers:true,singleSelect:true,fitColumns:true,toolbar: '#my-referal-link'" style="width: 100%">
+            <thead>
+                <tr>
+                    <th data-options="field:'name'" width="20%">Account Name</th>
+                    <th data-options="field:'email'" width="20%">Email</th>
+                    <th data-options="field:'phone',align:'right'" width="8%">Cell number</th>
+                    <th data-options="field:'guider',align:'right'" width="15%">Guider</th>
+                    <th data-options="field:'status'" width="7%">Status</th>
+                    <th data-options="field:'my-link',align:'center'" width="20%">Site Referrer</th>
+                    <th data-options="field:'created',align:'center'" width="10%">Date of creating</th>
+                </tr>
+            </thead>
+             <tbody>
+                {% for sp in referals %}
+                    <tr>
+                        <td>{{ sp.full_name }}</td>
+                        <td>{{ sp.email }}</td>
+                        <td>{{ sp.phone }}</td>
+                        <td>{{ sp.sponsor.full_name }}</td>
+                        <td>{{ sp.status }}</td>
+                        <td>https://www.myhelpbox.com/register/{{ sp.user.username }}</td>
+                        <td>{{ sp.created }}</td>
+                    </tr>
+             {% endfor %}
+             </tbody>
+        </table>
+    </div>
+
+    <div id="my-referal-link" style="float: right">
+        <a id="my-referal-link-" href="javascript:;" class="easyui-linkbutton" onclick="$('#my-referal-dialog').dialog('open')" style="padding-left: 15px">Show my referral link</a>
+    </div>
+
+    <div id="my-referal-dialog" class="easyui-dialog" title="My referal link" style="width:80%;height:120px;max-width:600px;padding:10px" data-options="onResize:function(){$(this).dialog('center');},closed:true,buttons:[{
+                    text:'Close',
+                    iconCls:'icon-cancel',
+                    handler:function(){$('#my-referal-dialog').dialog('close');}
+                }]">
+        <input class="easyui-textbox" data-options="editable:false,value:'https://www.myhelpbox.com/register/{{ request.user.username }}'" style="width:100%">
+    </div>
+    <script type="text/javascript">
+        var toolbar_ = [{
+            text:'Add',
+            iconCls:'icon-add',
+            handler:function(){alert('add')}
+        },'-',{
+            text:'Save',
+            iconCls:'icon-save',
+            handler:function(){alert('save')}
+        }];
+    </script>
+{% endblock %}

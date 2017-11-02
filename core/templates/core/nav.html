@@ -1,0 +1,35 @@
+{% load i18n static %}
+<!-- NAVIGATION -->
+<div id="menu">
+	<nav class="navbar-wrapper navbar-default" role="navigation">
+		<div class="container">
+			  <div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-backyard">
+				  <span class="sr-only">Toggle navigation</span>
+				  <span class="icon-bar"></span>
+				  <span class="icon-bar"></span>
+				  <span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand site-name" href="#top"><img src="{% static 'front/images/logo2.png' %}" alt="logo"></a>
+			  </div>
+
+			  <div id="navbar-scroll" class="collapse navbar-collapse navbar-backyard navbar-right">
+				<ul class="nav navbar-nav">
+					<li><a href="#intro">About Us</a></li>
+					<li><a href="#feature">Features</a></li>
+					<li><a href="#download">How it Works</a></li>
+					<li><a href="#package">Packages</a></li>
+					<li><a href="#testi">Testimonies</a></li>
+					<li><a href="#contact">FAQ</a></li>
+                    {% if request.user.is_active %}
+					    <li><a href="{% url 'core:dashboard' %}">Dashboard</a></li>
+					    <li><a href="{% url 'core:logout' %}">Logout</a></li>
+                    {% else %}
+                        <li><a href="{% url 'core:login' %}">Login</a></li>
+                    {% endif %}
+				</ul>
+			  </div>
+		</div>
+	</nav>
+</div>
+<div id="header_shadow"><img src="{% static 'front/images/header_shadow.png' %}"></div>

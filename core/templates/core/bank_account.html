@@ -1,0 +1,119 @@
+{#{% extends "core/includes/base_back.html" %}#}
+{% load i18n static bootstrap %}
+{#<div class="col-xs-12">#}
+{#    <button class="btn btn-warning pull-right" id="edit-account" type="button" style="margin-left: 10px"><i class="ti-pencil-alt"></i> Edit Account</button>#}
+{#    <button class="btn btn-warning pull-right" id="add-account" type="button"><i class="ti-plus"></i> Add Account</button>#}
+{#</div><br><hr class="message-inner-separator">#}
+
+<div id="account-list" class="col-xs-12_">
+    {% with request.user.member.bank_accounts.all as accs %}
+        {% if accs|length == 0 %}
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <p>You currently do not have any Account attached to your profile</p>
+            </div>
+        {% else %}
+            {% for acc in accs %}
+                <div class="" style="padding-bottom: 8px">
+                    <button class="btn btn-warning" data-bank-name="{{ acc.bank.name }}" data-account-number="{{ acc.number }}" data-account-name="{{ acc.name }}" data-currency="{{ acc.currency.symbol }}" data-default="{{ acc.is_default|lower }}" {% if acc.currency.code == 'BTC' %}data-type="Bitcoin"{% else %}data-type="Local"{% endif %}>
+                        {% if acc.is_default %}<i class="ti-check-box"></i>{% endif %}
+                        {{ acc.bank.name }} ({{ acc.currency.symbol }})</span> {{ acc }}
+                    </button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+<hr class="message-inner-separator">
+</div>
+
+<form id="add-account-form">
+    {{ form|bootstrap }}
+    <div class="col-xs-12">
+        <button class="btn btn-default pull-right" type="button" style="margin-left: 10px" data-dismiss="modal"><i class="ti-close"></i> Close</button>
+        <button class="btn btn-warning pull-right" id="add-account" type="submit"><i class="ti-save"></i> Save Account</button>
+    </div>
+    <br>
+</form>
+{#<form id="edit-account-form">#}
+{#    {{ editForm|bootstrap }}#}
+{#</form>#}
+
+<style>
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#id_bank").change(function(){
+            if($(this).val()=="1"){
+                $("#id_branch_name").parent().parent().hide();
+                $("#id_sort_code").parent().parent().hide();
+                $("label[for='id_number").html("BTC Address");
+                $("label[for='id_name").html("BTC Account Name/Owner");
+            }else{
+                $("#id_branch_name").parent().parent().show();
+                $("#id_sort_code").parent().parent().show();
+                $("label[for='id_number").html("Bank Account Number");
+                $("label[for='id_name").html("Bank Account Name/Owner");
+            }
+        });
+
+        $("#add-account-form").submit(function (event) {
+            event.preventDefault();
+            if($("#id_bank").val()=="1"){
+                if(!check_address($("#id_number").val())){
+                    pwd("'"+$("#id_number").val()+"' is not a valid Bitcoin Address", true); return;
+                }
+            }else{
+                if(isNaN($("#id_number").val()) || $("#id_number").val().length < 6){
+                    pwd("'"+$("#id_number").val()+"' is not a valid Bank Account Number", true); return;
+                }
+            }
+
+            processFeed('{% url 'core:bank-account' %}', $("#add-account-form").serialize(), 'Processing Request...', false, 'POST', function (d) {
+                if (d.type == 'Success') {
+                    BootstrapDialog.alert({
+                        title: "Server Response",
+                        message: d.msg,
+                        onhide: function () {location = '{% url 'core:profile' %}'}
+                    });
+                } else {
+                    BootstrapDialog.alert(d.msg)
+                }
+            }, function (d) {
+                BootstrapDialog.alert(d.responseText)
+            });
+        });
+        
+        $("button[data-type]").click(function (d) {
+            html = '';
+            $.each($("button[data-type='"+$(this).data("type")+"']"), function (i, v) {
+                html += '<div class="form-group"><div class="checkbox"><label><input type="radio" name="default" value="'+$(v).data("account-number")+'" '+($(v).data("default")? "checked":"")+'> <span>'+$(v).data("bank-name")+' ('+$(v).data("currency")+') '+$(v).data("account-number")+'</span></label></div></div>';
+            });
+            BootstrapDialog.show({
+                title: 'Set Default Account for '+$(this).data("type")+' '+($(this).data("type")=='Local'? 'Bank':''),
+                message: html,
+                buttons: [{
+                    label: 'Close',
+                    action: function(dialog) {dialog.close();}
+                },{
+                    label: 'Save',
+                    action: function(dialog) {
+                        processFeed('{% url 'core:default-account' %}', {account: $("input[type='radio'][name='default']:checked").val()}, 'Processing Request...', false, 'POST', function (d) {
+                            if (d.type == 'Success') {
+                                BootstrapDialog.alert({
+                                    title: "Server Response",
+                                    message: d.msg,
+                                    onhide: function () {location = "{% url 'core:profile' %}";}
+                                });
+                            } else {
+                                BootstrapDialog.alert(d.msg)
+                            }
+                        }, function (d) {
+                            BootstrapDialog.alert(d.responseText)
+                        });
+                    }
+                }]
+            })
+        })
+    });
+</script>

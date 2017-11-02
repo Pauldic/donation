@@ -1,0 +1,186 @@
+{% extends "core/includes/base.html" %}
+{% load i18n static bootstrap humanize %}
+
+{% block content_body %}
+
+    <div class="content-page_">
+        <!-- ============================================================== -->
+        <!-- Start Content here -->
+        <!-- ============================================================== -->
+        <div class="profile-banner" style="background-image: url({% static 'images/stock/1epgUO0.jpg' %});">
+            <div class="col-sm-3 avatar-container">
+                <img src="{% static 'images/users/user-256.jpg' %}" class="img-circle profile-avatar" alt="User avatar">
+            </div>
+            <div class="col-sm-12 profile-actions text-right">
+                {% if request.user.member.status == 'Active' %}
+                    <button type="button" class="btn btn-success btn-sm"><i class="fa fa-check"></i> Verified</button>
+                {% else %}
+                    <button type="button" class="btn btn-danger btn-sm"><i class="fa fa-times"></i> Not Verified</button>
+                {% endif %}
+                <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-envelope"></i> Support Ticket</button>
+                <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-ellipsis-v"></i></button>
+            </div>
+        </div>
+        <div class="content">
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <!-- Begin user profile -->
+                    <div class="text-center user-profile-2">
+                        <h4>Welcome, <b>Jane Doe</b></h4>
+
+                        <h5>Mill Funds User</h5>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <span class="badge"></span>
+                                <a href="https://t.me/millfunds" target="_blank">
+                                    <button type="button"><i class="glyphicon glyphicon-send"><strong> TELEGRAM GROUP ONE</strong></i></button>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <!-- User button -->
+                        <div class="user-button">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <!-- <button type="button" class="btn btn-primary btn-sm btn-block"><i class="fa fa-envelope"></i> Send Message</button> -->
+                                </div>
+                                <div class="col-lg-6">
+                                    <!-- <button type="button" class="btn btn-default btn-sm btn-block"><i class="fa fa-user"></i> Add as friend</button> -->
+                                </div>
+                            </div>
+                        </div><!-- End div .user-button -->
+                    </div><!-- End div .box-info -->
+                    <!-- Begin user profile -->
+                </div><!-- End div .col-sm-4 -->
+
+                <div class="col-sm-9" style="margin-top: 50px;">
+                    <div class="widget widget-tabbed">
+                        <!-- Nav tab -->
+                        <ul class="nav nav-tabs nav-justified">
+                            <li class="active"><a href="#about" data-toggle="tab" aria-expanded="true"><i class="fa fa-user"></i> About</a></li>
+                        </ul>
+                        <!-- End nav tab -->
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <!-- Tab about -->
+                            <div class="tab-pane animated fadeInRight active" id="about">
+                                <div class="user-profile-content">
+                                    <h5><strong>ABOUT</strong> ME</h5>
+                                    {% if request.user.member.status == 'Active' %}
+                                        <p>
+                                            “ A real friend is one who walks in when the rest of the world walks out. “ A true friend is the best Possession. “ Friends are God's way of taking care of us.
+                                            “ Friendship increases by visiting friends but visiting seldom. “ Friendship is one mind in two bodies. “ Hold a true friend with both your hands. “ “
+                                        </p>
+                                    {% else %}
+                                        <p>
+                                            To verify your Phone Number enter the code sent to your Phone, if you did not receive the code, please click on your phone number to resend a the code. <br>
+                                            To verify your Email, please click on the link sent to your mail, if email was not received, please on your email to resend the mail
+                                        </p>
+                                    {% endif %}
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <h5><strong>CONTACT DETAILS</strong> </h5>
+                                            <address>
+                                                <strong>Phone</strong><br>
+                                                {% if request.user.member.is_phone_verified %}
+                                                    <abbr title="Phone" class="text-success">{{ request.user.member.phone }}</abbr>
+                                                {% else %}
+                                                    <abbr title="Phone">
+                                                        <a href="javascript:;" id="resend-code" title="Verify Phone" class="text-danger">{{ request.user.member.phone }}</a>
+                                                        <input type="text" name="code" placeholder="code" id="code" value=""/><button type="button" id="code-btn" class="btn btn-primary" >Ok</button>
+                                                    </abbr>
+                                                {% endif %}
+                                            </address>
+                                            <address>
+                                                <strong>Email</strong><br>
+                                                {% if request.user.member.is_email_verified %}
+                                                    <abbr title="Email" class="text-success">{{ request.user.member.email }}</abbr>
+                                                {% else %}
+                                                    <a href="javascript:;" id="resend-email" class="text-danger" title="Send Verification Email" >{{ request.user.member.email }}</a>
+                                                {% endif %}
+                                            </address>
+                                            <address>
+                                                <strong>Referral Link</strong><br>
+                                                <a href="https://myhelpbox.com/register/{{ request.user.username }}/">https://myhelpbox.com/register/{{ request.user.username }}/</a>
+                                            </address>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <h5><strong>BANKING DETAILS</strong> </h5>
+                                            <address>
+                                                <strong>Bank Name</strong><br>
+                                                <abbr title="Bank">{{ request.user.member.bank_account.bank }}</abbr>
+                                            </address>
+                                            <address>
+                                                <strong>Account Name</strong><br>
+                                                <a href="javascript:;">{{ request.user.member.full_name }}</a>
+                                            </address>
+                                            <address>
+                                                <strong>Account Number</strong><br>
+                                                <a href="javascript:;">{{ request.user.member.bank_account.number }}</a>
+                                            </address>
+                                        </div>
+                                    </div><!-- End div .row -->
+                                </div><!-- End div .user-profile-content -->
+                            </div><!-- End div .tab-pane -->
+                            <!-- End Tab about -->
+                        </div><!-- End div .tab-content -->
+                    </div><!-- End div .box-info -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'bootstrap-notify/bootstrap-notify.min.js' %}"></script>
+    <script src="{% static 'bootbox/bootbox.js' %}"></script>
+    <script>
+      $(document).ready(function () {
+        $('#resend-email').click(function () {
+            processFeed('{% url 'core:resend-email' %}', {}, 'Resending Mail.....', false, 'POST', function (d) {
+                if (d.type == 'Success') {
+                  bootbox.alert(d.msg, function () {
+                    location.href = location.href;
+                  });
+                } else {
+                    bootbox.alert(d.msg);
+                }
+              }, function (d) {
+                    bootbox.alert(d.responseText);
+            });
+        });
+
+        $('#code-btn').click(function () {
+            if($("#code").val().trim().length<4){
+              bootbox.alert("Please enter the code sent to your phone");
+            }
+          processFeed('{% url 'core:verify-phone-code' %}', {verify: true, code: $("#code").val()}, 'Verifying.....', false, 'POST', function (d) {
+                if (d.type == 'Success') {
+                  bootbox.alert(d.msg, function () {
+                    location.href = location.href;
+                  });
+                } else {
+                  bootbox.alert(d.msg)
+                }
+            }, function (d) {
+                bootbox.alert(d.responseText)
+          });
+        });
+
+        $('#resend-code').click(function () {
+          processFeed('{% url 'core:resend-code' %}', {verify: true, }, 'Verifying.....', false, 'POST', function (d) {
+                if (d.type == 'Success') {
+                  bootbox.alert(d.msg, function () {
+                    location.href = location.href;
+                  });
+                } else {
+                  bootbox.alert(d.msg)
+                }
+            }, function (d) {
+                bootbox.alert(d.responseText)
+          });
+        });
+      });
+    </script>
+{% endblock %}

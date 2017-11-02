@@ -1,0 +1,282 @@
+{% extends "core/includes/base.html" %}
+{% load i18n static bootstrap humanize mathfilters set_var %}
+
+{% block breadcrumb %}
+    <li class="active">Login</li>
+{% endblock %}
+
+{% block content_body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 toppad">
+
+            <div class="row">
+                {% if request.user.member.is_fake %}
+                    <div class="col-md-12">
+                        <div class = "alert alert-danger alert-dismissable">
+                           <button type = "button" class = "close" data-dismiss = "alert" aria-hidden = "true">&times;</button>
+                            <b>Fake User:</b><br><br> Sorry, our Validation System have flagged you Fake User... This is often caused when a user used inconsistent information like fake Phone, Email, Account Number, Account Name.
+                            <br><br>If you believe we are wrong at this, please contact support with the details below: Phone, Email, Account Number, Account Name
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+
+                <div class="panel {%  if request.user.member.status == 'Active' %}panel-info{% else %}panel-danger{% endif %}">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">{{ request.user.member.full_name }}</h2>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class=" col-md-12 col-lg-12 ">
+                                <table class="table table-user-information">
+                                    <tbody>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Order</th>
+                                            <th>Type</th>
+                                            <th>Amount</th>
+                                            <th>Balance</th>
+                                            <th>Created</th>
+                                            <th>Fulfilled</th>
+                                            <th>Status</th>
+                                        </tr>
+
+                                        {% for acc in accs_2_gh %}
+                                            {% if forloop.first %}
+                                                <tr><th colspan="8" class="text-uppercase text-center">===== Get Help =====</th></tr>
+                                            {% endif %}
+                                            <tr data-type="{{ acc.type }}" data-id="{{ acc.id }}">
+                                                <th>{{ forloop.counter }}.</th>
+                                                <th><a href="javascript:;"> {{ acc.id }}</a></th>
+                                                <th>{{ acc.type }}</th>
+                                                <th data-amount="{% if acc.balance > 0 %}{{ acc.balance }}{% else %}{{ acc.amount }}{% endif %}">{{ acc.amount|floatformat:2|intcomma }}</th>
+                                                <th>{{ acc.balance|floatformat:2|intcomma }}</th>
+                                                <th>{{ acc.created }}</th>
+                                                <th>{{ acc.donation.fulfilled|default:"-" }}</th>
+                                                <th>{{ acc.status }}</th>
+                                            </tr>
+                                            {% if forloop.last %}
+                                                <tr><th colspan="8" class="text-uppercase text-center"><a href="javascript:;" class="pull-right btn btn-primary btn-sm cash-out" data-type="{{ acc.type }}">Cash Out {{ acc.get_type_text }}</a> </th></tr>
+                                            {% endif %}
+                                        {% endfor %}
+
+                                        {% for acc in accs_2_gp %}
+                                            {% if forloop.first %}
+                                                <tr><th colspan="8" class="text-uppercase text-center">===== GH Pause =====</th></tr>
+                                            {% endif %}
+                                            <tr data-type="{{ acc.type }}" data-id="{{ acc.id }}">
+                                                <th>{{ forloop.counter }}.</th>
+                                                <th><a href="javascript:;"> {{ acc.id }}</a></th>
+                                                <th>{{ acc.type }}</th>
+                                                <th data-amount="{% if acc.balance > 0 %}{{ acc.balance }}{% else %}{{ acc.amount }}{% endif %}">{{ acc.amount|floatformat:2|intcomma }}</th>
+                                                <th>{{ acc.balance|floatformat:2|intcomma }}</th>
+                                                <th>{{ acc.created }}</th>
+                                                <th>{{ acc.donation.fulfilled|default:"-" }}</th>
+                                                <th>{{ acc.status }}</th>
+                                            </tr>
+                                            {% if forloop.last %}
+                                                <tr><th colspan="8" class="text-uppercase text-center"><a href="javascript:;" class="pull-right btn btn-primary btn-sm cash-out" data-type="{{ acc.type }}">Cash Out {{ acc.get_type_text }}</a> </th></tr>
+                                            {% endif %}
+                                        {% endfor %}
+
+                                        {% for acc in accs_2_ad %}
+                                            {% if forloop.first %}
+                                                <tr><th colspan="8" class="text-uppercase text-center">===== Advert Bonus =====</th></tr>
+                                            {% endif %}
+                                            <tr data-type="{{ acc.type }}" data-id="{{ acc.id }}">
+                                                <th>{{ forloop.counter }}.</th>
+                                                <th><a href="javascript:;"> {{ acc.id }}</a></th>
+                                                <th>{{ acc.type }}</th>
+                                                <th data-amount="{% if acc.balance > 0 %}{{ acc.balance }}{% else %}{{ acc.amount }}{% endif %}">{{ acc.amount|floatformat:2|intcomma }}</th>
+                                                <th>{{ acc.balance|floatformat:2|intcomma }}</th>
+                                                <th>{{ acc.created }}</th>
+                                                <th>{{ acc.donation.fulfilled|default:"-" }}</th>
+                                                <th>{{ acc.status }}</th>
+                                            </tr>
+                                            {% if forloop.last %}
+                                                <tr><th colspan="8" class="text-uppercase text-center"><a href="javascript:;" class="pull-right btn btn-primary btn-sm cash-out" data-type="{{ acc.type }}">Cash Out {{ acc.get_type_text }}</a> </th></tr>
+                                            {% endif %}
+                                        {% endfor %}
+
+                                        {% for acc in accs_2_sp %}
+                                            {% if forloop.first %}
+                                                <tr><th colspan="8" class="text-uppercase text-center">===== Referral Bonus =====</th></tr>
+                                            {% endif %}
+                                            <tr data-type="{{ acc.type }}" data-id="{{ acc.id }}">
+                                                <th>{{ forloop.counter }}.</th>
+                                                <th><a href="javascript:;"> {{ acc.id }}</a></th>
+                                                <th>{{ acc.type }}</th>
+                                                <th data-amount="{% if acc.balance > 0 %}{{ acc.balance }}{% else %}{{ acc.amount }}{% endif %}">{{ acc.amount|floatformat:2|intcomma }}</th>
+                                                <th>{{ acc.balance|floatformat:2|intcomma }}</th>
+                                                <th>{{ acc.created }}</th>
+                                                <th>{{ acc.donation.fulfilled|default:"-" }}</th>
+                                                <th>{{ acc.status }}</th>
+                                            </tr>
+                                            {% if forloop.last %}
+                                                <tr><th colspan="8" class="text-uppercase text-center"><a href="javascript:;" class="pull-right btn btn-primary btn-sm cash-out" data-type="{{ acc.type }}">Cash Out {{ acc.get_type_text }}</a> </th></tr>
+                                            {% endif %}
+                                        {% endfor %}
+
+                                        {% for acc in accs_2_rb %}
+                                            {% if forloop.first %}
+                                                <tr><th colspan="8" class="text-uppercase text-center">===== Registration Bonus =====</th></tr>
+                                            {% endif %}
+                                            <tr data-type="{{ acc.type }}" data-id="{{ acc.id }}">
+                                                <th>{{ forloop.counter }}.</th>
+                                                <th><a href="javascript:;"> {{ acc.id }}</a></th>
+                                                <th>{{ acc.type }}</th>
+                                                <th data-amount="{% if acc.balance > 0 %}{{ acc.balance }}{% else %}{{ acc.amount }}{% endif %}">{{ acc.amount|floatformat:2|intcomma }}</th>
+                                                <th>{{ acc.balance|floatformat:2|intcomma }}</th>
+                                                <th>{{ acc.created }}</th>
+                                                <th>{{ acc.donation.fulfilled|default:"-" }}</th>
+                                                <th>{{ acc.status }}</th>
+                                            </tr>
+                                            {% if forloop.last %}
+                                                <tr><th colspan="8" class="text-uppercase text-center"><a href="javascript:;" class="pull-right btn btn-primary btn-sm cash-out" data-type="{{ acc.type }}">Cash Out {{ acc.get_type_text }}</a> </th></tr>
+                                            {% endif %}
+                                        {% endfor %}
+
+                                        {% for acc in accs_2_gb %}
+                                            {% if forloop.first %}
+                                                <tr><th colspan="8" class="text-uppercase text-center">===== Guider Bonus =====</th></tr>
+                                            {% endif %}
+                                            <tr data-type="{{ acc.type }}" data-id="{{ acc.id }}">
+                                                <th>{{ forloop.counter }}.</th>
+                                                <th><a href="javascript:;"> {{ acc.id }}</a></th>
+                                                <th>{{ acc.type }}</th>
+                                                <th data-amount="{% if acc.balance > 0 %}{{ acc.balance }}{% else %}{{ acc.amount }}{% endif %}">{{ acc.amount|floatformat:2|intcomma }}</th>
+                                                <th>{{ acc.balance|floatformat:2|intcomma }}</th>
+                                                <th>{{ acc.created }}</th>
+                                                <th>{{ acc.donation.fulfilled|default:"-" }}</th>
+                                                <th>{{ acc.status }}</th>
+                                            </tr>
+                                            {% if forloop.last %}
+                                                <tr><th colspan="8" class="text-uppercase text-center"><a href="javascript:;" class="pull-right btn btn-primary btn-sm cash-out" data-type="{{ acc.type }}">Cash Out {{ acc.get_type_text }}</a> </th></tr>
+                                            {% endif %}
+                                        {% endfor %}
+
+                                        {% for acc in accs_2_sb %}
+                                            {% if forloop.first %}
+                                                <tr><th colspan="8" class="text-uppercase text-center">===== Speed Bonus =====</th></tr>
+                                            {% endif %}
+                                            <tr data-type="{{ acc.type }}" data-id="{{ acc.id }}">
+                                                <th>{{ forloop.counter }}.</th>
+                                                <th><a href="javascript:;"> {{ acc.id }}</a></th>
+                                                <th>{{ acc.type }}</th>
+                                                <th data-amount="{% if acc.balance > 0 %}{{ acc.balance }}{% else %}{{ acc.amount }}{% endif %}">{{ acc.amount|floatformat:2|intcomma }}</th>
+                                                <th>{{ acc.balance|floatformat:2|intcomma }}</th>
+                                                <th>{{ acc.created }}</th>
+                                                <th>{{ acc.donation.fulfilled|default:"-" }}</th>
+                                                <th>{{ acc.status }}</th>
+                                            </tr>
+                                            {% if forloop.last %}
+                                                <tr><th colspan="8" class="text-uppercase text-center"><a href="javascript:;" class="pull-right btn btn-primary btn-sm cash-out" data-type="{{ acc.type }}">Cash Out {{ acc.get_type_text }}</a> </th></tr>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {#    <div class="row">#}
+    {#        <div class="col-xs-12">#}
+    {#            <div class="well well-sm">#}
+    {#                <div class="row">#}
+    {#                    <div class="col-sm-6 col-md-4">#}
+    {#                        <img src="{% static 'img/user_1.jpg' %}" alt="" class="Profile Img"/>#}
+    {#                    </div>#}
+    {#                    <div class="col-sm-6 col-md-8">#}
+    {#                        <h4>{{ request.user.member.full_name }}</h4>#}
+    {#                        <small><cite title="{{ request.user.member.address }}"> <i class="glyphicon glyphicon-map-marker">#}
+    {#                        </i></cite> {{ request.user.member.state }} State, {{ request.user.member.country }}</small>#}
+    {#                        <p>#}
+    {#                            <i class="fa fa-phone"></i> {{ request.user.member.phone }}#}
+    {#                            <br/>#}
+    {#                            <i class="fa fa-envelope"></i> {{ request.user.member.email }}#}
+    {#                            <br/>#}
+    {#                            <i class="glyphicon glyphicon-gift"></i> {{ request.user.member.created|naturaltime }}#}
+    {#                        </p>#}
+    {#                        <p>#}
+    {#                            <i class="fa fa-home"></i> {{ request.user.member.bank_account.bank.name }}#}
+    {#                            <br/>#}
+    {#                            <i class="fa fa-cc"></i> {{ request.user.member.bank_account.number }}#}
+    {#                            <br/>#}
+    {##}
+    {#                        </p>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </div>#}
+    <style>
+        .user-row {
+            margin-bottom: 14px;
+        }
+
+        .user-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .dropdown-user {
+            margin: 13px 0;
+            padding: 5px;
+            height: 100%;
+        }
+
+        .dropdown-user:hover {
+            cursor: pointer;
+        }
+
+        .table-user-information > tbody > tr {
+            border-top: 1px solid rgb(221, 221, 221);
+        }
+
+        .table-user-information > tbody > tr:first-child {
+            border-top: 0;
+        }
+
+        .table-user-information > tbody > tr > td {
+            border-top: 0;
+        }
+
+        .toppad {
+            margin-top: 20px;
+        }
+
+    </style>
+
+    <script src="{% static 'bootstrap-notify/bootstrap-notify.min.js' %}"></script>
+    <script src="{% static 'bootbox/bootbox.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            $(".cash-out").click(function () {
+                yea = $(this);
+                amount = $("table tr[data-type='"+$(yea).data("type")+"'] th[data-amount]").data("amount");
+
+                bootbox.prompt("<b>Withdrawal:</b></br></br>You have opted to <b>"+$(yea).text()+"</b> the sum of <b>N"+amount+"</b> ", function (result) {
+                    console.log(result);
+                    if (result != null) {
+                        processFeed("{% url 'core:gh' %}", {}, "Requesting "+$(yea).data("type")+".....", false, "POST", function(d){
+                            if (d.type=='Success'){
+                                $.notify({icon: "fa fa-exclamation-triangle", title: "", message: d.msg}, {type: 'success', z_index: 9999999});
+                                setTimeout(function () {location.href=location.href;}, 5000)
+                            }else {
+                                $.notify({icon: "fa fa-exclamation-triangle", title: "", message: d.msg}, {type: 'info', z_index: 9999999});
+                            }
+                        }, function (d) {
+                            $.notify({icon: "fa fa-exclamation-triangle", title: "", message: d.responseText}, {type: 'danger', z_index: 9999999});
+                        })
+                    }
+                });
+
+
+            });
+        });
+    </script>
+{% endblock %}

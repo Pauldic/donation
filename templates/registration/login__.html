@@ -1,0 +1,46 @@
+{#{% extends "core/includes/base_back.html" %}#}
+{% extends "registration/base.html" %}
+{% load i18n static bootstrap humanize %}
+
+
+{% block content_body %}
+
+    <div id="page-wrapper" style="min-height: 407px;margin-top: 100px">
+			<div class="main-page">
+				<div class="login-form">
+					<h4>Login</h4>
+					<h5><strong>Welcome</strong> login to get started!</h5>
+					<form role="form" id='loginform' action="{% url 'core:login' %}" method="post">
+                        {% if form.errors %}
+                            <div style="color: #000;font-size: 12px; margin: 0 10px 0 0;line-height: 21px;">
+                                <span>Incorrect username or password. <a href="{% url 'core:password_reset' %}" title="Reset My Password">Forgot Password</a> </span>
+                            </div>
+                        {% endif %}
+
+                        {% if next %}
+                            {% if user.is_authenticated %}
+                                <p class='lf_line' style="color: #000;font-size: 12px; margin: 0 10px 0 0;line-height: 21px;">You don't have access to this page. To proceed, please login with an account that has access.</p>
+                            {% else %}
+                                <p style="color: #000;font-size: 12px; margin: 0 10px 0 0;line-height: 21px;"></p>
+                            {% endif %}
+                        {% endif %}
+
+                        {% csrf_token %}
+
+                        {{ form.username }}
+                        {{ form.password }}
+                        <input type="hidden" name="next" value="{{ next }}"/>
+
+						<span class="check-left"><input type="checkbox">Remember me</span>
+						<span class="check-right"><a href="#">Forgot password?</a></span>
+						<div class="clearfix"></div>
+						<button class="btn btn-warning btn-block" type="submit">Sign in</button>
+
+						<p class="center-block mg-t mg-b">Dont have and account?
+						<a href="{% url 'core:register' %}">Signup here.</a>
+						</p>
+					</form>
+				</div>
+		</div>
+	</div>
+{% endblock %}

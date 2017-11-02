@@ -1,0 +1,204 @@
+{% load i18n static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{{ coyName }}{% endblock %}</title>
+    <meta name="description" content="{{ coyName }} is a Peer to Peer Donation platform"/>
+    <meta name="keywords"
+          content="ponzi, ponzi scheme, ponzi website, donation, donation website, paying, GH, PH, getting help, get help, provide help, fast paying, fast pay, money doubler,Latest Ponzi schemes, April ponzi scheme "/>
+    <!-- Normalize -->
+    {#    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">#}
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    {#        <link rel="stylesheet" href="{% static 'css/owl.css' %}">#}
+    <link rel="stylesheet" href="{% static 'front/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'front/css/cardio.css' %}">
+</head>
+<body>
+    <script src="{% static 'front/js/jquery-1.11.1.min.js' %}"></script>
+
+<!--Header-->
+{% block nav %}{% include "core/includes/nav.html" %}{% endblock %}
+<!-- /header -->
+
+<section class="header">
+    <div class="container">
+        <div class="row push-up"></div>
+        <div class="row" style="margin-top: 50px;">
+            <div class="col-sm-6 col-xs-12">
+                <h2 class="white">{{ pg_title }}</h2>
+            </div>
+            <div class="col-sm-6 col-xs-12" style="transform: translateY(50%);">
+                <ul class="breadcrumb">
+                    <li><a href="{% url 'core:index' %}">Home</a> <span class="divider"></span></li>
+                    <li><a href="{% url 'core:dashboard' %}">Dashboard</a> <span class="divider"></span></li>
+                    <li><a href="javascript:;" class="my-link">My Link</a> <span class="divider"></span></li>
+                    <li><a href="{% url 'core:profile' %}">Profile</a> <span class="divider"></span></li>
+                    <li><a href="{% url 'core:logout' %}">Logout</a> <span class="divider"></span></li>
+{#                    {% block breadcrumb %}{% endblock %}#}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- / .title -->
+
+{% block content_body %}{% endblock %}
+
+
+<!--Footer-->
+{% block footer %}{% include "core/includes/footer.html" %}{% endblock %}
+<!--/Footer-->
+
+
+<!-- Scripts -->
+<script src="{% static 'front/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'front/js/wow.min.js' %}"></script>
+<script src="{% static 'front/js/typewriter.js' %}"></script>
+<script src="{% static 'front/js/jquery.onepagenav.js' %}"></script>
+<script src="{% static 'front/js/main-dashborad.js' %}"></script>
+<script src="{% static 'js-cookie/js-cookie.js' %}"></script>
+
+<script>
+
+    function csrfSafeMethod(method) {
+        // these HTTP methods do not require CSRF protection
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+
+    function pwd(msg) {
+        var pleaseWaitDialog = bootbox.dialog({
+            message: '<p class="text-center">'+msg+'</p>',
+            closeButton: false
+        });
+        return pleaseWaitDialog;
+    }
+
+    function postForm(url, data, submitButton, method, successCallback, errorCallback) {
+        {#        var data = $("#searchform").serialize();#}
+        {#        $('#searchform').on('submit',function(event){#}
+        try {
+            event.preventDefault();
+        } catch (e) {
+
+        }
+
+
+        var buttonVal = null;
+        var button = null;
+        if (submitButton != null) {
+            buttonVal = $(submitButton).text();
+            button = $(submitButton);
+            console.log(buttonVal)
+        }
+        $.ajax({
+            type: method,
+            url: url,
+            data: data,
+            dataType: "json",
+            beforeSend: function () {
+                console.log("-----   ", this.url)
+                if (submitButton != null) {
+                    $(button).text("Processing...").attr('disable', true);
+                }
+            },
+            success: function (d) {
+                if (typeof successCallback === "function") {
+                    successCallback(d);
+                }
+            },
+            error: function (d) {
+                if (typeof errorCallback === "function") {
+                    errorCallback(d);
+                }
+            },
+            complete: function (d) {
+                if (submitButton != null) {
+                    $(button).text(buttonVal).attr('disabled', false);
+                }
+            }
+        });
+    }
+
+
+
+    function processFeed(url, data, blocking, method, asJSON, successCallback, errorCallback) {
+        {#        var data = $("#searchform").serialize();#}
+        {#        $('#searchform').on('submit',function(event){#}
+
+        var pwDialog = null;
+        $.ajax({
+            type: method,
+            url: url,
+            data: data,
+            dataType: "json",
+            beforeSend: function (xhr, settings) {
+                console.log(this.data)
+                var csrftoken = Cookies.get('csrftoken');
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+                console.log("sending to: ", this.url)
+                if (blocking != null) {
+                    pwDialog = pwd(blocking);
+                }
+            },
+            success: function (d) {
+                if (typeof successCallback === "function") {
+                    successCallback(d);
+                }
+            },
+            error: function (d) {
+                if (typeof errorCallback === "function") {
+                    errorCallback(d);
+                }
+            },
+            complete: function (d) {
+                if (blocking != null) {
+                    pwDialog.modal('hide');
+                }
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        $("a.my-link").click(function () {
+            bootbox.dialog({message: '<p class="text-center">'+location.protocol+"//"+location.host+"{% url 'core:register' request.user.username|default:'_system' %}</p>",closeButton: true});
+        });
+        $("a.my-profile").click(function () {
+            var dialog = bootbox.dialog({
+                title: 'Profile Details <small>',
+                size: 'large',
+                message: '<p><i class="fa fa-spin fa-spinner"></i> Loading...</p>'
+            });
+            dialog.init(function () {
+                $(".bootbox-body").load("{% url 'core:profile' %}");
+            }, function(result) {
+                console.log(result);
+            });
+        });
+    });
+
+    Date.prototype.addHours = function(h) {
+       this.setTime(this.getTime() + (h*60*60*1000));
+       return this;
+    };
+    function loadHtml(url, callback) {
+        $.ajax({
+            url: url,
+            dataType: "html",
+            success: function (data) {
+                callback(data);
+            }
+        });
+    }
+</script>
+
+{% block more_footer %}{% endblock %}
+
+</body>
+</html>

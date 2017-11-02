@@ -1,0 +1,203 @@
+{% load i18n bootstrap humanize static %}
+
+<link rel="stylesheet" href="{% static 'bootstrap-fileinput/css/fileinput.min.css' %}"/>
+<script src="{% static 'bootstrap-fileinput/js/fileinput.min.js' %}"></script>
+<!-- js-cookie 2.1.3 -->
+<script src="{% static 'js-cookie/js-cookie.js' %}"></script>
+<div class="profile-user-info">
+    <div class="profile-info-row">
+        <div class="profile-info-name"><h3 style="margin: 0" class="text-primary">Transaction: </h3></div>
+        <div class="profile-info-value"><span class="text-primary" style="line-height: 39px;">{{ transDetail.id }}</span></div>
+    </div>
+    <div class="profile-info-row">
+        <div class="profile-info-name"><h3 style="margin: 0">Sender</h3></div>
+        <div class="profile-info-value"></div>
+    </div>
+    <div class="profile-info-row">
+        <div class="profile-info-name"> Account Name</div>
+        <div class="profile-info-value"><span>{{ transDetail.sender.first_name }} {{ transDetail.sender.last_name }}</span></div>
+    </div>
+    <div class="profile-info-row">
+        <div class="profile-info-name"> Phone Number</div>
+        <div class="profile-info-value"><span>{{ transDetail.sender.phone }}</span></div>
+    </div>
+    <div class="profile-info-row">
+        <div class="profile-info-name"> Sponsor Phone</div>
+        <div class="profile-info-value"><span>{{ transDetail.sender.sponsor.phone }}</span></div>
+    </div>
+    <div class="profile-info-row">
+        <div class="profile-info-name"> Sponsor Name</div>
+        <div class="profile-info-value"><span>{{ transDetail.sender.sponsor.first_name }} {{ transDetail.transaction.owner.sponsor.surname }}</span></div>
+    </div>
+
+
+    <div class="profile-info-row">
+        <div class="profile-info-name"><h3 style="margin: 0">Receiver</h3></div>
+        {#        <div class="profile-info-value"><span><b>{{ transDetail.amount|intcomma }}</b></span></div>#}
+    </div>
+    <div class="profile-info-row">
+        <div class="profile-info-name"> Amount</div>
+        <div class="profile-info-value"><span><b>{{ transDetail.amount|intcomma }}</b></span></div>
+    </div>
+    <div class="profile-info-row">
+        <div class="profile-info-name"> Bank Name</div>
+        <div class="profile-info-value"><span>{{ transDetail.transaction.owner.bank_account.bank }}</span></div>
+    </div>
+    <div class="profile-info-row">
+        <div class="profile-info-name"> Bank Account</div>
+        <div class="profile-info-value"><span>{{ transDetail.transaction.owner.bank_account.number }}</span></div>
+    </div>
+    <div class="profile-info-row">
+        <div class="profile-info-name"> Account Name</div>
+        <div class="profile-info-value"><span>{{ transDetail.transaction.owner.first_name }} {{ transDetail.transaction.owner.last_name }}</span></div>
+    </div>
+    <div class="profile-info-row">
+        <div class="profile-info-name"> Reason/Narration</div>
+        <div class="profile-info-value"><span>My Donation</span></div>
+    </div>
+    <div class="profile-info-row">
+        <div class="profile-info-name"> Beneficiary Phone</div>
+        <div class="profile-info-value"><span>{{ transDetail.transaction.owner.phone }}</span></div>
+    </div>
+    <div class="profile-info-row">
+        <div class="profile-info-name"> Sponsor Phone</div>
+        <div class="profile-info-value"><span>{{ transDetail.transaction.owner.sponsor.phone }}</span></div>
+    </div>
+    <div class="profile-info-row">
+        <div class="profile-info-name"> Sponsor Name</div>
+        <div class="profile-info-value"><span>{{ transDetail.transaction.owner.sponsor.first_name }} {{ transDetail.transaction.owner.sponsor.surname }}</span></div>
+    </div>
+</div>
+
+{% if transDetail.transaction.owner == request.user.member %}
+    <div class="row">
+        <div class="col-xs-12">
+            <h3>Proof Of Payment
+                {% if transDetail.proof_date == None  and transDetail.status == 'Awaiting Payment' %}
+                    <small>Waiting for member to Pay till {{ transDetail.expires|naturaltime }}</small>
+                {% elif transDetail.proof_acknowledge_date == None  and transDetail.status == 'Awaiting Confirmation' %}
+                    <button type="button" id="confirm-payment" data-transaction-detail="{{ transDetail.id }}" class="btn btn-success"><i class="fa fa-thumbs-up"></i> Confirm</button>
+                {% elif transDetail.status == 'Exception' %}
+                    <small>You contested this payment... waiting for Admin's intervention</small>
+                    <button type="button" id="confirm-payment" data-transaction-detail="{{ transDetail.id }}" class="btn btn-success"><i class="fa fa-thumbs-up"></i> Confirm, This has been resolved</button>
+                {% elif transDetail.status == 'Cancelled' %}
+                    <small class="text-danger">Cancelled Transaction</small>
+                {% elif transDetail.status == 'Confirmed' %}
+                    <small class="text-danger">Completed Transaction</small>
+                {% endif %}
+            </h3>
+        </div>
+        {% if transDetail.proof|length > 10 %}
+            <div class="col-xs-12">
+                <a href="javascript:;" id="popPreview"><img src="{{ transDetail.proof.url }}" alt="Proof of Payment" width="100%"></a>
+            </div>
+            <script>
+                $(document).ready(function () {
+                    $("#popPreview").click(function () {
+                        bootbox.dialog({
+                            message: '<img src="{{ transDetail.proof.url }}" alt="Proof of Payment" width="100%">',
+                        });
+                    });
+
+                    $("#confirm-payment").click(function () {
+                        tdid = $(this).data('transaction-detail');
+                        processFeed("{% url 'core:confirm-payment' 'TD0000000000000000' %}".replace("TD0000000000000000", tdid), {id: tdid}, "Please Wait...", false, 'POST', function (d) {
+                            bootbox.alert("<b>" + d.msg + "</b>", function (d) {
+                                location.href = ".";
+                            });
+                        }, function (d) {
+                            bootbox.alert(d.responseText)
+                        });
+                    });
+                });
+            </script>
+        {% endif %}
+    </div>
+
+{% elif transDetail.sender == request.user.member %}
+    <div class="row">
+        <div class="col-xs-12">
+            <h3>Proof Of Payment
+                {% if transDetail.proof_date == None  and transDetail.status == 'Awaiting Payment' %}
+                    <small>I have made this payment</small>
+                {% elif transDetail.proof_acknowledge_date == None  and transDetail.status == 'Awaiting Confirmation' %}
+                    <small>I made this payment since {{ transDetail.proof_date|naturaltime }}. Waiting for confirmation till {{ confirmExpires|naturaltime }}</small>
+                {% elif transDetail.status == 'Exception' %}
+                    <small>Beneficiary has contested this payment... waiting for Admin's intervention</small>
+                {% elif transDetail.status == 'Cancelled' %}
+                    <small class="text-danger">Cancelled Transaction</small>
+                {% elif transDetail.status == 'Confirmed' %}
+                    <small class="text-danger">Completed Transaction</small>
+                {% endif %}
+            </h3>
+        </div>
+        {% if transDetail.proof|length > 10 %}
+            <div class="col-xs-12">
+                <a href="javascript:;" id="popPreview"><img src="{{ transDetail.proof.url }}" alt="Proof of Payment" width="100%"></a>
+            </div>
+            <script>
+                $(document).ready(function () {
+                    $("#popPreview").click(function () {
+                        bootbox.dialog({
+                            message: '<img src="{{ transDetail.proof.url }}" alt="Proof of Payment" width="100%">',
+                        });
+                    });
+
+                    $("#confirm-payment").click(function () {
+                        tdid = $(this).data('transaction-detail');
+                        processFeed("{% url 'core:confirm-payment' 'TD0000000000000000' %}".replace("TD0000000000000000", tdid), {id: tdid}, "Please Wait...", false, 'POST', function (d) {
+                            bootbox.alert("<b>" + d.msg + "</b>", function (d) {
+                                location.href = ".";
+                            });
+                        }, function (d) {
+                            bootbox.alert(d.responseText)
+                        });
+                    });
+                });
+            </script>
+        {% else %}
+            <div class="col-xs-12">
+                <div class="box-body">
+                    <div class="panel-body">
+                        <form method='post' action='{% url "core:upload-proof" transDetail.id %}' enctype='multipart/form-data' id="popForm" name="popForm">
+                            <fieldset>
+                                {{ form|bootstrap }}
+                                {% csrf_token %}
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <script>
+                $(document).ready(function () {
+                    var tdid = '{{ transDetail.id }}'
+
+                    $("#id_proof").fileinput({
+                        showPreview: true,
+                        showUpload: false,
+                        showRemove: false,
+                        removeFromPreviewOnError: false,
+                        initialPreview: [],
+                        maxFileCount: 1,
+                        initialPreviewAsData: true,
+                        allowedPreviewTypes: 'image',
+                        fileTypeSettings: 'image',
+                        maxFileSize: (parseFloat('{{ maxUploadSize }}') * 1024),
+                        uploadAsync: false,
+                        allowedFileExtensions: ['jpeg', 'jpg', 'png', 'gif'],
+                        uploadUrl: '{% url "core:upload-proof" transDetail.id %}',
+                        uploadExtraData: {csrfmiddlewaretoken: $("input[name='csrfmiddlewaretoken']").val(), id: document.getElementById("id_id").value}
+                    });
+
+                    $("#id_proof").on('fileuploaded', function (event, data, previewId, index) {
+                        bootbox.alert("POP successfully uploaded, please wait while the receiver confirms your payment", function () {
+                            location.href = './'
+                        });
+                    });
+
+                })
+            </script>
+        {% endif %}
+    </div>
+{% endif %}
+

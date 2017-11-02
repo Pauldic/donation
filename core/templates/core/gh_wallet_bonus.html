@@ -1,0 +1,117 @@
+{% extends "core/includes/base.html" %}
+{% load i18n static bootstrap humanize mathfilters set_var %}
+
+{#{% block breadcrumb %}#}
+{#    <li class="active">Login</li>#}
+{#{% endblock %}#}
+
+{% block content_body %}
+    <!-- ============================================================== -->
+    <!-- Start Content here -->
+    <!-- ============================================================== -->
+    <div class="content">
+        <!-- Page Heading Start -->
+        <div class="page-heading">
+            <h1><i class='icon-briefcase-1'></i>Millers Wallet</h1>
+        </div>
+        <!-- Page Heading End-->
+        <!-- Your awesome content goes here -->
+        <div class="widget invoice">
+            <div class="widget-content padding">
+                <div class="row">
+                    <div class="col-sm-4">
+
+                        <div class="company-column">
+                            <h4><img src="{% static 'img_back/inv-logo.png' %}" alt="Logo"></h4>
+                            <address>
+                                <br>
+                                <strong>{{ request.user.member }}</strong><br>
+                                <a href="https://myhelpbox.com/register/{{ request.user.username }}/">https://myhelpbox.com/register/{{ request.user.username }}/</a> <br>
+                                <div class=" icon-phone">
+                                    <abbr title="Phone">{{ request.user.member.phone }}</abbr>
+                                </div>
+                            </address>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-8 text-right">
+                        <h1>WITHDRAWAL</h1>
+                        <h4>BOARD</h4>
+                        <a href="#" class="btn btn-primary btn-sm invoice-print"><i class="icon-print-2"></i> Print</a>
+                    </div>
+                </div>
+
+                <div class="bill-to">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h4><strong>REFERAL</strong> BONUS</h4>
+                            <p><strong>TOTAL REFERAL BONUS: </strong><a class="btn btn-orange-1"> ‎₦ {{ sp_total|floatformat:2|intcomma }}</a></p>
+                            <p><strong>TOTAL DUE REFERAL BONUS: </strong><a class="btn btn-success"> ‎₦ {{ sp_due|floatformat:2|intcomma }}</a></p>
+                        </div>
+                        <div class="col-sm-6">
+                            <h4 class="text-right"><strong>SPEED</strong> BONUS</h4>
+                            <strong class="text-right">
+                                <p><strong>TOTAL SPEED BONUS: </strong><a class="btn btn-orange-1"> ‎₦ {{ sb_total|floatformat:2|intcomma }}</a></p>
+                                <p><strong>TOTAL DUE SPEED BONUS: </strong><a class="btn btn-success"> ‎₦ {{ sb_due|floatformat:2|intcomma }}</a></p>
+
+                            </strong>
+                        </div>
+                    </div>
+                </div>
+
+                <br><br>
+
+                <div class="table-responsive">
+
+                    <table class="table table-condensed table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Source</th>
+                                <th>Order</th>
+                                <th>Type</th>
+                                <th>Amount</th>
+                                <th>Balance</th>
+                                <th>Created</th>
+                                <th>Completed</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {%  for acc in accs %}
+                                <tr>
+                                    <th>{{ forloop.counter }}.</th>
+                                    <th>{{ acc.donation.member }}</th>
+                                    <th><a href="javascript:;"> {{ acc.id }}</a></th>
+                                    <th>{{ acc.get_type_text|default:'GH' }}</th>
+                                    <th>{{ acc.amount|floatformat:2|intcomma }}</th>
+                                    <th>{{ acc.balance|floatformat:2|intcomma }}</th>
+                                    <th>{{ acc.created }}</th>
+                                    <th>{{ acc.fulfilled|default:"-" }}</th>
+                                    <th>
+                                        {% if acc.obj.type in 'GH,GP,SP,AD,RB,GB' %}
+                                            {% if acc.obj.donation.status in 'Processed,Processed Bonus' %}Confirmed{% else %}Unconfirmed{% endif %}
+                                        {% else %}
+                                            {{ acc.obj.status }}
+                                        {% endif %}
+                                    </th>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+
+                    </table>
+                    <br><br>
+                    <h4 class="text-center">Thank you for being part of Millers Family!</h4><br><br>
+                </div>
+            </div>
+        </div>
+        <!-- End of your awesome content -->
+
+    </div>
+    <!-- ============================================================== -->
+    <!-- End content here -->
+    <!-- ============================================================== -->
+
+    <!-- End right content -->
+{% endblock %}

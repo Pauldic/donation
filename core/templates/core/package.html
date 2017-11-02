@@ -1,0 +1,141 @@
+{% extends "core/includes/base.html" %}
+{% load static i18n humanize %}
+
+{% block content_body %}
+
+    <!-- ============================================================== -->
+    <!-- Start Content here -->
+    <!-- ============================================================== -->
+    <div class="content" style="height: auto">
+        <div class="page-heading"><h1><i class='icon-gift'></i> Packages</h1></div>
+        <!-- Page Heading End-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget">
+                    <div class="text-center widget-header transparent">
+                        <h1>
+                            <strong><i class="icon-gift"></i> Millers</strong> Package
+                            {% for p in selected_packages %}
+                                <a class="btn btn-primary btn-lg btn-block ph-btn" href="javascript:;" data-amount="{{ p.amount }}"><i class="icon-gift"></i>₦ {{ p.amount|floatformat:2|intcomma }} MILLER SILVER</a>
+                            {% endfor %}
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-responsive" style="margin-top: 50px;">
+                    <table class="table table-condensed table-striped">
+                        <thead>
+                            <tr><th colspan="7" class="text-center">PENDING PH REQUEST</th></tr>
+                            <tr>
+                                <th>#</th>
+{#                                <th>Source</th>#}
+{#                                <th>Order</th>#}
+                                <th>Amount</th>
+                                <th>Type</th>
+                                <th>Balance</th>
+                                <th>Created</th>
+                                <th>Completed</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {%  for acc in pending_phs %}
+                                <tr>
+                                    <th>{{ forloop.counter }}.</th>
+{#                                    <th>{{ acc.obj.donation.member }}</th>#}
+{#                                    <th><a href="javascript:;"> {{ acc.obj.id }}</a></th>#}
+                                    <th>₦ {{ acc.amount|floatformat:2|intcomma }}</th>
+                                    <th>{{ acc.get_type_text|default:'PH' }}</th>
+                                    <th>₦ {{ acc.balance|floatformat:2|intcomma }}</th>
+                                    <th>{{ acc.created }}</th>
+                                    <th>{{ acc.fulfilled|default:"-" }}</th>
+                                    <th>{{ acc.status }}</th>
+                                    <th>{% if acc.status == 'Pending' %}<a href="javascript:;" data-did="{{ acc.donation.id }}"  title="Cancel PH Order" class="btn btn-danger btn-sm cancel-ph-btn"><i class="fa fa-times"></i> Cancel</a> {% endif %}</th>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+
+                    </table>
+                    <br><br>
+                    <h4 class="text-center">Thank you for being part of Millers Family!</h4><br><br>
+                </div>
+    </div>
+
+
+
+
+{#    <div class="content">#}
+{#        <div class="row text-center">#}
+{#            <div class="col-md-6 col-md-offset-3">#}
+{#                <h2><i class="fa fa-quote-left"></i> Provide Help <i class="fa fa-quote-right"></i></h2>#}
+{#                <select name="ph" id="ph-amount">#}
+{#                    <option value="">---select package---</option>#}
+{#                    {% for p in packages %}#}
+{#                        <option value="{{ p.amount }}" {% if p.amount == select %}selected{% endif %}>{{ p.name }} NGN [{{ p.amount|floatformat:2|intcomma }}]</option>#}
+{#                    {% endfor %}#}
+{#                </select>#}
+{#                <button class="btn btn-primary" id="ph-btn" type="button">Provide Help</button>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div> <!-- end 404-->#}
+
+
+    <script src="{% static 'bootbox/bootbox.js' %}"></script>
+
+    <script>
+        $(document).ready(function () {
+            $(".ph-btn").click(function () {
+              amount = $(this).data('amount');
+                if(amount > 0){
+                    processFeed("{% url 'core:ph' '1000' %}".replace("1000", amount), {}, 'Processing.....', false, 'POST', function (d) {
+                        if (d.type == 'Success') {
+                          bootbox.alert(d.msg, function () {
+                            if (d.type =="Refresh"){
+                                location.href = "{% url 'core:ph' selected_packages.0.amount %}";
+                            }
+                          });
+                        } else {
+                            bootbox.alert(d.msg);
+                            if (d.type =="Refresh"){
+                                location.href = "{% url 'core:ph' selected_packages.0.amount %}";
+                            }
+                        }
+                        }, function (d) {
+                            bootbox.alert(d.responseText);
+                    });
+                }
+            });
+
+            $(".cancel-ph-btn").click(function () {
+                id = $(this).data("did");
+                console.log(id)
+                processFeed("{% url 'core:cancel-ph' %}", {did: id}, 'Processing.....', false, 'POST', function (d) {
+                    if (d.type == 'Success') {
+                        bootbox.alert(d.msg, function () {
+                            location.href = "{% url 'core:ph' selected_packages.0.amount %}";
+                        });
+                    } else {
+                        bootbox.alert(d.msg);
+                        if (d.type =="Refresh"){
+                            location.href = "{% url 'core:ph' selected_packages.0.amount %}";
+                        }
+                    }
+                    }, function (d) {
+                        bootbox.alert(d.responseText);
+                });
+            })
+        });
+    </script>
+{% endblock %}
+
+{% block more_footer %}
+
+{% endblock %}
+
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+{% load i18n static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap-touchspin/jquery.bootstrap-touchspin.min.css' %}">
+<script type="text/javascript" src="{% static 'bootstrap-touchspin/jquery.bootstrap-touchspin.min.js' %}"></script>
+
+<input type="text" value="" id="extend-time" name="time" data-min="1" data-max="{{ max }}" class="input-sm extend-time">
+
+ <script>
+     $(document).ready(function () {
+        $(".extend-time").TouchSpin({
+            postfix: "hours",
+            postfix_extraclass: "btn btn-default"
+        });
+     })
+</script>
+

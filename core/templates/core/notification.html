@@ -1,0 +1,54 @@
+{% extends "core/includes/base_back.html" %}
+{% load static i18n %}
+
+{% block content_body %}
+    <!-- Page Title -->
+    <section class="page-title text-center" style="background-image: url({% static 'front/img/page_title/about_title_bg.jpg' %});">
+        <div class="container relative clearfix">
+            <div class="page-title__outer">
+                <div class="page-title__inner">
+                    <h1 class="page-title__title white">Notification</h1>
+                    <ol class="breadcrumb">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active">Notification</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end page title -->
+
+    <!-- 404-->
+    <section class="section-wrap page-404 bg-light">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-6 col-md-offset-3">
+                    <h2><i class="fa fa-quote-left"></i> {{ pg_title }} <i class="fa fa-quote-right"></i></h2>
+                    {#                    <h2 class="mb-50">Thanks for your attempt, registration opens on Friday, Jul 28 2017 04:30:GMBC</h2>#}
+                    {#                    <p class="mb-20">You can go back to <a href="{% url 'core:index' %}">Homepage</a></p>#}
+                    {% if email %}
+                        <h3>To reduce the email traffic, we have choosen to provide you this alternative. Please use the link below to complete your registration</h3>
+                        <h2 style="margin-top: 20px"><a href="{% url 'core:registration' email username token '08000000000' %}">Click here to continue </a></h2>
+                    {% else %}
+                        <h2>{{ msg }}</h2>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section> <!-- end 404-->
+
+
+    <style>
+        .breadcrumb {
+            display: none;
+        }
+    </style>
+{% endblock %}
+
+{% block more_footer %}
+
+{% endblock %}
+
+
+</body>
+</html>

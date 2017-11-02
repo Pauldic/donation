@@ -1,0 +1,156 @@
+{% load adminlte_helpers i18n admin_tags %}
+<header class="main-header">
+    <style>
+        .change-list .filtered .results, .change-list .filtered .paginator, .filtered #toolbar, .filtered div.xfull, .filtered .actions {
+            margin-right: 0px;
+            width: auto;
+        }
+        .object-tools a {  border-radius: 0px;  }
+        .deletelink, .changelink, .addlink {
+            padding-left: 0;
+            background-position-y: 6px;
+        }
+        .submit-row a.deletelink {
+            height: auto;
+        }
+        .row1, .row2{
+            background: transparent;
+        }
+        #content-navbar-collapse .btn-primary {
+            color: #fff;
+            padding: 6px 12px;
+            margin-top: 8px;
+        }
+        #content-navbar-collapse .btn-primary:hover,
+        #content-navbar-collapse .btn-primary:focus {
+            background-color: #265a88;
+        }
+    </style>
+    <!-- Logo -->
+    {% block logo %}
+    <a href="{% block logo_href %}/{% endblock %}" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini">{% block logo_text_small %}<b>S</b>D{% endblock %}</span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg">{% block logo_text %}<b>SOFT</b>DONGLE{% endblock %}</span>
+    </a>
+    {% endblock %}
+
+    <!-- Header Navbar: style can be found in header.less -->
+    {% block nav_bar %}
+    <nav class="navbar navbar-static-top">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+
+        {% block nav_bar_center %}{% endblock %}
+
+        {% block nav_custom_menu %}
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                {% block header_dropdowns %}
+                    <li><a href="javascript:;"><i class="fa fa-plus-square-o hidden-sm" style="font-size: 1.4em;" id="fullscreen-toggle"></i> </a> </li>
+                    {% if request.user.is_authenticated %}
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="{% avatar_url size=50 %}" class="user-image" alt="User Image">
+                                <span class="hidden-xs">{% firstof request.user.get_short_name request.user.get_username %}</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                {% block user_header %}
+                                <li class="user-header">
+                                    <img src="{% avatar_url size=180 %}" class="img-circle" alt="User Image">
+                                    <p>
+                                        {{ request.user.first_name|title }} {{ request.user.last_name|title }}
+                                        <small>Member since {{ request.user.date_joined }}</small>
+                                    </p>
+                                </li>
+                                {% endblock %}
+
+                                <!-- Menu Footer-->
+                                {% block menu_footer %}
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="{% block change_password_url %}{% url 'admin:password_change' %}{% endblock %}"
+                                           class="btn btn-default btn-flat">{% trans 'Change password' %}</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="{% block logout_url %}{% logout_url %}{% endblock %}" class="btn btn-default btn-flat">Sign out</a>
+                                    </div>
+                                </li>
+                                {% endblock %}
+
+                            </ul>
+                        </li>
+
+                        {% block languages %}
+                            <li class="divider-vertical"></li>
+                            {% language_selector %}
+                        {% endblock languages %}
+
+                        {% block logs %}
+                            <li class="dropdown" id="recent-actions-module">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans 'Recent Actions' %} <b class="caret"></b></a>
+                                {% load log %}
+                                {% get_admin_log 10 as admin_log for_user user %}
+                                <ul class="dropdown-menu">
+                                    {% for entry in admin_log %}
+                                        <li class="{% if entry.is_addition %}addlink{% endif %}{% if entry.is_change %}changelink{% endif %}{% if entry.is_deletion %}deletelink{% endif %}">
+                                            <a href="{% if entry.is_deletion or not entry.get_admin_url %}#{% else %}{{ entry.get_admin_url }}{% endif %}">
+                                                <i class=""></i>
+                                                {{ entry.object_repr }}
+                                                {% if entry.content_type %}
+                                                    <span class="mini quiet">({% filter capfirst %}{{ entry.content_type }}{% endfilter %})</span>
+                                                {% else %}
+                                                    <span class="mini quiet">({% trans 'Unknown content' %})</span>
+                                                {% endif %}
+                                            </a>
+                                        </li>
+                                    {% empty %}
+                                        <li class="disabled"><a href="#">{% trans 'None available' %}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        {% endblock %}
+                        {% block userlinks %}
+                            {% url 'django-admindocs-docroot' as docsroot %}
+                            {% if docsroot %}
+                                <li class="divider-vertical"></li>
+                                <li><a href="{{ docsroot }}">{% trans 'Documentation' %}</a></li>
+                            {% endif %}
+                        {% endblock %}
+                    {% endif %}
+                {% endblock header_dropdowns %}
+            </ul>
+        </div>
+        {% endblock nav_custom_menu %}
+    </nav>
+    {% endblock %}
+    <script>
+          document.getElementById("fullscreen-toggle").addEventListener("click", function(){
+            if ((document.fullScreenElement && document.fullScreenElement !== null) ||
+                (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+                if (document.documentElement.requestFullScreen) {
+                    document.documentElement.requestFullScreen();
+                } else if (document.documentElement.mozRequestFullScreen) {
+                    document.documentElement.mozRequestFullScreen();
+                } else if (document.documentElement.webkitRequestFullScreen) {
+                    document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+                }
+                document.getElementsByTagName("body")[0].classList.add('sidebar-collapse' );
+            } else {
+                if (document.cancelFullScreen) {
+                    document.cancelFullScreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitCancelFullScreen) {
+                    document.webkitCancelFullScreen();
+                }
+            }
+        });
+    </script>
+</header>

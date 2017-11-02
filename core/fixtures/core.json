@@ -1,0 +1,6249 @@
+[
+{
+  "model": "core.bank",
+  "pk": 1,
+  "fields": {
+    "name": "***Bitcoin***",
+    "code": "BTC",
+    "country": null
+  }
+},
+{
+  "model": "core.bank",
+  "pk": 2,
+  "fields": {
+    "name": "Access Bank",
+    "code": "044",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.bank",
+  "pk": 3,
+  "fields": {
+    "name": "Diamond Bank",
+    "code": "063",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.bank",
+  "pk": 4,
+  "fields": {
+    "name": "Eco Bank",
+    "code": "050",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.bank",
+  "pk": 5,
+  "fields": {
+    "name": "FCMB",
+    "code": "214",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.bank",
+  "pk": 6,
+  "fields": {
+    "name": "Fidelity Bank",
+    "code": "070",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.bank",
+  "pk": 7,
+  "fields": {
+    "name": "First Bank",
+    "code": "011",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.bank",
+  "pk": 8,
+  "fields": {
+    "name": "GT Bank",
+    "code": "058",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.bank",
+  "pk": 9,
+  "fields": {
+    "name": "Enterprise Bank",
+    "code": "084",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.bank",
+  "pk": 10,
+  "fields": {
+    "name": "Stanbic IBTC Bank",
+    "code": "039",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.bank",
+  "pk": 11,
+  "fields": {
+    "name": "Skye Bank",
+    "code": "076",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.bank",
+  "pk": 12,
+  "fields": {
+    "name": "Standard Chartered Bank",
+    "code": "068",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.bank",
+  "pk": 13,
+  "fields": {
+    "name": "Sterling Bank Plc",
+    "code": "232",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.bank",
+  "pk": 14,
+  "fields": {
+    "name": "Union Bank",
+    "code": "032",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.bank",
+  "pk": 15,
+  "fields": {
+    "name": "UBA",
+    "code": "033",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.bank",
+  "pk": 16,
+  "fields": {
+    "name": "Unity Bank",
+    "code": "215",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.bank",
+  "pk": 17,
+  "fields": {
+    "name": "Wema Bank",
+    "code": "035",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.bank",
+  "pk": 18,
+  "fields": {
+    "name": "Zenith Bank",
+    "code": "057",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.bank",
+  "pk": 19,
+  "fields": {
+    "name": "AB Micro Finance Bank",
+    "code": "755",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.bank",
+  "pk": 20,
+  "fields": {
+    "name": "Parallex MFB",
+    "code": "735",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.bank",
+  "pk": 21,
+  "fields": {
+    "name": "Jaiz Bank",
+    "code": "301",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.bank",
+  "pk": 22,
+  "fields": {
+    "name": "KeyStone Bank",
+    "code": "082",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.bank",
+  "pk": 23,
+  "fields": {
+    "name": "CMFB",
+    "code": "733",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.bank",
+  "pk": 24,
+  "fields": {
+    "name": "Heritage Bank",
+    "code": "030",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.bank",
+  "pk": 25,
+  "fields": {
+    "name": "Accion MFB",
+    "code": "700",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 1,
+  "fields": {
+    "code": 1001,
+    "label": "Email Verification",
+    "value": "1",
+    "description": "Allow email Verification and activation",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 2,
+  "fields": {
+    "code": 1002,
+    "label": "Activation Expiration",
+    "value": "124",
+    "description": "This length of time in hours an account activation link will be considered valid before expiration",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 3,
+  "fields": {
+    "code": 1003,
+    "label": "Force Distinct email",
+    "value": "1",
+    "description": "Prevent Duplicate Email",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 4,
+  "fields": {
+    "code": 1004,
+    "label": "No-Reply Sender Email",
+    "value": "GMB <noreply@gmbenefit.org>",
+    "description": "Sender for No Reply Mails",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 5,
+  "fields": {
+    "code": 1005,
+    "label": "Acc Activation Subject",
+    "value": "GMB Activation",
+    "description": "The subject for Account Activation Email",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 6,
+  "fields": {
+    "code": 1006,
+    "label": "Disable Blocked Account After",
+    "value": "48",
+    "description": "This is the length in hours of time in hours before a Blocked account is deleted",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 7,
+  "fields": {
+    "code": 1007,
+    "label": "Max Image upload size in MB",
+    "value": "1.0",
+    "description": "This is the max size of image that is allowed for upload in Mega Byte. It can take 0.5 for 500kb etc",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 8,
+  "fields": {
+    "code": 1020,
+    "label": "Verify Phone via SMS",
+    "value": "0",
+    "description": "This is TRUE/FALSE value if SMS Verification is a requirement for registration",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 9,
+  "fields": {
+    "code": 1021,
+    "label": "Verification SMS Server",
+    "value": "GMB",
+    "description": "This is the name that appears on the user phone as the sender of the verification code",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 10,
+  "fields": {
+    "code": 1022,
+    "label": "Interval Between Each Verification",
+    "value": "10",
+    "description": "The length of time in Minutes before we can resend a user Verification Code via VOIP/SMS",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 11,
+  "fields": {
+    "code": 1023,
+    "label": "Max Verification SMS Sent Count",
+    "value": "3",
+    "description": "This is the Maximum number of time we can send Verification SMS ",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 12,
+  "fields": {
+    "code": 1024,
+    "label": "Force Distinct Phone",
+    "value": "1",
+    "description": "Prevent duplicate Phone Number",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 13,
+  "fields": {
+    "code": 1030,
+    "label": "Reward in Percentage",
+    "value": "30",
+    "description": "This is the % the user will get for a particular Donation (PH)",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 14,
+  "fields": {
+    "code": 1031,
+    "label": "Registration Starts",
+    "value": "2017,9,28,11,00,00",
+    "description": "Open Registration ",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 15,
+  "fields": {
+    "code": 1040,
+    "label": "Validate Bank Account",
+    "value": "1",
+    "description": "Verify the Bank Account is Valid",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 16,
+  "fields": {
+    "code": 1041,
+    "label": "Force Distinct Bank Account",
+    "value": "1",
+    "description": "Prevent Duplicate Bank Accounts",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 18,
+  "fields": {
+    "code": 1051,
+    "label": "Percentage Registration Bonus",
+    "value": "0",
+    "description": "One of payment to the new members percentage",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 19,
+  "fields": {
+    "code": 1052,
+    "label": "Absolute Registration Bonus",
+    "value": "0",
+    "description": "One of payment to the new members absolute",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 20,
+  "fields": {
+    "code": 1060,
+    "label": "Sponsor Bonus Enabled",
+    "value": "1",
+    "description": "If to Give Sponsor Bonus",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 21,
+  "fields": {
+    "code": 1061,
+    "label": "Sponsor Bonus in Percentage",
+    "value": "10",
+    "description": "This is also dependent on if Sponsor Bonus is turned on (Value in %). If 0 Absolute value will be used see ID-55 for value, otherwise the specified % value will be used",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 22,
+  "fields": {
+    "code": 1062,
+    "label": "Sponsor Bonus absolute Amount",
+    "value": "0",
+    "description": "Fixed amount to be paid to the Sponsor",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 23,
+  "fields": {
+    "code": 1063,
+    "label": "Sponsor Bonus Min Payout Amount",
+    "value": "1000",
+    "description": "This is min amount to be GHed for each Sponsor",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 24,
+  "fields": {
+    "code": 1064,
+    "label": "Max Sponsor Credit Count ",
+    "value": "0",
+    "description": "This is the maximum number of times a Sponsor will earn referal bouns from an upliner's transaction, 0 means unlimited",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 25,
+  "fields": {
+    "code": 1065,
+    "label": "Sponsor Bonus Min Withdrawable",
+    "value": "0",
+    "description": "This is min amount per user, before the user's bonus can aggregated for cash out",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 26,
+  "fields": {
+    "code": 1066,
+    "label": "Sponsor Bonus Min Payout Count",
+    "value": "0",
+    "description": "This is the Minimum number of times User can recycle b4 upliner will be able to GH SP Bonus",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 27,
+  "fields": {
+    "code": 1070,
+    "label": "Speed Bonus Enabled",
+    "value": "0",
+    "description": "Turn Speed Bonus Off/On",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 28,
+  "fields": {
+    "code": 1071,
+    "label": "Speed Bouns %",
+    "value": "0",
+    "description": "This is also dependent on if Speed Bonus ID-74 is turned on (Value in %). If 0 Absolute value will be used see ID-76 for value, otherwise the specified % value will be used",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 29,
+  "fields": {
+    "code": 1072,
+    "label": "Speed Bouns Absolute Amount",
+    "value": "0",
+    "description": "This is also dependent on if Speed Bonus ID-76 is turned On and ID-75 = 0, then the value here in will be used",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 30,
+  "fields": {
+    "code": 1080,
+    "label": "Advert Bonus Enabled",
+    "value": "0",
+    "description": "If to give Advert Bonus",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 31,
+  "fields": {
+    "code": 1081,
+    "label": "Advert Bonus in Percentage",
+    "value": "0",
+    "description": "This is also dependent on if Advert Bonus is turned on (Value in %)",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 32,
+  "fields": {
+    "code": 1200,
+    "label": "PH by Package",
+    "value": "0",
+    "description": "This will let system ensure only amount in the Package list is allowed for normal PH if enabled",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 33,
+  "fields": {
+    "code": 1201,
+    "label": "PH Starts",
+    "value": "2017,9,4,17,0,0",
+    "description": "Open for PH on this time",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 34,
+  "fields": {
+    "code": 1202,
+    "label": "Min PH Amount",
+    "value": "1000",
+    "description": "The Minimum PH Amount",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 35,
+  "fields": {
+    "code": 1203,
+    "label": "Max PH Amount",
+    "value": "1000000",
+    "description": "The Maximum PH Amount",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 36,
+  "fields": {
+    "code": 1204,
+    "label": "PH in multiple of X",
+    "value": "1000",
+    "description": "The multiple for PHing",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 37,
+  "fields": {
+    "code": 1205,
+    "label": "User Max Daily PH Count",
+    "value": "1",
+    "description": "This is the maximum number of PH per user within 24hrs interval",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 38,
+  "fields": {
+    "code": 1206,
+    "label": "User Max Daily PH Value",
+    "value": "500000",
+    "description": "This is the maximum amount of PH per user per within 24hrs interval",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 39,
+  "fields": {
+    "code": 1207,
+    "label": "Prevent PH Downgrade",
+    "value": "0",
+    "description": "Ensure User is not allowed to down grade his PH after setting the first standard",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 40,
+  "fields": {
+    "code": 1208,
+    "label": "Min PH interval in hours",
+    "value": "1",
+    "description": "This is the minimum gap between each PH in hous. Use Zero to off it",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 41,
+  "fields": {
+    "code": 1209,
+    "label": "PH Min Maturity in Hours",
+    "value": "3",
+    "description": "Minimum Length of time before one can GH for a PH",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 42,
+  "fields": {
+    "code": 1210,
+    "label": "PH Max Maturity in Hours",
+    "value": "3",
+    "description": "Maximum Length of time before system will consider escalating this to Admin that this member has not been  matched",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 43,
+  "fields": {
+    "code": 1211,
+    "label": "Match PH at X Hours",
+    "value": "1",
+    "description": "This is the length of time to wait before a PH Order is matched. '-1' means Match immediately weather the Scheduler is On/OFF, '0' means Match immediately IFF the Scheduler is ON, while any number > 0 (eg 4) means Match after 4 hours from the time of PH",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 44,
+  "fields": {
+    "code": 1212,
+    "label": "PH 2be fulfilled b4 X Hrs",
+    "value": "3",
+    "description": "This is the length of time to wait before a matched PH Order is considered Not Fulfilled (Timeout).",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 45,
+  "fields": {
+    "code": 1213,
+    "label": "PH Confirmation Timeout",
+    "value": "2",
+    "description": "Length of time in hours before an uploaded POP will auto confirmed",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 46,
+  "fields": {
+    "code": 1214,
+    "label": "Min PH to Allow for Cancellation",
+    "value": "0",
+    "description": "If set to 0, the user is allowed cancel all his unmatched PH",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 47,
+  "fields": {
+    "code": 1215,
+    "label": "Post-Confirmation Release period in Hour",
+    "value": "0",
+    "description": "The length of time hours before a confirmed PH is allowed for GH",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 48,
+  "fields": {
+    "code": 1216,
+    "label": "Auto Recycle",
+    "value": "0",
+    "description": "Automatically PH after the last pending GH has been fullfilled",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 49,
+  "fields": {
+    "code": 1217,
+    "label": "Force Static Style Recycling ",
+    "value": "0",
+    "description": "This ensures that the user will recycle certain percentage of his/her PH by allowing the user GH Only part of his/her PH",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 50,
+  "fields": {
+    "code": 1218,
+    "label": "Static Style Recycle Percentage",
+    "value": "33.333334",
+    "description": "This is the value in percentage which the user is forced to keep in the system for later recycling",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 51,
+  "fields": {
+    "code": 1219,
+    "label": "Force Dynamic Style Recyling ",
+    "value": "0",
+    "description": "Pay Certain percentage of the Capital while keeping the balance till next recycle if fulfilled",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 52,
+  "fields": {
+    "code": 1220,
+    "label": "Dynamic Style Recycling",
+    "value": "0",
+    "description": "Pay x% percent of the Capital while keeping the balance till next recycle if fulfilled",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 53,
+  "fields": {
+    "code": 1230,
+    "label": "PH Commitment %",
+    "value": "20",
+    "description": "The amount to match first as the commitment initial Payment",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 54,
+  "fields": {
+    "code": 1231,
+    "label": "PH Commitment Maturity in Hours",
+    "value": "1",
+    "description": "The min length of time in Hours b4 a PH is matched for commitment",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 55,
+  "fields": {
+    "code": 1240,
+    "label": "PH Re-Commitment %",
+    "value": "0",
+    "description": "The amount to match after a PH has been fulfilled but before a GH will be allowed, 0 means nothing or no need or disabled",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 56,
+  "fields": {
+    "code": 1241,
+    "label": "PH Re-Commitment Maturity in Hours",
+    "value": "72",
+    "description": "The min length of time in Hours b4 a PH is matched for recommitment",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 57,
+  "fields": {
+    "code": 1300,
+    "label": "Email Sender on Payment Matched",
+    "value": "1",
+    "description": "Send Notification Email to the Sender for Payment Matched",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 58,
+  "fields": {
+    "code": 1301,
+    "label": "Email Receiver on POP Upload",
+    "value": "1",
+    "description": "Send Upload Notification Email to the Receiver",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 59,
+  "fields": {
+    "code": 1302,
+    "label": "Email Sender on POP Confirmation",
+    "value": "1",
+    "description": "Send Transaction Confirmation Email to the Sender",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 60,
+  "fields": {
+    "code": 1310,
+    "label": "SMS Sender on Payment Matched",
+    "value": "0",
+    "description": "Send Notification SMS to the Sender for Payment Matched",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 61,
+  "fields": {
+    "code": 1311,
+    "label": "SMS Receiver on POP Upload",
+    "value": "0",
+    "description": "Send Upload Notification SMS to the Receiver",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 62,
+  "fields": {
+    "code": 1312,
+    "label": "SMS Sender on POP Confirmation",
+    "value": "0",
+    "description": "Send Transaction Confirmation SMS to the Sender",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 63,
+  "fields": {
+    "code": 1313,
+    "label": "Auto Confirm Timeout POP",
+    "value": "0",
+    "description": "Allow the system to Automatically Confirm a POP on Timeout",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 64,
+  "fields": {
+    "code": 1400,
+    "label": "Automatic GH Computation",
+    "value": "0",
+    "description": "If the system should automatically match member who has reached their GH time",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 65,
+  "fields": {
+    "code": 1401,
+    "label": "Prevent Account Over Growth",
+    "value": "1",
+    "description": "Ensure that members account do not over grow the Reward in Percentage as in ID-8. This has effect ONLY if Auto GH is disabled",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 66,
+  "fields": {
+    "code": 1402,
+    "label": "Disable GH Without PH",
+    "value": "0",
+    "description": "This if set to True will force that even Admin Must fulfill his PH b4 GH",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 67,
+  "fields": {
+    "code": 1403,
+    "label": "Global Daily GH Limit",
+    "value": "99999999999",
+    "description": "This is the limit the system will match per day. Once the system matches up to the amount specified herein the GH matcher will i",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 68,
+  "fields": {
+    "code": 1404,
+    "label": "Global Batch GH Limit (NOT In Using)",
+    "value": "100000",
+    "description": "Just like the Daily Limit, this is the highest the system will match per each GH cycle",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 69,
+  "fields": {
+    "code": 1405,
+    "label": "Rematch instantly if Exception",
+    "value": "1",
+    "description": "If this is turned on, when someone failed to pay, the schedular rematches the GHer immediately otherwise, the GHer will be places",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 70,
+  "fields": {
+    "code": 1406,
+    "label": "Apply Smart Matching",
+    "value": "0",
+    "description": "Smart Matching allows the system to ensure that a GH is matched with atleast half/quarter of its value b4 combining small pieces",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 71,
+  "fields": {
+    "code": 1407,
+    "label": "User Max Daily GH Count",
+    "value": "2",
+    "description": "Maximum number of times a user is allowed to GH Daily",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 72,
+  "fields": {
+    "code": 1408,
+    "label": "User Max Daily GH Amount",
+    "value": "300000",
+    "description": "Maximum amount a user can GH in a daily",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 73,
+  "fields": {
+    "code": 1409,
+    "label": "Linked Account Max Daily GH Count",
+    "value": "6",
+    "description": "Maximum number of times a linked users are allowed to GH Daily",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 74,
+  "fields": {
+    "code": 1410,
+    "label": "Linked Account Max Daily GH Amount",
+    "value": "500000",
+    "description": "Maximum amount linked users can GH in a daily",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 75,
+  "fields": {
+    "code": 1430,
+    "label": "GH in multiple of X",
+    "value": "1000",
+    "description": "The multiple for Ghing",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 76,
+  "fields": {
+    "code": 1431,
+    "label": "GH Re-Commitment %",
+    "value": "0",
+    "description": "The amount to keep back after PH has been fulfilled.",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 77,
+  "fields": {
+    "code": 1432,
+    "label": "GH Re-Commitment % Based on GH Amount",
+    "value": "0",
+    "description": "If False this will be computed from the PH amount, otherwise this will be computeed based on GH amount",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 78,
+  "fields": {
+    "code": 1900,
+    "label": "Pass Code",
+    "value": "whouhelp",
+    "description": "Pass Code to bypass time restriction",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 79,
+  "fields": {
+    "code": 1001,
+    "label": "Email Verification",
+    "value": "1",
+    "description": "Allow email Verification and activation",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 80,
+  "fields": {
+    "code": 1002,
+    "label": "Activation Expiration",
+    "value": "124",
+    "description": "This length of time in hours an account activation link will be considered valid before expiration",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 81,
+  "fields": {
+    "code": 1003,
+    "label": "Force Distinct email",
+    "value": "1",
+    "description": "Prevent Duplicate Email",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 82,
+  "fields": {
+    "code": 1004,
+    "label": "No-Reply Sender Email",
+    "value": "GMB <noreply@gmbenefit.org>",
+    "description": "Sender for No Reply Mails",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 83,
+  "fields": {
+    "code": 1005,
+    "label": "Acc Activation Subject",
+    "value": "GMB Activation",
+    "description": "The subject for Account Activation Email",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 84,
+  "fields": {
+    "code": 1006,
+    "label": "Disable Blocked Account After",
+    "value": "48",
+    "description": "This is the length in hours of time in hours before a Blocked account is deleted",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 85,
+  "fields": {
+    "code": 1007,
+    "label": "Max Image upload size in MB",
+    "value": "1.0",
+    "description": "This is the max size of image that is allowed for upload in Mega Byte. It can take 0.5 for 500kb etc",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 86,
+  "fields": {
+    "code": 1020,
+    "label": "Verify Phone via SMS",
+    "value": "0",
+    "description": "This is TRUE/FALSE value if SMS Verification is a requirement for registration",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 87,
+  "fields": {
+    "code": 1021,
+    "label": "Verification SMS Server",
+    "value": "GMB",
+    "description": "This is the name that appears on the user phone as the sender of the verification code",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 88,
+  "fields": {
+    "code": 1022,
+    "label": "Interval Between Each Verification",
+    "value": "10",
+    "description": "The length of time in Minutes before we can resend a user Verification Code via VOIP/SMS",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 89,
+  "fields": {
+    "code": 1023,
+    "label": "Max Verification SMS Sent Count",
+    "value": "3",
+    "description": "This is the Maximum number of time we can send Verification SMS ",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 90,
+  "fields": {
+    "code": 1024,
+    "label": "Force Distinct Phone",
+    "value": "1",
+    "description": "Prevent duplicate Phone Number",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 91,
+  "fields": {
+    "code": 1030,
+    "label": "Reward in Percentage",
+    "value": "40",
+    "description": "This is the % the user will get for a particular Donation (PH)",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 92,
+  "fields": {
+    "code": 1031,
+    "label": "Registration Starts",
+    "value": "2017,9,28,11,00,00",
+    "description": "Open Registration ",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 93,
+  "fields": {
+    "code": 1040,
+    "label": "Validate Bank Account",
+    "value": "0",
+    "description": "Verify the Bank Account is Valid",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 94,
+  "fields": {
+    "code": 1041,
+    "label": "Force Distinct Bank Account",
+    "value": "1",
+    "description": "Prevent Duplicate Bank Accounts",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 96,
+  "fields": {
+    "code": 1051,
+    "label": "Percentage Registration Bonus",
+    "value": "0",
+    "description": "One of payment to the new members percentage",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 97,
+  "fields": {
+    "code": 1052,
+    "label": "Absolute Registration Bonus",
+    "value": "0",
+    "description": "One of payment to the new members absolute",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 98,
+  "fields": {
+    "code": 1060,
+    "label": "Sponsor Bonus Enabled",
+    "value": "1",
+    "description": "If to Give Sponsor Bonus",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 99,
+  "fields": {
+    "code": 1061,
+    "label": "Sponsor Bonus in Percentage",
+    "value": "10",
+    "description": "This is also dependent on if Sponsor Bonus is turned on (Value in %). If 0 Absolute value will be used see ID-55 for value, otherwise the specified % value will be used",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 100,
+  "fields": {
+    "code": 1062,
+    "label": "Sponsor Bonus absolute Amount",
+    "value": "0",
+    "description": "Fixed amount to be paid to the Sponsor",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 101,
+  "fields": {
+    "code": 1063,
+    "label": "Sponsor Bonus Min Payout Amount",
+    "value": "0.01",
+    "description": "This is min amount to be GHed for each Sponsor",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 102,
+  "fields": {
+    "code": 1064,
+    "label": "Max Sponsor Credit Count ",
+    "value": "0",
+    "description": "This is the maximum number of times a Sponsor will earn referal bouns from an upliner's transaction, 0 means unlimited",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 103,
+  "fields": {
+    "code": 1065,
+    "label": "Sponsor Bonus Min Withdrawable",
+    "value": "0",
+    "description": "This is min amount per user, before the user's bonus can aggregated for cash out",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 104,
+  "fields": {
+    "code": 1066,
+    "label": "Sponsor Bonus Min Payout Count",
+    "value": "0",
+    "description": "This is the Minimum number of times User can recycle b4 upliner will be able to GH SP Bonus",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 105,
+  "fields": {
+    "code": 1070,
+    "label": "Speed Bonus Enabled",
+    "value": "0",
+    "description": "Turn Speed Bonus Off/On",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 106,
+  "fields": {
+    "code": 1071,
+    "label": "Speed Bouns %",
+    "value": "0",
+    "description": "This is also dependent on if Speed Bonus ID-74 is turned on (Value in %). If 0 Absolute value will be used see ID-76 for value, otherwise the specified % value will be used",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 107,
+  "fields": {
+    "code": 1072,
+    "label": "Speed Bouns Absolute Amount",
+    "value": "0",
+    "description": "This is also dependent on if Speed Bonus ID-76 is turned On and ID-75 = 0, then the value here in will be used",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 108,
+  "fields": {
+    "code": 1080,
+    "label": "Advert Bonus Enabled",
+    "value": "0",
+    "description": "If to give Advert Bonus",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 109,
+  "fields": {
+    "code": 1081,
+    "label": "Advert Bonus in Percentage",
+    "value": "0",
+    "description": "This is also dependent on if Advert Bonus is turned on (Value in %)",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 110,
+  "fields": {
+    "code": 1200,
+    "label": "PH by Package",
+    "value": "0",
+    "description": "This will let system ensure only amount in the Package list is allowed for normal PH if enabled",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 111,
+  "fields": {
+    "code": 1201,
+    "label": "PH Starts",
+    "value": "2017,9,4,17,0,0",
+    "description": "Open for PH on this time",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 112,
+  "fields": {
+    "code": 1202,
+    "label": "Min PH Amount",
+    "value": "0.01",
+    "description": "The Minimum PH Amount",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 113,
+  "fields": {
+    "code": 1203,
+    "label": "Max PH Amount",
+    "value": "0.5",
+    "description": "The Maximum PH Amount",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 114,
+  "fields": {
+    "code": 1204,
+    "label": "PH in multiple of X",
+    "value": "0.005",
+    "description": "The multiple for PHing",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 115,
+  "fields": {
+    "code": 1205,
+    "label": "User Max Daily PH Count",
+    "value": "1",
+    "description": "This is the maximum number of PH per user within 24hrs interval",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 116,
+  "fields": {
+    "code": 1206,
+    "label": "User Max Daily PH Value",
+    "value": "0.5",
+    "description": "This is the maximum amount of PH per user per within 24hrs interval",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 117,
+  "fields": {
+    "code": 1207,
+    "label": "Prevent PH Downgrade",
+    "value": "0",
+    "description": "Ensure User is not allowed to down grade his PH after setting the first standard",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 118,
+  "fields": {
+    "code": 1208,
+    "label": "Min PH interval in hours",
+    "value": "1",
+    "description": "This is the minimum gap between each PH in hous. Use Zero to off it",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 119,
+  "fields": {
+    "code": 1209,
+    "label": "PH Min Maturity in Hours",
+    "value": "3",
+    "description": "Minimum Length of time before one can GH for a PH",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 120,
+  "fields": {
+    "code": 1210,
+    "label": "PH Max Maturity in Hours",
+    "value": "3",
+    "description": "Maximum Length of time before system will consider escalating this to Admin that this member has not been  matched",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 121,
+  "fields": {
+    "code": 1211,
+    "label": "Match PH at X Hours",
+    "value": "1",
+    "description": "This is the length of time to wait before a PH Order is matched. '-1' means Match immediately weather the Scheduler is On/OFF, '0' means Match immediately IFF the Scheduler is ON, while any number > 0 (eg 4) means Match after 4 hours from the time of PH",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 122,
+  "fields": {
+    "code": 1212,
+    "label": "PH 2be fulfilled b4 X Hrs",
+    "value": "3",
+    "description": "This is the length of time to wait before a matched PH Order is considered Not Fulfilled (Timeout).",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 123,
+  "fields": {
+    "code": 1213,
+    "label": "PH Confirmation Timeout",
+    "value": "2",
+    "description": "Length of time in hours before an uploaded POP will auto confirmed",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 124,
+  "fields": {
+    "code": 1214,
+    "label": "Min PH to Allow for Cancellation",
+    "value": "0",
+    "description": "If set to 0, the user is allowed cancel all his unmatched PH",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 125,
+  "fields": {
+    "code": 1215,
+    "label": "Post-Confirmation Release period in Hour",
+    "value": "0",
+    "description": "The length of time hours before a confirmed PH is allowed for GH",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 126,
+  "fields": {
+    "code": 1216,
+    "label": "Auto Recycle",
+    "value": "0",
+    "description": "Automatically PH after the last pending GH has been fullfilled",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 127,
+  "fields": {
+    "code": 1217,
+    "label": "Force Static Style Recycling ",
+    "value": "0",
+    "description": "This ensures that the user will recycle certain percentage of his/her PH by allowing the user GH Only part of his/her PH",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 128,
+  "fields": {
+    "code": 1218,
+    "label": "Static Style Recycle Percentage",
+    "value": "33.333334",
+    "description": "This is the value in percentage which the user is forced to keep in the system for later recycling",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 129,
+  "fields": {
+    "code": 1219,
+    "label": "Force Dynamic Style Recyling ",
+    "value": "0",
+    "description": "Pay Certain percentage of the Capital while keeping the balance till next recycle if fulfilled",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 130,
+  "fields": {
+    "code": 1220,
+    "label": "Dynamic Style Recycling",
+    "value": "0",
+    "description": "Pay x% percent of the Capital while keeping the balance till next recycle if fulfilled",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 131,
+  "fields": {
+    "code": 1230,
+    "label": "PH Commitment %",
+    "value": "0",
+    "description": "The amount to match first as the commitment initial Payment",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 132,
+  "fields": {
+    "code": 1231,
+    "label": "PH Commitment Maturity in Hours",
+    "value": "1",
+    "description": "The min length of time in Hours b4 a PH is matched for commitment",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 133,
+  "fields": {
+    "code": 1240,
+    "label": "PH Re-Commitment %",
+    "value": "0",
+    "description": "The amount to match after a PH has been fulfilled but before a GH will be allowed, 0 means nothing or no need or disabled",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 134,
+  "fields": {
+    "code": 1241,
+    "label": "PH Re-Commitment Maturity in Hours",
+    "value": "72",
+    "description": "The min length of time in Hours b4 a PH is matched for recommitment",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 135,
+  "fields": {
+    "code": 1300,
+    "label": "Email Sender on Payment Matched",
+    "value": "1",
+    "description": "Send Notification Email to the Sender for Payment Matched",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 136,
+  "fields": {
+    "code": 1301,
+    "label": "Email Receiver on POP Upload",
+    "value": "1",
+    "description": "Send Upload Notification Email to the Receiver",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 137,
+  "fields": {
+    "code": 1302,
+    "label": "Email Sender on POP Confirmation",
+    "value": "1",
+    "description": "Send Transaction Confirmation Email to the Sender",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 138,
+  "fields": {
+    "code": 1310,
+    "label": "SMS Sender on Payment Matched",
+    "value": "0",
+    "description": "Send Notification SMS to the Sender for Payment Matched",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 139,
+  "fields": {
+    "code": 1311,
+    "label": "SMS Receiver on POP Upload",
+    "value": "0",
+    "description": "Send Upload Notification SMS to the Receiver",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 140,
+  "fields": {
+    "code": 1312,
+    "label": "SMS Sender on POP Confirmation",
+    "value": "0",
+    "description": "Send Transaction Confirmation SMS to the Sender",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 141,
+  "fields": {
+    "code": 1313,
+    "label": "Auto Confirm Timeout POP",
+    "value": "0",
+    "description": "Allow the system to Automatically Confirm a POP on Timeout",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 142,
+  "fields": {
+    "code": 1400,
+    "label": "Automatic GH Computation",
+    "value": "0",
+    "description": "If the system should automatically match member who has reached their GH time",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 143,
+  "fields": {
+    "code": 1401,
+    "label": "Prevent Account Over Growth",
+    "value": "1",
+    "description": "Ensure that members account do not over grow the Reward in Percentage as in ID-8. This has effect ONLY if Auto GH is disabled",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 144,
+  "fields": {
+    "code": 1402,
+    "label": "Disable GH Without PH",
+    "value": "0",
+    "description": "This if set to True will force that even Admin Must fulfill his PH b4 GH",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 145,
+  "fields": {
+    "code": 1403,
+    "label": "Global Daily GH Limit",
+    "value": "99999999999",
+    "description": "This is the limit the system will match per day. Once the system matches up to the amount specified herein the GH matcher will i",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 146,
+  "fields": {
+    "code": 1404,
+    "label": "Global Batch GH Limit (NOT In Using)",
+    "value": "100000",
+    "description": "Just like the Daily Limit, this is the highest the system will match per each GH cycle",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 147,
+  "fields": {
+    "code": 1405,
+    "label": "Rematch instantly if Exception",
+    "value": "1",
+    "description": "If this is turned on, when someone failed to pay, the schedular rematches the GHer immediately otherwise, the GHer will be places",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 148,
+  "fields": {
+    "code": 1406,
+    "label": "Apply Smart Matching",
+    "value": "0",
+    "description": "Smart Matching allows the system to ensure that a GH is matched with atleast half/quarter of its value b4 combining small pieces",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 149,
+  "fields": {
+    "code": 1407,
+    "label": "User Max Daily GH Count",
+    "value": "2",
+    "description": "Maximum number of times a user is allowed to GH Daily",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 150,
+  "fields": {
+    "code": 1408,
+    "label": "User Max Daily GH Amount",
+    "value": "0.5",
+    "description": "Maximum amount a user can GH in a daily",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 151,
+  "fields": {
+    "code": 1409,
+    "label": "Linked Account Max Daily GH Count",
+    "value": "6",
+    "description": "Maximum number of times a linked users are allowed to GH Daily",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 152,
+  "fields": {
+    "code": 1410,
+    "label": "Linked Account Max Daily GH Amount",
+    "value": "500000",
+    "description": "Maximum amount linked users can GH in a daily",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 153,
+  "fields": {
+    "code": 1430,
+    "label": "GH in multiple of X",
+    "value": "0.002",
+    "description": "The multiple for Ghing",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 154,
+  "fields": {
+    "code": 1431,
+    "label": "GH Re-Commitment %",
+    "value": "0",
+    "description": "The amount to keep back after PH has been fulfilled.",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 155,
+  "fields": {
+    "code": 1432,
+    "label": "GH Re-Commitment % Based on GH Amount",
+    "value": "0",
+    "description": "If False this will be computed from the PH amount, otherwise this will be computeed based on GH amount",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 156,
+  "fields": {
+    "code": 1900,
+    "label": "Pass Code",
+    "value": "great",
+    "description": "Pass Code to bypass time restriction",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 157,
+  "fields": {
+    "code": 1008,
+    "label": "Credit Interval in Hours",
+    "value": "1",
+    "description": "How often should an account be credited. This should also depend on the Max Maturity of the PH",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 158,
+  "fields": {
+    "code": 1008,
+    "label": "Credit Interval in Hours",
+    "value": "1",
+    "description": "How often should an account be credited. This should also depend on the Max Maturity of the PH",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 159,
+  "fields": {
+    "code": 1009,
+    "label": "Grow Bouns",
+    "value": "0",
+    "description": "Say A invited B and B Phed 100k, A will get 10k as bouns. Q: Should the 10k be allowed to grow? ",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 160,
+  "fields": {
+    "code": 1009,
+    "label": "Grow Bouns",
+    "value": "0",
+    "description": "Say A invited B and B Phed 100k, A will get 10k as bouns. Q: Should the 10k be allowed to grow? ",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.config",
+  "pk": 161,
+  "fields": {
+    "code": 1232,
+    "label": "Max Time Extension",
+    "value": "48",
+    "description": "This is maximum time in hours allowed for extension",
+    "country": null
+  }
+},
+{
+  "model": "core.config",
+  "pk": 162,
+  "fields": {
+    "code": 1232,
+    "label": "Max Time Extension",
+    "value": "48",
+    "description": "This is maximum time in hours allowed for extension",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ad",
+  "fields": {
+    "name": "Andorra",
+    "name_plain": "Andorra",
+    "is_active": false,
+    "dial_code": "376",
+    "flag": "AND",
+    "capital": "Andorra la Vella ",
+    "region": "Southern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ae",
+  "fields": {
+    "name": "United Arab Emirates (\u0627\u0644\u0625\u0645\u0627\u0631\u0627\u062a \u0627\u0644\u0639\u0631\u0628\u064a\u0629 \u0627\u0644\u0645\u062a\u062d\u062f\u0629\u200e)",
+    "name_plain": "United Arab Emirates",
+    "is_active": false,
+    "dial_code": "971",
+    "flag": "ARE",
+    "capital": "Abu Dhabi ",
+    "region": "Western Asia and Middle East",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "af",
+  "fields": {
+    "name": "Afghanistan (\u0627\u0641\u063a\u0627\u0646\u0633\u062a\u0627\u0646\u200e)",
+    "name_plain": "Afghanistan",
+    "is_active": false,
+    "dial_code": "93",
+    "flag": "AFG",
+    "capital": "Kabul ",
+    "region": "South-Central Asia",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ag",
+  "fields": {
+    "name": "Antigua and Barbuda",
+    "name_plain": "Antigua and Barbuda",
+    "is_active": false,
+    "dial_code": "1268",
+    "flag": "ATG",
+    "capital": "Saint John's",
+    "region": "Caribbean",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ai",
+  "fields": {
+    "name": "Anguilla",
+    "name_plain": "Anguilla",
+    "is_active": false,
+    "dial_code": "1264",
+    "flag": "AIA",
+    "capital": "The Valley ",
+    "region": "Caribbean",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "al",
+  "fields": {
+    "name": "Albania (Shqip\u00ebri)",
+    "name_plain": "Albania",
+    "is_active": false,
+    "dial_code": "355",
+    "flag": "ALB",
+    "capital": "Tirana ",
+    "region": "Southern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "am",
+  "fields": {
+    "name": "Armenia (\u0540\u0561\u0575\u0561\u057d\u057f\u0561\u0576)",
+    "name_plain": "Armenia",
+    "is_active": false,
+    "dial_code": "374",
+    "flag": "ARM",
+    "capital": "Yerevan ",
+    "region": "Western Asia and Middle East",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ao",
+  "fields": {
+    "name": "Angola",
+    "name_plain": "Angola",
+    "is_active": false,
+    "dial_code": "244",
+    "flag": "AGO",
+    "capital": "Luanda ",
+    "region": "Central Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ar",
+  "fields": {
+    "name": "Argentina",
+    "name_plain": "Argentina",
+    "is_active": false,
+    "dial_code": "54",
+    "flag": "ARG",
+    "capital": "Buenos Aires",
+    "region": "South America",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "as",
+  "fields": {
+    "name": "American Samoa",
+    "name_plain": "American Samoa",
+    "is_active": false,
+    "dial_code": "1684",
+    "flag": "ASM",
+    "capital": "Pago Pago",
+    "region": "Polynesia, the islands in the eastern part of Oceania",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "at",
+  "fields": {
+    "name": "Austria (\u00d6sterreich)",
+    "name_plain": "Austria",
+    "is_active": false,
+    "dial_code": "43",
+    "flag": "AUT",
+    "capital": "Vienna (Wien) ",
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "au",
+  "fields": {
+    "name": "Australia",
+    "name_plain": "Australia",
+    "is_active": false,
+    "dial_code": "61",
+    "flag": "AUS",
+    "capital": "Canberra - Sydney",
+    "region": "Australia/New Zealand",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "aw",
+  "fields": {
+    "name": "Aruba",
+    "name_plain": "Aruba",
+    "is_active": false,
+    "dial_code": "297",
+    "flag": "ABW",
+    "capital": "Oranjestad ",
+    "region": "Caribbean",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ax",
+  "fields": {
+    "name": "\u00c5land Islands",
+    "name_plain": "\u00c5land Islands",
+    "is_active": false,
+    "dial_code": "358",
+    "flag": null,
+    "capital": null,
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "az",
+  "fields": {
+    "name": "Azerbaijan (Az\u0259rbaycan)",
+    "name_plain": "Azerbaijan",
+    "is_active": false,
+    "dial_code": "994",
+    "flag": "AZE",
+    "capital": "Baku ",
+    "region": "Western Asia and Middle East",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ba",
+  "fields": {
+    "name": "Bosnia and Herzegovina (\u0411\u043e\u0441\u043d\u0430 \u0438 \u0425\u0435\u0440\u0446\u0435\u0433\u043e\u0432\u0438\u043d\u0430)",
+    "name_plain": "Bosnia and Herzegovina",
+    "is_active": false,
+    "dial_code": "387",
+    "flag": "BIH",
+    "capital": "Sarajevo ",
+    "region": "Southern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "bb",
+  "fields": {
+    "name": "Barbados",
+    "name_plain": "Barbados",
+    "is_active": false,
+    "dial_code": "1246",
+    "flag": "BRB",
+    "capital": "Bridgetown ",
+    "region": "Caribbean",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "bd",
+  "fields": {
+    "name": "Bangladesh (\u09ac\u09be\u0982\u09b2\u09be\u09a6\u09c7\u09b6)",
+    "name_plain": "Bangladesh",
+    "is_active": false,
+    "dial_code": "880",
+    "flag": "BGD",
+    "capital": "Dhaka ",
+    "region": "South-Central Asia",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "be",
+  "fields": {
+    "name": "Belgium (Belgi\u00eb)",
+    "name_plain": "Belgium",
+    "is_active": false,
+    "dial_code": "32",
+    "flag": "BEL",
+    "capital": "Brussels ",
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "bf",
+  "fields": {
+    "name": "Burkina Faso",
+    "name_plain": "Burkina Faso",
+    "is_active": false,
+    "dial_code": "226",
+    "flag": "BFA",
+    "capital": "Ouagadougou ",
+    "region": "Western Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "bg",
+  "fields": {
+    "name": "Bulgaria (\u0411\u044a\u043b\u0433\u0430\u0440\u0438\u044f)",
+    "name_plain": "Bulgaria",
+    "is_active": false,
+    "dial_code": "359",
+    "flag": "BGR",
+    "capital": "Sofia ",
+    "region": "Eastern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "bh",
+  "fields": {
+    "name": "Bahrain (\u0627\u0644\u0628\u062d\u0631\u064a\u0646\u200e)",
+    "name_plain": "Bahrain",
+    "is_active": false,
+    "dial_code": "973",
+    "flag": "BHR",
+    "capital": "Manama ",
+    "region": "Western Asia and Middle East",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "bi",
+  "fields": {
+    "name": "Burundi (Uburundi)",
+    "name_plain": "Burundi",
+    "is_active": false,
+    "dial_code": "257",
+    "flag": "BDI",
+    "capital": "Bujumbura ",
+    "region": "Eastern Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "bj",
+  "fields": {
+    "name": "Benin (B\u00e9nin)",
+    "name_plain": "Benin",
+    "is_active": false,
+    "dial_code": "229",
+    "flag": "BEN",
+    "capital": "Porto-Novo, Cotonou",
+    "region": "Western Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "bl",
+  "fields": {
+    "name": "Saint Barth\u00e9lemy",
+    "name_plain": "Saint Barth\u00e9lemy",
+    "is_active": false,
+    "dial_code": "590",
+    "flag": null,
+    "capital": null,
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "bm",
+  "fields": {
+    "name": "Bermuda",
+    "name_plain": "Bermuda",
+    "is_active": false,
+    "dial_code": "1441",
+    "flag": "BMU",
+    "capital": "Hamilton ",
+    "region": "Caribbean",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "bn",
+  "fields": {
+    "name": "Brunei",
+    "name_plain": "Brunei",
+    "is_active": false,
+    "dial_code": "673",
+    "flag": null,
+    "capital": null,
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "bo",
+  "fields": {
+    "name": "Bolivia",
+    "name_plain": "Bolivia",
+    "is_active": false,
+    "dial_code": "591",
+    "flag": "BOL",
+    "capital": "La Paz, Sucre",
+    "region": "South America",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "bq",
+  "fields": {
+    "name": "Caribbean Netherlands",
+    "name_plain": "Caribbean Netherlands",
+    "is_active": false,
+    "dial_code": "599",
+    "flag": null,
+    "capital": null,
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "br",
+  "fields": {
+    "name": "Brazil (Brasil)",
+    "name_plain": "Brazil (Brasil)",
+    "is_active": false,
+    "dial_code": "55",
+    "flag": "BRA",
+    "capital": "Brasilia - S\u00e1o Paulo",
+    "region": "South America",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "bs",
+  "fields": {
+    "name": "Bahamas",
+    "name_plain": "Bahamas",
+    "is_active": false,
+    "dial_code": "1242",
+    "flag": "BHS",
+    "capital": "Nassau ",
+    "region": "Caribbean",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "bt",
+  "fields": {
+    "name": "Bhutan (\u0f60\u0f56\u0fb2\u0f74\u0f42)",
+    "name_plain": "Bhutan",
+    "is_active": false,
+    "dial_code": "975",
+    "flag": "BTN",
+    "capital": "Thimphu ",
+    "region": "South-Central Asia",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "bw",
+  "fields": {
+    "name": "Botswana",
+    "name_plain": "Botswana",
+    "is_active": false,
+    "dial_code": "267",
+    "flag": "BWA",
+    "capital": "Gaborone ",
+    "region": "Southern Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "by",
+  "fields": {
+    "name": "Belarus (\u0411\u0435\u043b\u0430\u0440\u0443\u0441\u044c)",
+    "name_plain": "Belarus",
+    "is_active": false,
+    "dial_code": "375",
+    "flag": "BLR",
+    "capital": "Minsk ",
+    "region": "Eastern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "bz",
+  "fields": {
+    "name": "Belize",
+    "name_plain": "Belize",
+    "is_active": false,
+    "dial_code": "501",
+    "flag": "BLZ",
+    "capital": "Belmopan",
+    "region": "Central America",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ca",
+  "fields": {
+    "name": "Canada",
+    "name_plain": "Canada",
+    "is_active": false,
+    "dial_code": "1",
+    "flag": "CAN",
+    "capital": "Ottawa - Toronto",
+    "region": "North America",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "cc",
+  "fields": {
+    "name": "Cocos (Keeling) Islands",
+    "name_plain": "Cocos Islands",
+    "is_active": false,
+    "dial_code": "61",
+    "flag": null,
+    "capital": null,
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "cd",
+  "fields": {
+    "name": "Congo (DRC) (Jamhuri ya Kidemokrasia ya Kongo)",
+    "name_plain": "Congo",
+    "is_active": false,
+    "dial_code": "243",
+    "flag": "COD",
+    "capital": "Kinshasa ",
+    "region": "Central Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "cf",
+  "fields": {
+    "name": "Central African Republic (R\u00e9publique centrafricaine)",
+    "name_plain": "Central African Republic",
+    "is_active": false,
+    "dial_code": "236",
+    "flag": "CAF",
+    "capital": "Bangui ",
+    "region": "Central Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "cg",
+  "fields": {
+    "name": "Congo (Republic) (Congo-Brazzaville)",
+    "name_plain": "Congo",
+    "is_active": false,
+    "dial_code": "2242",
+    "flag": "COG",
+    "capital": "Brazzaville ",
+    "region": "Central Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ch",
+  "fields": {
+    "name": "Switzerland (Schweiz)",
+    "name_plain": "Switzerland",
+    "is_active": false,
+    "dial_code": "41",
+    "flag": "CHE",
+    "capital": "Bern - Z\u00fcrich",
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ci",
+  "fields": {
+    "name": "Cote d'Ivoire (Ivory Coast)",
+    "name_plain": "Ivory Coast",
+    "is_active": false,
+    "dial_code": "225",
+    "flag": "CIV",
+    "capital": "Yamoussoukro, Abidjan",
+    "region": "Western Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ck",
+  "fields": {
+    "name": "Cook Islands",
+    "name_plain": "Cook Islands",
+    "is_active": false,
+    "dial_code": "682",
+    "flag": "COK",
+    "capital": "Avarua ",
+    "region": "Polynesia, the islands in the eastern part of Oceania",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "cm",
+  "fields": {
+    "name": "Cameroon (Cameroun)",
+    "name_plain": "Cameroon",
+    "is_active": false,
+    "dial_code": "237",
+    "flag": "CMR",
+    "capital": "Yaound\u00e9 ",
+    "region": "Central Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "cn",
+  "fields": {
+    "name": "China (\u4e2d\u56fd)",
+    "name_plain": "China",
+    "is_active": false,
+    "dial_code": "86",
+    "flag": "CHN",
+    "capital": "Beijing",
+    "region": "Eastern Asia",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "co",
+  "fields": {
+    "name": "Colombia",
+    "name_plain": "Colombia",
+    "is_active": false,
+    "dial_code": "57",
+    "flag": "COL",
+    "capital": "Bogot\u00e1 D.C.",
+    "region": "South America",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "cr",
+  "fields": {
+    "name": "Costa Rica",
+    "name_plain": "Costa Rica",
+    "is_active": false,
+    "dial_code": "506",
+    "flag": "CRI",
+    "capital": "San Jos\u00e9",
+    "region": "Central America",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "cu",
+  "fields": {
+    "name": "Cuba",
+    "name_plain": "Cuba",
+    "is_active": false,
+    "dial_code": "53",
+    "flag": "CUB",
+    "capital": "Havana ",
+    "region": "Caribbean",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "cv",
+  "fields": {
+    "name": "Cape Verde (Kabu Verdi)",
+    "name_plain": "Cape Verde",
+    "is_active": false,
+    "dial_code": "238",
+    "flag": "CPV",
+    "capital": "Praia ",
+    "region": "Western Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "cw",
+  "fields": {
+    "name": "Cura\u00e7ao",
+    "name_plain": "Cura\u00e7ao",
+    "is_active": false,
+    "dial_code": "599",
+    "flag": null,
+    "capital": null,
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "cx",
+  "fields": {
+    "name": "Christmas Island",
+    "name_plain": "Christmas Island",
+    "is_active": false,
+    "dial_code": "61",
+    "flag": null,
+    "capital": null,
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "cy",
+  "fields": {
+    "name": "Cyprus (\u039a\u03cd\u03c0\u03c1\u03bf\u03c2)",
+    "name_plain": "Cyprus",
+    "is_active": false,
+    "dial_code": "357",
+    "flag": "CYP",
+    "capital": "Nicosia (Lefkosia) ",
+    "region": "Western Asia and Middle East",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "cz",
+  "fields": {
+    "name": "Czech Republic (\u010cesk\u00e1 republika)",
+    "name_plain": "Czech Republic",
+    "is_active": false,
+    "dial_code": "420",
+    "flag": "CZE",
+    "capital": "Prague ",
+    "region": "Eastern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "de",
+  "fields": {
+    "name": "Germany (Deutschland)",
+    "name_plain": "Germany",
+    "is_active": false,
+    "dial_code": "49",
+    "flag": "DEU",
+    "capital": "Berlin ",
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "dj",
+  "fields": {
+    "name": "Djibouti",
+    "name_plain": "Djibouti",
+    "is_active": false,
+    "dial_code": "253",
+    "flag": "DJI",
+    "capital": "Djibouti ",
+    "region": "Eastern Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "dk",
+  "fields": {
+    "name": "Denmark (Danmark)",
+    "name_plain": "Denmark",
+    "is_active": false,
+    "dial_code": "45",
+    "flag": "DNK",
+    "capital": "Copenhagen ",
+    "region": "Northern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "dl",
+  "fields": {
+    "name": "Chile",
+    "name_plain": "Chile",
+    "is_active": false,
+    "dial_code": "56",
+    "flag": "CHL",
+    "capital": "Santiago",
+    "region": "South America",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "dm",
+  "fields": {
+    "name": "Dominica",
+    "name_plain": "Dominica",
+    "is_active": false,
+    "dial_code": "1767",
+    "flag": "DMA",
+    "capital": "Roseau ",
+    "region": "Caribbean",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "do",
+  "fields": {
+    "name": "Dominican Republic (Rep\u00fablica Dominicana)",
+    "name_plain": "Dominican Republic",
+    "is_active": false,
+    "dial_code": "1",
+    "flag": "DOM",
+    "capital": "Santo Domingo ",
+    "region": "Caribbean",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "dz",
+  "fields": {
+    "name": "Algeria (\u0627\u0644\u062c\u0632\u0627\u0626\u0631\u200e)",
+    "name_plain": "Algeria",
+    "is_active": false,
+    "dial_code": "213",
+    "flag": "DZA",
+    "capital": "Algiers ",
+    "region": "Northern Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ec",
+  "fields": {
+    "name": "Ecuador",
+    "name_plain": "Ecuador",
+    "is_active": false,
+    "dial_code": "593",
+    "flag": "ECU",
+    "capital": "Quito",
+    "region": "South America",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ee",
+  "fields": {
+    "name": "Estonia (Eesti)",
+    "name_plain": "Estonia",
+    "is_active": false,
+    "dial_code": "372",
+    "flag": "EST",
+    "capital": "Tallinn ",
+    "region": "Northern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "eg",
+  "fields": {
+    "name": "Egypt",
+    "name_plain": "Egypt",
+    "is_active": false,
+    "dial_code": "20",
+    "flag": "EGY",
+    "capital": "Cairo ",
+    "region": "Northern Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "eh",
+  "fields": {
+    "name": "Western Sahara (\u0627\u0644\u0635\u062d\u0631\u0627\u0621 \u0627\u0644\u063a\u0631\u0628\u064a\u0629\u200e)",
+    "name_plain": "Western Sahara",
+    "is_active": false,
+    "dial_code": "212",
+    "flag": "ESH",
+    "capital": "(El Aai\u00fan) ",
+    "region": "Northern Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "er",
+  "fields": {
+    "name": "Eritrea",
+    "name_plain": "Eritrea",
+    "is_active": false,
+    "dial_code": "291",
+    "flag": "ERI",
+    "capital": "Asmara ",
+    "region": "Eastern Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "es",
+  "fields": {
+    "name": "Spain (Espa\u00f1a)",
+    "name_plain": "Spain",
+    "is_active": false,
+    "dial_code": "34",
+    "flag": "ESP",
+    "capital": "Madrid ",
+    "region": "Southern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "et",
+  "fields": {
+    "name": "Ethiopia",
+    "name_plain": "Ethiopia",
+    "is_active": false,
+    "dial_code": "251",
+    "flag": "ETH",
+    "capital": "Addis Ababa ",
+    "region": "Eastern Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "fi",
+  "fields": {
+    "name": "Finland (Suomi)",
+    "name_plain": "Finland",
+    "is_active": false,
+    "dial_code": "358",
+    "flag": "FIN",
+    "capital": "Helsinki ",
+    "region": "Northern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "fj",
+  "fields": {
+    "name": "Fiji",
+    "name_plain": "Fiji",
+    "is_active": false,
+    "dial_code": "679",
+    "flag": "FJI",
+    "capital": "Suva",
+    "region": "Melanesia - the islands in the southwestern part of Oceania",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "fm",
+  "fields": {
+    "name": "Micronesia (Federated States of)",
+    "name_plain": "Micronesia",
+    "is_active": false,
+    "dial_code": "691",
+    "flag": "FSM",
+    "capital": "Palikir",
+    "region": "Micronesia, the islands in the northwestern part of Oceania",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "fo",
+  "fields": {
+    "name": "Faroe Islands (F\u00f8royar)",
+    "name_plain": "Faroe Islands",
+    "is_active": false,
+    "dial_code": "298",
+    "flag": "FRO",
+    "capital": "T\u00f3rshavn ",
+    "region": "Northern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "fr",
+  "fields": {
+    "name": "France",
+    "name_plain": "France",
+    "is_active": false,
+    "dial_code": "33",
+    "flag": "FRA",
+    "capital": "Paris ",
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "fx",
+  "fields": {
+    "name": "Falkland Islands (Islas Malvinas)",
+    "name_plain": "Falkland Islands",
+    "is_active": false,
+    "dial_code": "500",
+    "flag": null,
+    "capital": null,
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ga",
+  "fields": {
+    "name": "Gabon",
+    "name_plain": "Gabon",
+    "is_active": false,
+    "dial_code": "241",
+    "flag": "GAB",
+    "capital": "Libreville ",
+    "region": "Central Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "gb",
+  "fields": {
+    "name": "United Kingdom",
+    "name_plain": "United Kingdom",
+    "is_active": false,
+    "dial_code": "41",
+    "flag": "GBR",
+    "capital": "London ",
+    "region": "Northern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "gd",
+  "fields": {
+    "name": "Grenada",
+    "name_plain": "Grenada",
+    "is_active": false,
+    "dial_code": "1473",
+    "flag": "GRD",
+    "capital": "Saint George's ",
+    "region": "Caribbean",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ge",
+  "fields": {
+    "name": "Georgia (\u10e1\u10d0\u10e5\u10d0\u10e0\u10d7\u10d5\u10d4\u10da\u10dd)",
+    "name_plain": "Georgia",
+    "is_active": false,
+    "dial_code": "995",
+    "flag": "GEO",
+    "capital": "T'bilisi",
+    "region": "Western Asia and Middle East",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "gf",
+  "fields": {
+    "name": "French Guiana (Guyane fran\u00e7aise)",
+    "name_plain": "French Guiana",
+    "is_active": false,
+    "dial_code": "594",
+    "flag": "FRA",
+    "capital": "Cayenne",
+    "region": "South America",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "gg",
+  "fields": {
+    "name": "Guernsey",
+    "name_plain": "Guernsey",
+    "is_active": false,
+    "dial_code": "44",
+    "flag": null,
+    "capital": null,
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "gh",
+  "fields": {
+    "name": "Ghana (Gaana)",
+    "name_plain": "Ghana",
+    "is_active": false,
+    "dial_code": "233",
+    "flag": "GHA",
+    "capital": "Accra ",
+    "region": "Western Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "gi",
+  "fields": {
+    "name": "Gibraltar (UK)",
+    "name_plain": "Gibraltar",
+    "is_active": false,
+    "dial_code": "350",
+    "flag": "GIB",
+    "capital": "Gibraltar ",
+    "region": "Southern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "gl",
+  "fields": {
+    "name": "Greenland (Kalaallit Nunaat)",
+    "name_plain": "Greenland",
+    "is_active": false,
+    "dial_code": "299",
+    "flag": "GRL",
+    "capital": "Nuuk (Godthab, Godth\u00e5b) ",
+    "region": "Northern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "gm",
+  "fields": {
+    "name": "Gambia",
+    "name_plain": "Gambia",
+    "is_active": false,
+    "dial_code": "220",
+    "flag": "GMB",
+    "capital": "Banjul ",
+    "region": "Western Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "gn",
+  "fields": {
+    "name": "Guinea (Guin\u00e9e)",
+    "name_plain": "Guinea",
+    "is_active": false,
+    "dial_code": "224",
+    "flag": "GIN",
+    "capital": "Conakry ",
+    "region": "Western Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "gp",
+  "fields": {
+    "name": "Guadeloupe",
+    "name_plain": "Guadeloupe",
+    "is_active": false,
+    "dial_code": "590",
+    "flag": "GLP",
+    "capital": "Basse-Terre ",
+    "region": "Caribbean",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "gq",
+  "fields": {
+    "name": "Equatorial Guinea (Guinea Ecuatorial)",
+    "name_plain": "Equatorial Guinea",
+    "is_active": false,
+    "dial_code": "240",
+    "flag": "GNQ",
+    "capital": "Malabo ",
+    "region": "Central Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "gr",
+  "fields": {
+    "name": "Greece (\u0395\u03bb\u03bb\u03ac\u03b4\u03b1)",
+    "name_plain": "Greece",
+    "is_active": false,
+    "dial_code": "30",
+    "flag": "GRC",
+    "capital": "Athens ",
+    "region": "Southern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "gt",
+  "fields": {
+    "name": "Guatemala",
+    "name_plain": "Guatemala",
+    "is_active": false,
+    "dial_code": "502",
+    "flag": "GTM",
+    "capital": "Guatemala (City) ",
+    "region": "Central America",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "gu",
+  "fields": {
+    "name": "Guam",
+    "name_plain": "Guam",
+    "is_active": false,
+    "dial_code": "1671",
+    "flag": "GUM",
+    "capital": "Hag\u00e1tna (Agana) ",
+    "region": "Micronesia, the islands in the northwestern part of Oceania",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "gw",
+  "fields": {
+    "name": "Guinea-Bissau (Guin\u00e9 Bissau)",
+    "name_plain": "Guinea-Bissau",
+    "is_active": false,
+    "dial_code": "245",
+    "flag": "GNB",
+    "capital": "Bissau ",
+    "region": "Western Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "gy",
+  "fields": {
+    "name": "Guyana",
+    "name_plain": "Guyana",
+    "is_active": false,
+    "dial_code": "592",
+    "flag": "GUY",
+    "capital": "Georgetown",
+    "region": "South America",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "hk",
+  "fields": {
+    "name": "Hong Kong (\u9999\u6e2f)",
+    "name_plain": "Hong Kong",
+    "is_active": false,
+    "dial_code": "852",
+    "flag": null,
+    "capital": null,
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "hn",
+  "fields": {
+    "name": "Honduras",
+    "name_plain": "Honduras",
+    "is_active": false,
+    "dial_code": "504",
+    "flag": "HND",
+    "capital": "Tegucigalpa",
+    "region": "Central America",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "hr",
+  "fields": {
+    "name": "Croatia (Hrvatska)",
+    "name_plain": "Croatia",
+    "is_active": false,
+    "dial_code": "385",
+    "flag": "HRV",
+    "capital": "Zagreb ",
+    "region": "Southern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ht",
+  "fields": {
+    "name": "Haiti",
+    "name_plain": "Haiti",
+    "is_active": false,
+    "dial_code": "509",
+    "flag": "HTI",
+    "capital": "Port-au-Prince ",
+    "region": "Caribbean",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "hu",
+  "fields": {
+    "name": "Hungary (Magyarorsz\u00e1g)",
+    "name_plain": "Hungary",
+    "is_active": false,
+    "dial_code": "36",
+    "flag": "HUN",
+    "capital": "Budapest ",
+    "region": "Eastern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "id",
+  "fields": {
+    "name": "Indonesia",
+    "name_plain": "Indonesia",
+    "is_active": false,
+    "dial_code": "62",
+    "flag": "IDN",
+    "capital": "Jakarta ",
+    "region": "South-East Asia",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ie",
+  "fields": {
+    "name": "Ireland",
+    "name_plain": "Ireland",
+    "is_active": false,
+    "dial_code": "353",
+    "flag": "IRL",
+    "capital": "Dublin (City) ",
+    "region": "Northern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "il",
+  "fields": {
+    "name": "Israel (\u05d9\u05e9\u05e8\u05d0\u05dc\u200e)",
+    "name_plain": "Israel",
+    "is_active": false,
+    "dial_code": "972",
+    "flag": "ISR",
+    "capital": "Jerusalem  (claimed) ",
+    "region": "Western Asia and Middle East",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "im",
+  "fields": {
+    "name": "Isle of Man",
+    "name_plain": "Isle of Man",
+    "is_active": false,
+    "dial_code": "44",
+    "flag": null,
+    "capital": null,
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "in",
+  "fields": {
+    "name": "India (\u092d\u093e\u0930\u0924)",
+    "name_plain": "India",
+    "is_active": false,
+    "dial_code": "91",
+    "flag": "IND",
+    "capital": "New Delhi ",
+    "region": "South-Central Asia",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "io",
+  "fields": {
+    "name": "British Indian Ocean Territory",
+    "name_plain": "British Indian Ocean Territory",
+    "is_active": false,
+    "dial_code": "246",
+    "flag": null,
+    "capital": null,
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "iq",
+  "fields": {
+    "name": "Iraq (\u0627\u0644\u0639\u0631\u0627\u0642\u200e)",
+    "name_plain": "Iraq",
+    "is_active": false,
+    "dial_code": "964",
+    "flag": "IRQ",
+    "capital": "Baghdad ",
+    "region": "Western Asia and Middle East",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ir",
+  "fields": {
+    "name": "Iran (\u0627\u06cc\u0631\u0627\u0646\u200e)",
+    "name_plain": "Iran",
+    "is_active": false,
+    "dial_code": "98",
+    "flag": "IRN",
+    "capital": "Tehran ",
+    "region": "South-Central Asia",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "is",
+  "fields": {
+    "name": "Iceland (\u00cdsland)",
+    "name_plain": "Iceland",
+    "is_active": false,
+    "dial_code": "354",
+    "flag": "ISL",
+    "capital": "Reykjavik ",
+    "region": "Northern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "it",
+  "fields": {
+    "name": "Italy (Italia)",
+    "name_plain": "Italy",
+    "is_active": false,
+    "dial_code": "39",
+    "flag": "ITA",
+    "capital": "Rome - Milan (Metro)",
+    "region": "Southern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "je",
+  "fields": {
+    "name": "Jersey",
+    "name_plain": "Jersey",
+    "is_active": false,
+    "dial_code": "44",
+    "flag": null,
+    "capital": null,
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "jm",
+  "fields": {
+    "name": "Jamaica",
+    "name_plain": "Jamaica",
+    "is_active": false,
+    "dial_code": "1876",
+    "flag": "JAM",
+    "capital": "Kingston ",
+    "region": "Caribbean",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "jo",
+  "fields": {
+    "name": "Jordan (\u0627\u0644\u0623\u0631\u062f\u0646\u200e)",
+    "name_plain": "Jordan",
+    "is_active": false,
+    "dial_code": "962",
+    "flag": "JOR",
+    "capital": "Amman ",
+    "region": "Western Asia and Middle East",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "jp",
+  "fields": {
+    "name": "Japan (\u65e5\u672c)",
+    "name_plain": "Japan",
+    "is_active": false,
+    "dial_code": "81",
+    "flag": "JPN",
+    "capital": "Tokyo",
+    "region": "Eastern Asia",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ke",
+  "fields": {
+    "name": "Kenya",
+    "name_plain": "Kenya",
+    "is_active": false,
+    "dial_code": "254",
+    "flag": "KEN",
+    "capital": "Nairobi ",
+    "region": "Eastern Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "kg",
+  "fields": {
+    "name": "Kyrgyzstan (\u041a\u044b\u0440\u0433\u044b\u0437\u0441\u0442\u0430\u043d)",
+    "name_plain": "Kyrgyzstan",
+    "is_active": false,
+    "dial_code": "996",
+    "flag": "KGZ",
+    "capital": "Bishkek ",
+    "region": "South-Central Asia",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "kh",
+  "fields": {
+    "name": "Cambodia (\u1780\u1798\u17d2\u1796\u17bb\u1787\u17b6)",
+    "name_plain": "Cambodia",
+    "is_active": false,
+    "dial_code": "855",
+    "flag": "KHM",
+    "capital": "Phnom Penh ",
+    "region": "South-East Asia",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ki",
+  "fields": {
+    "name": "Kiribati",
+    "name_plain": "Kiribati",
+    "is_active": false,
+    "dial_code": "686",
+    "flag": "KIR",
+    "capital": "Tarawa",
+    "region": "Micronesia, the islands in the northwestern part of Oceania",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "km",
+  "fields": {
+    "name": "Comoros (\u062c\u0632\u0631 \u0627\u0644\u0642\u0645\u0631\u200e)",
+    "name_plain": "Comoros",
+    "is_active": false,
+    "dial_code": "269",
+    "flag": "COM",
+    "capital": "Moroni ",
+    "region": "Eastern Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "kn",
+  "fields": {
+    "name": "Saint Kitts and Nevis",
+    "name_plain": "Saint Kitts and Nevis",
+    "is_active": false,
+    "dial_code": "1869",
+    "flag": "KNA",
+    "capital": "Basseterre ",
+    "region": "Caribbean",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "kp",
+  "fields": {
+    "name": "North Korea (\uc870\uc120 \ubbfc\uc8fc\uc8fc\uc758 \uc778\ubbfc \uacf5\ud654\uad6d)",
+    "name_plain": "North Korea",
+    "is_active": false,
+    "dial_code": "850",
+    "flag": "PRK",
+    "capital": "P'yongyang",
+    "region": "Eastern Asia",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "kr",
+  "fields": {
+    "name": "South Korea (\ub300\ud55c\ubbfc\uad6d)",
+    "name_plain": "South Korea",
+    "is_active": false,
+    "dial_code": "82",
+    "flag": "KOR",
+    "capital": "Seoul",
+    "region": "Eastern Asia",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "kw",
+  "fields": {
+    "name": "Kuwait (\u0627\u0644\u0643\u0648\u064a\u062a\u200e)",
+    "name_plain": "Kuwait",
+    "is_active": false,
+    "dial_code": "965",
+    "flag": "KWT",
+    "capital": "Kuwait (City) ",
+    "region": "Western Asia and Middle East",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ky",
+  "fields": {
+    "name": "Cayman Islands",
+    "name_plain": "Cayman Islands",
+    "is_active": false,
+    "dial_code": "1345",
+    "flag": "CYM",
+    "capital": "George Town ",
+    "region": "Caribbean",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "kz",
+  "fields": {
+    "name": "Kazakhstan (\u041a\u0430\u0437\u0430\u0445\u0441\u0442\u0430\u043d)",
+    "name_plain": "Kazakhstan",
+    "is_active": false,
+    "dial_code": "7",
+    "flag": "KAZ",
+    "capital": "Astana ",
+    "region": "South-Central Asia",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "la",
+  "fields": {
+    "name": "Laos (\u0ea5\u0eb2\u0ea7)",
+    "name_plain": "Laos",
+    "is_active": false,
+    "dial_code": "856",
+    "flag": "LAO",
+    "capital": "Vientiane ",
+    "region": "South-East Asia",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "lb",
+  "fields": {
+    "name": "Lebanon (\u0644\u0628\u0646\u0627\u0646\u200e)",
+    "name_plain": "Lebanon",
+    "is_active": false,
+    "dial_code": "961",
+    "flag": "LBN",
+    "capital": "Beirut ",
+    "region": "Western Asia and Middle East",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "lc",
+  "fields": {
+    "name": "Saint Lucia",
+    "name_plain": "Saint Lucia",
+    "is_active": false,
+    "dial_code": "1758",
+    "flag": "LCA",
+    "capital": "Castries ",
+    "region": "Caribbean",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "li",
+  "fields": {
+    "name": "Liechtenstein",
+    "name_plain": "Liechtenstein",
+    "is_active": false,
+    "dial_code": "423",
+    "flag": "LIE",
+    "capital": "Vaduz ",
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "lk",
+  "fields": {
+    "name": "Sri Lanka (\u0dc1\u0dca\u200d\u0dbb\u0dd3 \u0dbd\u0d82\u0d9a\u0dcf\u0dc0)",
+    "name_plain": "Sri Lanka",
+    "is_active": false,
+    "dial_code": "94",
+    "flag": "LKA",
+    "capital": "Colombo ",
+    "region": "South-Central Asia",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "lr",
+  "fields": {
+    "name": "Liberia",
+    "name_plain": "Liberia",
+    "is_active": false,
+    "dial_code": "231",
+    "flag": "LBR",
+    "capital": "Monrovia ",
+    "region": "Western Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ls",
+  "fields": {
+    "name": "Lesotho",
+    "name_plain": "Lesotho",
+    "is_active": false,
+    "dial_code": "266",
+    "flag": "LSO",
+    "capital": "Maseru ",
+    "region": "Southern Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "lt",
+  "fields": {
+    "name": "Lithuania (Lietuva)",
+    "name_plain": "Lithuania",
+    "is_active": false,
+    "dial_code": "370",
+    "flag": "LTU",
+    "capital": "Vilnius ",
+    "region": "Northern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "lu",
+  "fields": {
+    "name": "Luxembourg",
+    "name_plain": "Luxembourg",
+    "is_active": false,
+    "dial_code": "352",
+    "flag": "LUX",
+    "capital": "Luxembourg ",
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "lv",
+  "fields": {
+    "name": "Latvia (Latvija)",
+    "name_plain": "Latvia",
+    "is_active": false,
+    "dial_code": "371",
+    "flag": "LVA",
+    "capital": "Riga ",
+    "region": "Northern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ly",
+  "fields": {
+    "name": "Libya (\u0644\u064a\u0628\u064a\u0627\u200e)",
+    "name_plain": "Libya",
+    "is_active": false,
+    "dial_code": "218",
+    "flag": "LBY",
+    "capital": "Tripoli ",
+    "region": "Northern Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ma",
+  "fields": {
+    "name": "Morocco (\u0627\u0644\u0645\u063a\u0631\u0628\u200e)",
+    "name_plain": "Morocco",
+    "is_active": false,
+    "dial_code": "212",
+    "flag": "MAR",
+    "capital": "Rabat ",
+    "region": "Northern Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "mc",
+  "fields": {
+    "name": "Monaco",
+    "name_plain": "Monaco",
+    "is_active": false,
+    "dial_code": "377",
+    "flag": "MCO",
+    "capital": "Monaco ",
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "md",
+  "fields": {
+    "name": "Moldova (Republica Moldova)",
+    "name_plain": "Moldova",
+    "is_active": false,
+    "dial_code": "373",
+    "flag": "MDA",
+    "capital": "Chisinau ",
+    "region": "Eastern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "me",
+  "fields": {
+    "name": "Montenegro (Crna Gora)",
+    "name_plain": "Montenegro",
+    "is_active": false,
+    "dial_code": "382",
+    "flag": "MNE",
+    "capital": "Podgorica",
+    "region": "Southern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "mf",
+  "fields": {
+    "name": "Saint Martin (Saint-Martin (partie fran\u00e7aise))",
+    "name_plain": "Saint Martin",
+    "is_active": false,
+    "dial_code": "590",
+    "flag": null,
+    "capital": null,
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "mg",
+  "fields": {
+    "name": "Madagascar (Madagasikara)",
+    "name_plain": "Madagascar",
+    "is_active": false,
+    "dial_code": "261",
+    "flag": "MDG",
+    "capital": "Antananarivo ",
+    "region": "Eastern Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "mh",
+  "fields": {
+    "name": "Marshall Islands",
+    "name_plain": "Marshall Islands",
+    "is_active": false,
+    "dial_code": "692",
+    "flag": "MHL",
+    "capital": "Majuro",
+    "region": "Micronesia, the islands in the northwestern part of Oceania",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "mk",
+  "fields": {
+    "name": "Macedonia (FYROM) (\u041c\u0430\u043a\u0435\u0434\u043e\u043d\u0438\u0458\u0430)",
+    "name_plain": "Macedonia",
+    "is_active": false,
+    "dial_code": "389",
+    "flag": "MKD",
+    "capital": "Skopje ",
+    "region": "Southern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ml",
+  "fields": {
+    "name": "Mali",
+    "name_plain": "Mali",
+    "is_active": false,
+    "dial_code": "223",
+    "flag": "MLI",
+    "capital": "Bamako ",
+    "region": "Western Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "mm",
+  "fields": {
+    "name": "Myanmar (Burma) (\u1019\u103c\u1014\u103a\u1019\u102c)",
+    "name_plain": "Myanmar",
+    "is_active": false,
+    "dial_code": "95",
+    "flag": "MMR",
+    "capital": "Yangon (Rangoon) ",
+    "region": "South-East Asia",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "mn",
+  "fields": {
+    "name": "Mongolia (\u041c\u043e\u043d\u0433\u043e\u043b)",
+    "name_plain": "Mongolia",
+    "is_active": false,
+    "dial_code": "976",
+    "flag": "MNG",
+    "capital": "Ulaanbaatar ",
+    "region": "Eastern Asia",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "mo",
+  "fields": {
+    "name": "Macau (\u6fb3\u9580)",
+    "name_plain": "Macau",
+    "is_active": false,
+    "dial_code": "853",
+    "flag": null,
+    "capital": null,
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "mp",
+  "fields": {
+    "name": "Northern Mariana Islands",
+    "name_plain": "Northern Mariana Islands",
+    "is_active": false,
+    "dial_code": "1670",
+    "flag": "MNP",
+    "capital": "Saipan",
+    "region": "Micronesia, the islands in the northwestern part of Oceania",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "mq",
+  "fields": {
+    "name": "Martinique",
+    "name_plain": "Martinique",
+    "is_active": false,
+    "dial_code": "596",
+    "flag": "MTQ",
+    "capital": "Fort-de-France ",
+    "region": "Caribbean",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "mr",
+  "fields": {
+    "name": "Mauritania (\u0645\u0648\u0631\u064a\u062a\u0627\u0646\u064a\u0627\u200e)",
+    "name_plain": "Mauritania",
+    "is_active": false,
+    "dial_code": "222",
+    "flag": "MRT",
+    "capital": "Nouakchott ",
+    "region": "Western Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ms",
+  "fields": {
+    "name": "Montserrat",
+    "name_plain": "Montserrat",
+    "is_active": false,
+    "dial_code": "1664",
+    "flag": "MSR",
+    "capital": "Plymouth",
+    "region": "Caribbean",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "mt",
+  "fields": {
+    "name": "Malta",
+    "name_plain": "Malta",
+    "is_active": false,
+    "dial_code": "356",
+    "flag": "MLT",
+    "capital": "Valletta ",
+    "region": "Southern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "mu",
+  "fields": {
+    "name": "Mauritius (Moris)",
+    "name_plain": "Mauritius",
+    "is_active": false,
+    "dial_code": "230",
+    "flag": "MUS",
+    "capital": "Port Louis ",
+    "region": "Eastern Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "mv",
+  "fields": {
+    "name": "Maldives",
+    "name_plain": "Maldives",
+    "is_active": false,
+    "dial_code": "960",
+    "flag": "MDV",
+    "capital": "Male ",
+    "region": "South-Central Asia",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "mw",
+  "fields": {
+    "name": "Malawi",
+    "name_plain": "Malawi",
+    "is_active": false,
+    "dial_code": "265",
+    "flag": "MWI",
+    "capital": "Lilongwe ",
+    "region": "Eastern Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "mx",
+  "fields": {
+    "name": "Mexico (M\u00e9xico)",
+    "name_plain": "Mexico",
+    "is_active": false,
+    "dial_code": "52",
+    "flag": "MEX",
+    "capital": "Mexico (City) ",
+    "region": "North America",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "my",
+  "fields": {
+    "name": "Malaysia",
+    "name_plain": "Malaysia",
+    "is_active": false,
+    "dial_code": "60",
+    "flag": "MYS",
+    "capital": "Kuala Lumpur ",
+    "region": "South-East Asia",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "mz",
+  "fields": {
+    "name": "Mozambique (Mo\u00e7ambique)",
+    "name_plain": "Mozambique",
+    "is_active": false,
+    "dial_code": "258",
+    "flag": "MOZ",
+    "capital": "Maputo ",
+    "region": "Eastern Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "na",
+  "fields": {
+    "name": "Namibia (Namibi\u00eb)",
+    "name_plain": "Namibia",
+    "is_active": false,
+    "dial_code": "264",
+    "flag": "NAM",
+    "capital": "Windhoek ",
+    "region": "Southern Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "nc",
+  "fields": {
+    "name": "New Caledonia (Nouvelle-Cal\u00e9donie)",
+    "name_plain": "New Caledonia",
+    "is_active": false,
+    "dial_code": "687",
+    "flag": "NCL",
+    "capital": "Noum\u00e9a",
+    "region": "Melanesia - the islands in the southwestern part of Oceania",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ne",
+  "fields": {
+    "name": "Niger (Nijar)",
+    "name_plain": "Niger",
+    "is_active": false,
+    "dial_code": "227",
+    "flag": "NER",
+    "capital": "Niamey ",
+    "region": "Western Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "nf",
+  "fields": {
+    "name": "Norfolk Island",
+    "name_plain": "Norfolk Island",
+    "is_active": false,
+    "dial_code": "672",
+    "flag": null,
+    "capital": null,
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ng",
+  "fields": {
+    "name": "Nigeria",
+    "name_plain": "Nigeria",
+    "is_active": true,
+    "dial_code": "234",
+    "flag": "NGA",
+    "capital": "Abuja ",
+    "region": "Western Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ni",
+  "fields": {
+    "name": "Nicaragua",
+    "name_plain": "Nicaragua",
+    "is_active": false,
+    "dial_code": "505",
+    "flag": "NIC",
+    "capital": "Managua",
+    "region": "Central America",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "nl",
+  "fields": {
+    "name": "Netherlands (Nederland)",
+    "name_plain": "Netherlands",
+    "is_active": false,
+    "dial_code": "31",
+    "flag": "NLD",
+    "capital": "The Hague, Amsterdam ",
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "no",
+  "fields": {
+    "name": "Norway (Norge)",
+    "name_plain": "Norway",
+    "is_active": false,
+    "dial_code": "47",
+    "flag": "NOR",
+    "capital": "Oslo ",
+    "region": "Northern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "np",
+  "fields": {
+    "name": "Nepal (\u0928\u0947\u092a\u093e\u0932)",
+    "name_plain": "Nepal",
+    "is_active": false,
+    "dial_code": "977",
+    "flag": "NPL",
+    "capital": "Kathmandu ",
+    "region": "South-Central Asia",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "nr",
+  "fields": {
+    "name": "Nauru",
+    "name_plain": "Nauru",
+    "is_active": false,
+    "dial_code": "674",
+    "flag": "NRU",
+    "capital": "--- ",
+    "region": "Micronesia, the islands in the northwestern part of Oceania",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "nu",
+  "fields": {
+    "name": "Niue",
+    "name_plain": "Niue",
+    "is_active": false,
+    "dial_code": "683",
+    "flag": "NIU",
+    "capital": "Alofi ",
+    "region": "Polynesia, the islands in the eastern part of Oceania",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "nz",
+  "fields": {
+    "name": "New Zealand",
+    "name_plain": "New Zealand",
+    "is_active": false,
+    "dial_code": "64",
+    "flag": "NZL",
+    "capital": "Wellington - Auckland",
+    "region": "Australia/New Zealand",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "om",
+  "fields": {
+    "name": "Oman (\u0639\u064f\u0645\u0627\u0646\u200e)",
+    "name_plain": "Oman",
+    "is_active": false,
+    "dial_code": "968",
+    "flag": "OMN",
+    "capital": "Muscat ",
+    "region": "Western Asia and Middle East",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "pa",
+  "fields": {
+    "name": "Panama (Panam\u00e1)",
+    "name_plain": "Panama",
+    "is_active": false,
+    "dial_code": "507",
+    "flag": "PAN",
+    "capital": "Panama (City) ",
+    "region": "Central America",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "pe",
+  "fields": {
+    "name": "Peru (Per\u00fa)",
+    "name_plain": "Peru",
+    "is_active": false,
+    "dial_code": "51",
+    "flag": "PER",
+    "capital": "Lima",
+    "region": "South America",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "pf",
+  "fields": {
+    "name": "French Polynesia (Polyn\u00e9sie fran\u00e7aise)",
+    "name_plain": "French Polynesia",
+    "is_active": false,
+    "dial_code": "689",
+    "flag": "FRA",
+    "capital": "Papeete",
+    "region": "Polynesia, the islands in the eastern part of Oceania",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "pg",
+  "fields": {
+    "name": "Papua New Guinea",
+    "name_plain": "Papua New Guinea",
+    "is_active": false,
+    "dial_code": "675",
+    "flag": "PNG",
+    "capital": "Port Moresby",
+    "region": "Melanesia - the islands in the southwestern part of Oceania",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ph",
+  "fields": {
+    "name": "Philippines",
+    "name_plain": "Philippines",
+    "is_active": false,
+    "dial_code": "63",
+    "flag": "PHL",
+    "capital": "Manila ",
+    "region": "South-East Asia",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "pk",
+  "fields": {
+    "name": "Pakistan (\u067e\u0627\u06a9\u0633\u062a\u0627\u0646\u200e)",
+    "name_plain": "Pakistan",
+    "is_active": false,
+    "dial_code": "92",
+    "flag": "PAK",
+    "capital": "Islamabad ",
+    "region": "South-Central Asia",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "pl",
+  "fields": {
+    "name": "Poland (Polska)",
+    "name_plain": "Poland",
+    "is_active": false,
+    "dial_code": "48",
+    "flag": "POL",
+    "capital": "Warsaw ",
+    "region": "Eastern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "pm",
+  "fields": {
+    "name": "Saint Pierre and Miquelon (Saint-Pierre-et-Miquelon)",
+    "name_plain": "Saint Pierre and Miquelon",
+    "is_active": false,
+    "dial_code": "508",
+    "flag": null,
+    "capital": null,
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "pr",
+  "fields": {
+    "name": "Puerto Rico",
+    "name_plain": "Puerto Rico",
+    "is_active": false,
+    "dial_code": "1",
+    "flag": "PRI",
+    "capital": "San Juan ",
+    "region": "Caribbean",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ps",
+  "fields": {
+    "name": "Palestine (\u0641\u0644\u0633\u0637\u064a\u0646\u200e)",
+    "name_plain": "Palestine",
+    "is_active": false,
+    "dial_code": "970",
+    "flag": "PSE",
+    "capital": "Jerusalem (claimed) ",
+    "region": "Western Asia and Middle East",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "pt",
+  "fields": {
+    "name": "Portugal",
+    "name_plain": "Portugal",
+    "is_active": false,
+    "dial_code": "351",
+    "flag": "PRT",
+    "capital": "Lisbon ",
+    "region": "Southern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "pw",
+  "fields": {
+    "name": "Palau",
+    "name_plain": "Palau",
+    "is_active": false,
+    "dial_code": "680",
+    "flag": "PLW",
+    "capital": "Ngerulmud, Melekeok",
+    "region": "Micronesia, the islands in the northwestern part of Oceania",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "py",
+  "fields": {
+    "name": "Paraguay",
+    "name_plain": "Paraguay",
+    "is_active": false,
+    "dial_code": "595",
+    "flag": "PRY",
+    "capital": "Asunci\u00f3n",
+    "region": "South America",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "qa",
+  "fields": {
+    "name": "Qatar (\u0642\u0637\u0631\u200e)",
+    "name_plain": "Qatar",
+    "is_active": false,
+    "dial_code": "974",
+    "flag": "QAT",
+    "capital": "Doha (Al-Dawhah) ",
+    "region": "Western Asia and Middle East",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "re",
+  "fields": {
+    "name": "R\u00e9union (La R\u00e9union)",
+    "name_plain": "R\u00e9union",
+    "is_active": false,
+    "dial_code": "262",
+    "flag": "FRA",
+    "capital": "Saint-Denis ",
+    "region": "Eastern Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ro",
+  "fields": {
+    "name": "Romania (Rom\u00e2nia)",
+    "name_plain": "Romania",
+    "is_active": false,
+    "dial_code": "40",
+    "flag": "ROU",
+    "capital": "Bucharest ",
+    "region": "Eastern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "rs",
+  "fields": {
+    "name": "Serbia (\u0421\u0440\u0431\u0438\u0458\u0430)",
+    "name_plain": "Serbia",
+    "is_active": false,
+    "dial_code": "381",
+    "flag": "SRB",
+    "capital": "Belgrade ",
+    "region": "Southern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ru",
+  "fields": {
+    "name": "Russia (\u0420\u043e\u0441\u0441\u0438\u044f)",
+    "name_plain": "Russia",
+    "is_active": false,
+    "dial_code": "7",
+    "flag": "RUS",
+    "capital": "Moscow ",
+    "region": "Eastern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "rw",
+  "fields": {
+    "name": "Rwanda",
+    "name_plain": "Rwanda",
+    "is_active": false,
+    "dial_code": "250",
+    "flag": "RWA",
+    "capital": "Kigali ",
+    "region": "Eastern Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "sa",
+  "fields": {
+    "name": "Saudi Arabia (\u0627\u0644\u0645\u0645\u0644\u0643\u0629 \u0627\u0644\u0639\u0631\u0628\u064a\u0629 \u0627\u0644\u0633\u0639\u0648\u062f\u064a\u0629\u200e)",
+    "name_plain": "Saudi Arabia",
+    "is_active": false,
+    "dial_code": "966",
+    "flag": "SAU",
+    "capital": "Riyadh ",
+    "region": "Western Asia and Middle East",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "sb",
+  "fields": {
+    "name": "Solomon Islands",
+    "name_plain": "Solomon Islands",
+    "is_active": false,
+    "dial_code": "677",
+    "flag": "SLB",
+    "capital": "Honiara",
+    "region": "Melanesia - the islands in the southwestern part of Oceania",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "sc",
+  "fields": {
+    "name": "Seychelles",
+    "name_plain": "Seychelles",
+    "is_active": false,
+    "dial_code": "248",
+    "flag": "SYC",
+    "capital": "Victoria ",
+    "region": "Eastern Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "sd",
+  "fields": {
+    "name": "Sudan (\u0627\u0644\u0633\u0648\u062f\u0627\u0646\u200e)",
+    "name_plain": "Sudan",
+    "is_active": false,
+    "dial_code": "249",
+    "flag": "SDN",
+    "capital": "Khartoum ",
+    "region": "Northern Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "se",
+  "fields": {
+    "name": "Sweden (Sverige)",
+    "name_plain": "Sweden",
+    "is_active": false,
+    "dial_code": "46",
+    "flag": "SWE",
+    "capital": "Stockholm ",
+    "region": "Northern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "sg",
+  "fields": {
+    "name": "Singapore",
+    "name_plain": "Singapore",
+    "is_active": false,
+    "dial_code": "65",
+    "flag": "SGP",
+    "capital": "Singapore ",
+    "region": "South-East Asia",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "sh",
+  "fields": {
+    "name": "Saint Helena",
+    "name_plain": "Saint Helena",
+    "is_active": false,
+    "dial_code": "290",
+    "flag": "SHN",
+    "capital": "Jamestown ",
+    "region": "Western Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "si",
+  "fields": {
+    "name": "Slovenia (Slovenija)",
+    "name_plain": "Slovenia",
+    "is_active": false,
+    "dial_code": "386",
+    "flag": "SVN",
+    "capital": "Ljubljana ",
+    "region": "Southern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "sj",
+  "fields": {
+    "name": "Svalbard and Jan Mayen",
+    "name_plain": "Svalbard and Jan Mayen",
+    "is_active": false,
+    "dial_code": "47",
+    "flag": null,
+    "capital": null,
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "sk",
+  "fields": {
+    "name": "Slovakia (Slovensko)",
+    "name_plain": "Slovakia",
+    "is_active": false,
+    "dial_code": "421",
+    "flag": "SVK",
+    "capital": "Bratislava ",
+    "region": "Eastern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "sl",
+  "fields": {
+    "name": "Sierra Leone",
+    "name_plain": "Sierra Leone",
+    "is_active": false,
+    "dial_code": "232",
+    "flag": "SLE",
+    "capital": "Freetown ",
+    "region": "Western Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "sm",
+  "fields": {
+    "name": "San Marino",
+    "name_plain": "San Marino",
+    "is_active": false,
+    "dial_code": "378",
+    "flag": "SMR",
+    "capital": "San Marino ",
+    "region": "Southern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "sn",
+  "fields": {
+    "name": "Senegal (S\u00e9n\u00e9gal)",
+    "name_plain": "Senegal",
+    "is_active": false,
+    "dial_code": "221",
+    "flag": "SEN",
+    "capital": "Dakar ",
+    "region": "Western Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "so",
+  "fields": {
+    "name": "Somalia (Soomaaliya)",
+    "name_plain": "Somalia",
+    "is_active": false,
+    "dial_code": "252",
+    "flag": "SOM",
+    "capital": "Mogadishu ",
+    "region": "Eastern Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "sr",
+  "fields": {
+    "name": "Suriname",
+    "name_plain": "Suriname",
+    "is_active": false,
+    "dial_code": "597",
+    "flag": "SUR",
+    "capital": "Paramaribo",
+    "region": "South America",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ss",
+  "fields": {
+    "name": "South Sudan (\u062c\u0646\u0648\u0628 \u0627\u0644\u0633\u0648\u062f\u0627\u0646\u200e)",
+    "name_plain": "South Sudan",
+    "is_active": false,
+    "dial_code": "211",
+    "flag": "SSD",
+    "capital": "Juba",
+    "region": "Northern Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "st",
+  "fields": {
+    "name": "S\u00e3o Tom\u00e9 and Pr\u00edncipe (S\u00e3o Tom\u00e9 e Pr\u00edncipe)",
+    "name_plain": "S\u00e3o Tom\u00e9 and Pr\u00edncipe",
+    "is_active": false,
+    "dial_code": "239",
+    "flag": "STP",
+    "capital": "Sao Tom\u00e9 ",
+    "region": "Central Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "sv",
+  "fields": {
+    "name": "El Salvador",
+    "name_plain": "El Salvador",
+    "is_active": false,
+    "dial_code": "503",
+    "flag": "SLV",
+    "capital": "San Salvador",
+    "region": "Central America",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "sx",
+  "fields": {
+    "name": "Sint Maarten",
+    "name_plain": "Sint Maarten",
+    "is_active": false,
+    "dial_code": "1721",
+    "flag": null,
+    "capital": null,
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "sy",
+  "fields": {
+    "name": "Syria (\u0633\u0648\u0631\u064a\u0627\u200e)",
+    "name_plain": "Syria",
+    "is_active": false,
+    "dial_code": "963",
+    "flag": "SYR",
+    "capital": "Damascus ",
+    "region": "Western Asia and Middle East",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "sz",
+  "fields": {
+    "name": "Swaziland",
+    "name_plain": "Swaziland",
+    "is_active": false,
+    "dial_code": "268",
+    "flag": "SWZ",
+    "capital": "Mbabane, Lobamba",
+    "region": "Southern Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "tc",
+  "fields": {
+    "name": "Turks and Caicos Islands",
+    "name_plain": "Turks and Caicos Islands",
+    "is_active": false,
+    "dial_code": "1649",
+    "flag": null,
+    "capital": null,
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "td",
+  "fields": {
+    "name": "Chad (Tchad)",
+    "name_plain": "Chad",
+    "is_active": false,
+    "dial_code": "235",
+    "flag": "TCD",
+    "capital": "N'Djamena ",
+    "region": "Central Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "tg",
+  "fields": {
+    "name": "Togo",
+    "name_plain": "Togo",
+    "is_active": false,
+    "dial_code": "228",
+    "flag": "TGO",
+    "capital": "Lom\u00e9",
+    "region": "Western Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "th",
+  "fields": {
+    "name": "Thailand (\u0e44\u0e17\u0e22)",
+    "name_plain": "Thailand",
+    "is_active": false,
+    "dial_code": "66",
+    "flag": "THA",
+    "capital": "Bangkok ",
+    "region": "South-East Asia",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "tj",
+  "fields": {
+    "name": "Tajikistan",
+    "name_plain": "Tajikistan",
+    "is_active": false,
+    "dial_code": "992",
+    "flag": "TJK",
+    "capital": "Dushanbe ",
+    "region": "South-Central Asia",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "tk",
+  "fields": {
+    "name": "Tokelau",
+    "name_plain": "Tokelau",
+    "is_active": false,
+    "dial_code": "690",
+    "flag": null,
+    "capital": null,
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "tl",
+  "fields": {
+    "name": "Timor-Leste (East Timor)",
+    "name_plain": "Timor-Leste",
+    "is_active": false,
+    "dial_code": "670",
+    "flag": "TLS",
+    "capital": "Dili ",
+    "region": "South-East Asia",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "tm",
+  "fields": {
+    "name": "Turkmenistan",
+    "name_plain": "Turkmenistan",
+    "is_active": false,
+    "dial_code": "993",
+    "flag": "TKM",
+    "capital": "Ashgabat ",
+    "region": "South-Central Asia",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "tn",
+  "fields": {
+    "name": "Tunisia (\u062a\u0648\u0646\u0633\u200e)",
+    "name_plain": "Tunisia",
+    "is_active": false,
+    "dial_code": "216",
+    "flag": "TUN",
+    "capital": "Tunis ",
+    "region": "Northern Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "to",
+  "fields": {
+    "name": "Tonga",
+    "name_plain": "Tonga",
+    "is_active": false,
+    "dial_code": "676",
+    "flag": "TON",
+    "capital": "Nuku'alofa",
+    "region": "Polynesia, the islands in the eastern part of Oceania",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "tr",
+  "fields": {
+    "name": "Turkey (T\u00fcrkiye)",
+    "name_plain": "Turkey",
+    "is_active": false,
+    "dial_code": "90",
+    "flag": "TUR",
+    "capital": "Ankara ",
+    "region": "Western Asia and Middle East",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "tt",
+  "fields": {
+    "name": "Trinidad and Tobago",
+    "name_plain": "Trinidad and Tobago",
+    "is_active": false,
+    "dial_code": "1868",
+    "flag": "TTO",
+    "capital": "Port-of-Spain ",
+    "region": "Caribbean",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "tv",
+  "fields": {
+    "name": "Tuvalu",
+    "name_plain": "Tuvalu",
+    "is_active": false,
+    "dial_code": "688",
+    "flag": "TUV",
+    "capital": "Funafuti",
+    "region": "Polynesia, the islands in the eastern part of Oceania",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "tw",
+  "fields": {
+    "name": "Taiwan (\u53f0\u7063)",
+    "name_plain": "Taiwan",
+    "is_active": false,
+    "dial_code": "886",
+    "flag": "TWN",
+    "capital": "Taipei ",
+    "region": "Eastern Asia",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "tz",
+  "fields": {
+    "name": "Tanzania",
+    "name_plain": "Tanzania",
+    "is_active": false,
+    "dial_code": "255",
+    "flag": "TZA",
+    "capital": "Dodoma, Dar es Salaam ",
+    "region": "Eastern Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ua",
+  "fields": {
+    "name": "Ukraine (\u0423\u043a\u0440\u0430\u0457\u043d\u0430)",
+    "name_plain": "Ukraine",
+    "is_active": false,
+    "dial_code": "380",
+    "flag": "UKR",
+    "capital": "Kiev ",
+    "region": "Eastern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ug",
+  "fields": {
+    "name": "Uganda",
+    "name_plain": "Uganda",
+    "is_active": false,
+    "dial_code": "256",
+    "flag": "UGA",
+    "capital": " Kampala ",
+    "region": "Eastern Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "us",
+  "fields": {
+    "name": "United States",
+    "name_plain": "United States",
+    "is_active": false,
+    "dial_code": "1",
+    "flag": "USA",
+    "capital": "Washington - New York",
+    "region": "North America",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "uy",
+  "fields": {
+    "name": "Uruguay",
+    "name_plain": "Uruguay",
+    "is_active": false,
+    "dial_code": "598",
+    "flag": "URY",
+    "capital": "Montevideo",
+    "region": "South America",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "uz",
+  "fields": {
+    "name": "Uzbekistan (O\u02bbzbekiston)",
+    "name_plain": "Uzbekistan",
+    "is_active": false,
+    "dial_code": "998",
+    "flag": "UZB",
+    "capital": "Tashkent ",
+    "region": "South-Central Asia",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "va",
+  "fields": {
+    "name": "Vatican City (Citt\u00e0 del Vaticano)",
+    "name_plain": "Vatican City",
+    "is_active": false,
+    "dial_code": "39",
+    "flag": "VAT",
+    "capital": "Vatican City ",
+    "region": "Southern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "vc",
+  "fields": {
+    "name": "Saint Vincent and the Grenadines",
+    "name_plain": "Saint Vincent and the Grenadines",
+    "is_active": false,
+    "dial_code": "1784",
+    "flag": "VCT",
+    "capital": "Kingstown",
+    "region": "Caribbean",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ve",
+  "fields": {
+    "name": "Venezuela",
+    "name_plain": "Venezuela",
+    "is_active": false,
+    "dial_code": "58",
+    "flag": "VEN",
+    "capital": "Caracas",
+    "region": "South America",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "vg",
+  "fields": {
+    "name": "British Virgin Islands",
+    "name_plain": "British Virgin Islands",
+    "is_active": false,
+    "dial_code": "1284",
+    "flag": "VGB",
+    "capital": "Road Town ",
+    "region": "Caribbean",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "vi",
+  "fields": {
+    "name": "US Virgin Islands",
+    "name_plain": "US Virgin Islands",
+    "is_active": false,
+    "dial_code": "1340",
+    "flag": "VIR",
+    "capital": "Charlotte Amalie ",
+    "region": "Caribbean",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "vn",
+  "fields": {
+    "name": "Vietnam (Vi\u1ec7t Nam)",
+    "name_plain": "Vietnam",
+    "is_active": false,
+    "dial_code": "84",
+    "flag": "VNM",
+    "capital": "Hanoi ",
+    "region": "South-East Asia",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "vu",
+  "fields": {
+    "name": "Vanuatu",
+    "name_plain": "Vanuatu",
+    "is_active": false,
+    "dial_code": "678",
+    "flag": "VUT",
+    "capital": "Port-Vila ",
+    "region": "Melanesia - the islands in the southwestern part of Oceania",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "wf",
+  "fields": {
+    "name": "Wallis and Futuna (Wallis-et-Futuna)",
+    "name_plain": "Wallis and Futuna",
+    "is_active": false,
+    "dial_code": "681",
+    "flag": "GBR4",
+    "capital": "Cardiff",
+    "region": "Northern Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ws",
+  "fields": {
+    "name": "Samoa",
+    "name_plain": "Samoa",
+    "is_active": false,
+    "dial_code": "685",
+    "flag": "WSM",
+    "capital": "Apia",
+    "region": "Polynesia, the islands in the eastern part of Oceania",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "xk",
+  "fields": {
+    "name": "Kosovo",
+    "name_plain": "Kosovo",
+    "is_active": false,
+    "dial_code": "383",
+    "flag": null,
+    "capital": null,
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "ye",
+  "fields": {
+    "name": "Yemen (\u0627\u0644\u064a\u0645\u0646\u200e)",
+    "name_plain": "Yemen",
+    "is_active": false,
+    "dial_code": "263",
+    "flag": "YEM",
+    "capital": "Sanaa ",
+    "region": "Western Asia and Middle East",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "yt",
+  "fields": {
+    "name": "Mayotte",
+    "name_plain": "Mayotte",
+    "is_active": false,
+    "dial_code": "262",
+    "flag": null,
+    "capital": null,
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "za",
+  "fields": {
+    "name": "South Africa",
+    "name_plain": "South Africa",
+    "is_active": false,
+    "dial_code": "27",
+    "flag": "ZAF",
+    "capital": "Pretoria, Bloemfontein, Cape Town",
+    "region": "Southern Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "zm",
+  "fields": {
+    "name": "Zambia",
+    "name_plain": "Zambia",
+    "is_active": false,
+    "dial_code": "260",
+    "flag": "ZMB",
+    "capital": "Lusaka ",
+    "region": "Eastern Africa",
+    "region_des": null
+  }
+},
+{
+  "model": "core.country",
+  "pk": "zw",
+  "fields": {
+    "name": "Zimbabwe",
+    "name_plain": "Zimbabwe",
+    "is_active": false,
+    "dial_code": "263",
+    "flag": null,
+    "capital": null,
+    "region": "Western Europe",
+    "region_des": null
+  }
+},
+{
+  "model": "core.currency",
+  "pk": "BTC",
+  "fields": {
+    "symbol": "\u0e3f",
+    "name": "Bitcoin",
+    "country": null,
+    "rate": "0.000150000000"
+  }
+},
+{
+  "model": "core.currency",
+  "pk": "GMB",
+  "fields": {
+    "symbol": "G",
+    "name": "GMBC",
+    "country": null,
+    "rate": "1.000000000000"
+  }
+},
+{
+  "model": "core.currency",
+  "pk": "NGN",
+  "fields": {
+    "symbol": "\u20a6",
+    "name": "Naira",
+    "country": "ng",
+    "rate": "100.000000000000"
+  }
+},
+{
+  "model": "core.packageconfig",
+  "pk": 1,
+  "fields": {
+    "name": "Basic",
+    "coin": "10.00",
+    "currency": "NGN",
+    "min_ph": "1000.000000000000",
+    "max_ph": "20000.000000000000",
+    "created": "2017-10-09T14:40:26.976Z"
+  }
+},
+{
+  "model": "core.packageconfig",
+  "pk": 2,
+  "fields": {
+    "name": "Standard",
+    "coin": "50.00",
+    "currency": "NGN",
+    "min_ph": "21000.000000000000",
+    "max_ph": "100000.000000000000",
+    "created": "2017-10-09T14:40:26.976Z"
+  }
+},
+{
+  "model": "core.packageconfig",
+  "pk": 3,
+  "fields": {
+    "name": "Classic",
+    "coin": "100.00",
+    "currency": "NGN",
+    "min_ph": "101000.000000000000",
+    "max_ph": "200000.000000000000",
+    "created": "2017-10-09T14:40:26.976Z"
+  }
+},
+{
+  "model": "core.packageconfig",
+  "pk": 4,
+  "fields": {
+    "name": "Premium",
+    "coin": "500.00",
+    "currency": "NGN",
+    "min_ph": "201000.000000000000",
+    "max_ph": "500000.000000000000",
+    "created": "2017-10-09T14:40:26.976Z"
+  }
+},
+{
+  "model": "core.packageconfig",
+  "pk": 5,
+  "fields": {
+    "name": "Basic",
+    "coin": "10.00",
+    "currency": "BTC",
+    "min_ph": "0.010000000000",
+    "max_ph": "0.030000000000",
+    "created": "2017-10-09T14:40:26.976Z"
+  }
+},
+{
+  "model": "core.packageconfig",
+  "pk": 6,
+  "fields": {
+    "name": "Standard",
+    "coin": "30.00",
+    "currency": "BTC",
+    "min_ph": "0.030000000001",
+    "max_ph": "0.100000000000",
+    "created": "2017-10-09T14:40:26.976Z"
+  }
+},
+{
+  "model": "core.packageconfig",
+  "pk": 7,
+  "fields": {
+    "name": "Classic",
+    "coin": "60.00",
+    "currency": "BTC",
+    "min_ph": "0.100000000001",
+    "max_ph": "0.200000000000",
+    "created": "2017-10-09T14:40:26.976Z"
+  }
+},
+{
+  "model": "core.packageconfig",
+  "pk": 8,
+  "fields": {
+    "name": "Premium",
+    "coin": "160.00",
+    "currency": "BTC",
+    "min_ph": "0.200000000001",
+    "max_ph": "0.400000000000",
+    "created": "2017-10-09T14:40:26.976Z"
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "1001",
+  "fields": {
+    "label": "Inconsistent Registration",
+    "description": "User Record has inconsistent enteries, expected record on Member before status is set to Verified on Pre-Member",
+    "alias": null
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "1002",
+  "fields": {
+    "label": "Inconsistent VC record",
+    "description": "User has Verification Code that we could NOT account for",
+    "alias": null
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "1800",
+  "fields": {
+    "label": "Request timeout ",
+    "description": null,
+    "alias": null
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "1801",
+  "fields": {
+    "label": "Message successfully sent ",
+    "description": null,
+    "alias": null
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "1802",
+  "fields": {
+    "label": "Invalid username ",
+    "description": null,
+    "alias": null
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "1803",
+  "fields": {
+    "label": "Incorrect password ",
+    "description": null,
+    "alias": null
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "1804",
+  "fields": {
+    "label": "Insufficient credit ",
+    "description": null,
+    "alias": null
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "1805",
+  "fields": {
+    "label": "Invalid url submission ",
+    "description": null,
+    "alias": null
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "1806",
+  "fields": {
+    "label": "Invalid mobile ",
+    "description": null,
+    "alias": null
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "1807",
+  "fields": {
+    "label": "Invalid sender id ",
+    "description": null,
+    "alias": null
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "1808",
+  "fields": {
+    "label": "Message too long ",
+    "description": null,
+    "alias": null
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "1809",
+  "fields": {
+    "label": "Empty Message ",
+    "description": null,
+    "alias": null
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "1810",
+  "fields": {
+    "label": "Invalid Broadcast Time ",
+    "description": null,
+    "alias": null
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "1901",
+  "fields": {
+    "label": "Schedule was successfully saved ",
+    "description": null,
+    "alias": null
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "1902",
+  "fields": {
+    "label": "Scheduled broadcast time cannot ",
+    "description": null,
+    "alias": null
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "1903",
+  "fields": {
+    "label": "Invalid broadcast time ",
+    "description": null,
+    "alias": null
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "1904",
+  "fields": {
+    "label": "Schedule name is too long. Maxim",
+    "description": null,
+    "alias": null
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "1905",
+  "fields": {
+    "label": "Invalid value for notify me. 0 o",
+    "description": null,
+    "alias": null
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "1906",
+  "fields": {
+    "label": "Incorrect Schedule Name. Schedul",
+    "description": null,
+    "alias": null
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "2904",
+  "fields": {
+    "label": "SMS Sending Failed",
+    "description": null,
+    "alias": null
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "2905",
+  "fields": {
+    "label": "Invalid username/password",
+    "description": "Invalid username/password combination",
+    "alias": null
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "2906",
+  "fields": {
+    "label": "Credit exhausted",
+    "description": null,
+    "alias": null
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "2907",
+  "fields": {
+    "label": "Gateway unavailable",
+    "description": null,
+    "alias": null
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "2908",
+  "fields": {
+    "label": "Invalid schedule date format",
+    "description": null,
+    "alias": null
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "2909",
+  "fields": {
+    "label": "Unable to schedule",
+    "description": null,
+    "alias": null
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "2910",
+  "fields": {
+    "label": "Username is empty",
+    "description": null,
+    "alias": null
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "2911",
+  "fields": {
+    "label": "Password is empty",
+    "description": null,
+    "alias": null
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "2912",
+  "fields": {
+    "label": "Recipient is empty",
+    "description": null,
+    "alias": null
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "2913",
+  "fields": {
+    "label": "Message is empty",
+    "description": null,
+    "alias": null
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "2914",
+  "fields": {
+    "label": "Sender is empty",
+    "description": null,
+    "alias": null
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "2915",
+  "fields": {
+    "label": "Required field(s) is empty",
+    "description": "One or more required fields are empty",
+    "alias": null
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "2916",
+  "fields": {
+    "label": "Sender ID not allowed",
+    "description": null,
+    "alias": null
+  }
+},
+{
+  "model": "core.responsecode",
+  "pk": "OK",
+  "fields": {
+    "label": "Successful",
+    "description": null,
+    "alias": null
+  }
+},
+{
+  "model": "core.state",
+  "pk": 1,
+  "fields": {
+    "name": "Abia",
+    "capital": "Umuahia",
+    "appelation": "God's own City",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 2,
+  "fields": {
+    "name": "Adamawa",
+    "capital": "Yola",
+    "appelation": "Land of Beauty",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 3,
+  "fields": {
+    "name": "Akwa Ibom",
+    "capital": "Uyo",
+    "appelation": "Land of Fulfillment",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 4,
+  "fields": {
+    "name": "Anambra",
+    "capital": "Akwa",
+    "appelation": "The Light of the Nation",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 5,
+  "fields": {
+    "name": "Bauchi",
+    "capital": "Bauchi",
+    "appelation": "Homes of Peace & Hospitality",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 6,
+  "fields": {
+    "name": "Bayelsa",
+    "capital": "Yenagoa",
+    "appelation": "The Glory of all Land",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 7,
+  "fields": {
+    "name": "Benue",
+    "capital": "Markurdi",
+    "appelation": "Food Basket of the Nation",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 8,
+  "fields": {
+    "name": "Borno",
+    "capital": "Maiduguri",
+    "appelation": "Home of Peace",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 9,
+  "fields": {
+    "name": "Cross River",
+    "capital": "Calabar",
+    "appelation": "The Peoples Paradise",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 10,
+  "fields": {
+    "name": "Delta",
+    "capital": "Asaba",
+    "appelation": "The Big Heart of the Nation",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 11,
+  "fields": {
+    "name": "Ebonyi",
+    "capital": "Abakaliki",
+    "appelation": "Salt of the Nation",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 12,
+  "fields": {
+    "name": "Edo",
+    "capital": "Benin-City",
+    "appelation": "The heart Beat of the Nation",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 13,
+  "fields": {
+    "name": "Ekiti",
+    "capital": "Ado-Ekiti",
+    "appelation": "Fountain of Knowledge",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 14,
+  "fields": {
+    "name": "Enugu",
+    "capital": "Enugu",
+    "appelation": "Coal City State",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 15,
+  "fields": {
+    "name": "FCT",
+    "capital": "Abuja",
+    "appelation": "Centre of Unity",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 16,
+  "fields": {
+    "name": "Gombe",
+    "capital": "Gombe",
+    "appelation": "Jewel of the Savanna",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 17,
+  "fields": {
+    "name": "Imo",
+    "capital": "Owerri",
+    "appelation": "Eastern Heart Land",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 18,
+  "fields": {
+    "name": "Jigawa",
+    "capital": "Dutse",
+    "appelation": "New world",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 19,
+  "fields": {
+    "name": "Kaduna",
+    "capital": "Kaduna",
+    "appelation": "Liberal State",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 20,
+  "fields": {
+    "name": "Kano",
+    "capital": "Kano",
+    "appelation": "Centre of Commerce",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 21,
+  "fields": {
+    "name": "Katsina",
+    "capital": "Katsina",
+    "appelation": "State of Hospitality",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 22,
+  "fields": {
+    "name": "Kebbi",
+    "capital": "Benin_Kebbi",
+    "appelation": "Land of Equity",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 23,
+  "fields": {
+    "name": "Kogi",
+    "capital": "Lokoja",
+    "appelation": "The Confluence State",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 24,
+  "fields": {
+    "name": "Kwara",
+    "capital": "Ilorin",
+    "appelation": "State of Harmony",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 25,
+  "fields": {
+    "name": "Lagos",
+    "capital": "Ikeja",
+    "appelation": "Centre of Excellency",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 26,
+  "fields": {
+    "name": "Nasarawa",
+    "capital": "Lafia",
+    "appelation": "Home of Solid Mineral",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 27,
+  "fields": {
+    "name": "Niger",
+    "capital": "Minna",
+    "appelation": "The Power State",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 28,
+  "fields": {
+    "name": "Ogun",
+    "capital": "Abeokuta",
+    "appelation": "The Gateway State",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 29,
+  "fields": {
+    "name": "Ondo",
+    "capital": "Akure",
+    "appelation": "The Sunshine State",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 30,
+  "fields": {
+    "name": "Osun",
+    "capital": "Oshogbo",
+    "appelation": "State of Living Spring",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 31,
+  "fields": {
+    "name": "Oyo",
+    "capital": "Ibadan",
+    "appelation": "Pace Setter State",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 32,
+  "fields": {
+    "name": "Plateau",
+    "capital": "Jos",
+    "appelation": "Home of Peace and Tourism",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 33,
+  "fields": {
+    "name": "Rivers",
+    "capital": "Port Harcourt",
+    "appelation": "Treasure Base of the Nation",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 34,
+  "fields": {
+    "name": "Sokoto",
+    "capital": "Sokoto",
+    "appelation": "Seats of the Caliphate",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 35,
+  "fields": {
+    "name": "Taraba",
+    "capital": "Jalingo",
+    "appelation": "Nature's Gift to the Nation",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 36,
+  "fields": {
+    "name": "Yobe",
+    "capital": "Damaturu",
+    "appelation": "The Young Shall Grow",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.state",
+  "pk": 37,
+  "fields": {
+    "name": "Zamfara",
+    "capital": "Gusau",
+    "appelation": "Farming is Our Pride",
+    "country": "ng"
+  }
+},
+{
+  "model": "core.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$36000$2JMSgJdxXYzl$cj+8JpisdJMsqfMrKXGEAHK8XUsexE5n/3Q88/HbeqU=",
+    "last_login": "2017-10-13T16:49:45.437Z",
+    "is_superuser": true,
+    "first_name": "Donald",
+    "last_name": "Trump",
+    "email": "admin@gmbenefit.org",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2017-10-04T22:52:45.247Z",
+    "username": "username",
+    "phone": "2348118468150",
+    "last_login_signature": null,
+    "failed_attempts": 0,
+    "last_password_change": null,
+    "force_password_change": false,
+    "avatar_url": null,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "core.member",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "phone": "2348118468150",
+    "email": "admin@gmbenefit.org",
+    "password": "testtest",
+    "first_name": "Donald",
+    "last_name": "Trump",
+    "other_names": null,
+    "country": "ng",
+    "state": 1,
+    "address": null,
+    "dob": null,
+    "sponsor": null,
+    "min_ph": "1000.00",
+    "max_ph": "20000.00",
+    "min_ph_btc": "0.010000000000",
+    "max_ph_btc": "0.500000000000",
+    "created": "2017-10-04T22:52:45.247Z",
+    "status": "Active",
+    "delete_on": null,
+    "gh_balance": "0.00",
+    "frozen_balance": "0.00",
+    "released_balance": "0.00",
+    "coin_account_balance": "0.00",
+    "gh_balance_btc": "0E-12",
+    "frozen_balance_btc": "0E-12",
+    "released_balance_btc": "0E-12",
+    "coin_account_balance_btc": "0E-12",
+    "is_bonus": true,
+    "is_active": true,
+    "is_fake": false,
+    "is_phone_verified": true,
+    "is_email_verified": true,
+    "can_receive_sms": true,
+    "can_receive_email": true,
+    "token": "LOADED",
+    "code": null,
+    "bank_accounts": []
+  }
+}
+]

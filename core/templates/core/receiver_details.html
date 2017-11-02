@@ -1,0 +1,274 @@
+{% load i18n static mathfilters humanize normalise_decimal %}
+
+<!-- Generic page styles -->
+<link rel="stylesheet" href="{% static 'jquery-file-upload/css/style.css' %}">
+<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+<link rel="stylesheet" href="{% static 'jquery-file-upload/css/jquery.fileupload-ui.css' %}">
+
+<div style="font-size:16px; font-weight:bold;">Order: {{ transDetail.id }}</div>
+<br>
+{% if request.user.member == transDetail.sender %}
+    <b>You need to fulfil your order before expiration time {{ transDetail.expires }} </b><br><br>
+{% elif request.user.member == transDetail.transction.owner %}
+    <div>You will receive Help: <b><span id="arrange_full_info1"><span class="amount-format">{{ transDetail.amount|decimal_normalise }}</span></span> NGN</b></div>
+    <b>Member will send Help before {{ transDetail.expires }} :</b>
+{% endif %}
+
+<div class="light_border">Beneficiary Name: {{ transDetail.transaction.owner.full_name }}<br>
+    Account number: {{ transDetail.transaction.bank_account.number }}<br>
+    Bank name: {{ transDetail.transaction.bank_account.bank.name }}<br>
+    Beneficiary Phone: {{ transDetail.transaction.owner.phone }}<br><br>
+</div>
+<div class="light_border">Sender Name: {{ transDetail.sender.full_name }}<br>
+    Beneficiary Phone: {{ transDetail.sender.phone }}<br><br>
+</div>
+
+{#<script src="{% static 'bootstrap-notify/bootstrap-notify.min.js' %}"></script>#}
+{##}
+{#<script src="{% static 'bootbox/bootbox.js' %}"></script>#}
+<div class="row">
+    <div class="col-xs-12 text-center" style="padding: 0px">
+        <table width="100%" border="0" cellspacing="0" cellpadding="6">
+
+            {% if request.user.member == transDetail.sender %}
+                {% if transDetail.status in 'Awaiting Payment' %}
+                    <span class="btn btn-success fileinput-button text-center" style="max-width: 100%;">
+                        <i class="glyphicon glyphicon-plus"></i>
+                        <span>Upload Prove of Payment</span>
+                        <input id="fileupload" type="file" name="file" multiple>
+                    </span>
+                    <br>
+                    <!-- The global progress bar -->
+                    <div id="progress" class="progress" style="margin: 5px 0 0 0;">
+                        <div class="progress-bar progress-bar-primary"></div>
+                    </div>
+                    <br>
+                    <!-- The container for the uploaded files -->
+                    <div id="files" class="files"></div>
+                    <br>
+                    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                        <div class="btn-group" role="group">
+                            <button type="button" id="n-pay" class="btn btn-danger"><i class="ti-na"></i> Could Not Pay</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="button" id="pay" data-id="{{ transDetail.id }}" class="btn btn-primary"><i class="ti-check"></i> Complete</button>
+                        </div>
+                    </div>
+
+
+                {% endif %}
+            {% else %}
+                {% if transDetail.status in 'Awaiting Confirmation,Exception' %}
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" id="n-received" data-id="{{ transDetail.id }}" class="btn btn-danger"><i class="ti-na"></i> Payment Not Seen</button>
+                        <button type="button" id="p-received" data-id="{{ transDetail.id }}" class="btn btn-primary"><i class="ti-check"></i> Comfirm</button>
+                    </div>
+                {% endif %}
+            {% endif %}
+            {% if transDetail.status in 'Awaiting Confirmation,Confirmed,Awaiting Payment,Paused (Exception),Paused (Recycle),Exception' %}
+                {% for upload in transDetail.uploads.all %}
+                    <a href="{{ upload.file.url }}" title="View Upload" target="_blank"><img src="{{ upload.file.url }}" alt="Uploaded POP" width="100%" style="padding-bottom: 5px" ></a>
+                {%  endfor %}
+            {% endif %}
+        </table>
+    </div>
+</div>
+
+
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script src="{% static 'jquery-file-upload/js/vendor/jquery.ui.widget.js' %}"></script>
+
+<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+<script src="{% static 'jquery-file-upload/js/load-image.min.js' %}"></script>
+<!-- The Canvas to Blob plugin is included for image resizing functionality -->
+<script src="{% static 'jquery-file-upload/js/canvas-to-blob.min.js' %}"></script>
+<!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="{% static 'jquery-file-upload/js/jquery.iframe-transport.js' %}"></script>
+<!-- The basic File Upload plugin -->
+<script src="{% static 'jquery-file-upload/js/jquery.fileupload.js' %}"></script>
+<script src="{% static 'jquery-file-upload/js/jquery.fileupload-process.js' %}"></script>
+<!-- The File Upload image preview & resize plugin -->
+<script src="{% static 'jquery-file-upload/js/jquery.fileupload-image.js' %}"></script>
+<!-- The File Upload validation plugin -->
+<script src="{% static 'jquery-file-upload/js/jquery.fileupload-validate.js' %}"></script>
+<script src="{% static 'jquery-file-upload/js/jquery.cookie.js' %}"></script>
+
+<script>
+
+  {% if request.user.member == transDetail.sender %}
+    {% if transDetail.status in 'Awaiting Payment' %}
+        /*jslint unparam: true, regexp: true */
+        /*global window, $ */
+      function csrfSafeMethod (method) {
+        // these HTTP methods do not require CSRF protection
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method))
+      }
+      $(function () {
+        'use strict'
+        var csrftoken = $.cookie('csrftoken')
+        // Change this to the location of your server-side upload handler:
+        var url = '{% url "core:upload-proof" tdid %}',
+          uploadButton = $('<button/>').addClass('btn btn-primary').prop('disabled', true).text('Processing...').on('click', function () {
+            var $this = $(this), data = $this.data()
+            $this.off('click').text('Abort').on('click', function () {
+              $this.remove()
+              data.abort()
+            })
+
+            data.submit().always(function () {
+              $this.remove()
+            })
+          })
+
+        $('#pay').prop('disabled', true)
+        $('#fileupload').fileupload({
+          url: url,
+          crossDomain: false,
+          beforeSend: function (xhr, settings) {
+            if (!csrfSafeMethod(settings.type)) {
+              xhr.setRequestHeader('X-CSRFToken', csrftoken)
+            }
+          },
+          dataType: 'json',
+          autoUpload: false,
+          acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+          maxFileSize: '{{ maxImageSize }}',
+          maxFileCount: 2,
+          // Enable image resizing, except for Android and Opera, which actually
+          // support resizing, but fail to send Blob objects via XHR requests:
+          disableImageResize: /Android(?!.*Chrome)|Opera/.test(window.navigator.userAgent),
+          previewMaxWidth: 150,
+          previewMaxHeight: 150,
+          previewCrop: true,
+          change: function (e, data) {
+            if (data.files.length > 3) {
+              alert('Max 3 files are allowed')
+              return false
+            }
+          },
+          submit: function (e, data) {
+            if (data.files.length > 3) {
+              alert('Max 3 files are allowed')
+              return false
+            }
+          },
+        }).on('fileuploadadd', function (e, data) {
+          data.context = $('<div/>').appendTo('#files')
+          $.each(data.files, function (index, file) {
+            var node = $('<p/>').append($('<span/>').text(file.name))
+            if (!index) {
+              node.append('<br>').append(uploadButton.clone(true).data(data))
+            }
+            node.appendTo(data.context)
+          })
+        }).on('fileuploadprocessalways', function (e, data) {
+          var index = data.index
+          var file = data.files[index]
+          var node = $(data.context.children()[index])
+          if (file.preview) {
+            node.prepend('<br>').prepend(file.preview)
+          }
+          if (file.error) {
+            node.append('<br>').append(file.error)
+          }
+          if (index + 1 === data.files.length) {
+            data.context.find('button').text('Upload').prop('disabled', !!data.files.error)
+          }
+        }).on('fileuploadprogressall', function (e, data) {
+          var progress = parseInt(data.loaded / data.total * 100, 10)
+          $('#progress .progress-bar').css('width', progress + '%')
+        }).on('fileuploaddone', function (e, data) {
+          $.each(data.result.files, function (index, file) {
+            var link = $('<a>').attr('target', '_blank').prop('href', file.url)
+            $(data.context.children()[index]).wrap(link)
+          });
+
+          $('#pay').prop('disabled', false)
+        }).on('fileuploadfail', function (e, data) {
+          $.each(data.result.files, function (index, file) {
+            var error = $('<span/>').text(file.error)
+            $(data.context.children()[index]).append('<br>').append(error)
+          })
+        }).prop('disabled', !$.support.fileInput).parent().addClass($.support.fileInput ? undefined : 'disabled')
+      })
+    {% endif %}
+  {% endif %}
+
+  $(document).ready(function () {
+    $('#pay').click(function () {
+      processFeed('{% url 'core:pay' transDetail.id %}', {id: '{{ transDetail.id }}'}, 'Payment Update....', false, 'POST', function (d) {
+        BootstrapDialog.alert({
+          title: 'Response',
+          message: d.msg,
+            onhide: function () {
+                location = '{% url 'core:dashboard' %}'
+            }
+        })
+      }, function (d) {
+        BootstrapDialog.alert({title: 'Response', message: d.msg,})
+      })
+    })
+
+    $('#n-pay').click(function () {
+      BootstrapDialog.show({
+        title: "Payment Cancellation Feedback",
+        message: 'We will like to know the reason for declining making this payment <div class="form-group"><div><input type="text" name="name" maxlength="128" required="" placeholder="" class="form-control" id="n-pay-reason"></div></div>',
+        buttons: [{
+            label: 'Stop, I will Pay',
+            action: function (dialog) {dialog.close();}
+        }, {
+            label: 'Contiune',
+            action: function (dialog) {
+                if($("#n-pay-reason").val().length <3){pwd("Please tell us your reason", true); return;}
+                processFeed('{% url 'core:cant-pay' transDetail.id %}', {tdid: '{{ transDetail.id }}', reason: $("#n-pay-reason").val()}, 'Payment Update....', false, 'POST', function (d) {
+                    if (d.type == 'Success') {
+                        BootstrapDialog.alert({
+                            title: 'Response',
+                            message: d.msg,
+                            onhide: function () {
+                                location = '{% url 'core:dashboard' %}'
+                            }
+                        });
+                    } else {
+                      BootstrapDialog.alert({title: 'Response', message: d.msg,})
+                    }
+                  }, function (d) {
+                    BootstrapDialog.alert({title: 'Response', message: d.responseText,})
+                  }
+                );
+            },
+        }],
+      });
+    });
+
+    $('#p-received').click(function () {
+      processFeed('{% url 'core:confirm-payment' transDetail.id %}', {tdid: '{{ transDetail.id }}'}, 'Payment Update....', false, 'POST', function (d) {
+        BootstrapDialog.alert({
+            title: 'Response',
+            message: d.msg,
+            onhide: function () {
+                location = '{% url 'core:dashboard' %}'
+            }
+        });
+      }, function (d) {
+        BootstrapDialog.alert({title: 'Response', message: d.responseText,})
+      })
+    })
+
+    $('#n-received').click(function () {
+      processFeed('{% url 'core:payment-exception' transDetail.id %}', {tdid: '{{ transDetail.id }}', note: ' Case will be opened'}, 'Payment Update....', false, 'POST', function (d) {
+        BootstrapDialog.alert({
+            title: 'Response',
+            message: d.msg,
+            onhide: function () {
+                location = '{% url 'core:dashboard' %}'
+            }
+        });
+      }, function (d) {
+        BootstrapDialog.alert({title: 'Response', message: d.responseText,})
+      })
+    })
+  })
+</script>

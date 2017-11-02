@@ -1,0 +1,88 @@
+{% extends "core/mail_templates/base.html" %}
+{% load static i18n %}
+
+
+{% block mail_body %}
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+        <tr>
+            <td align="center" style="padding: 0.0px 30.0px 30.0px 30.0px;">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <tbody>
+                    <tr>
+                        <td align="center" valign="top"
+                            style="font-family: Calibri , Trebuchet , Arial , sans serif;font-size: 36.0px;line-height: 44.0px;color: rgb(51,51,51);">
+                            Welcome to GMB<br></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+        <tr>
+            <td align="center" style="padding: 0.0px 30.0px 30.0px 30.0px;">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                    <tr>
+                        <td align="center" class="boxed"
+                            style="vertical-align: top;padding: 0.0px 0.0px 0.0px 0.0px;font-family: Calibri , Trebuchet , Arial , sans serif;font-size: 19.0px;line-height: 24.0px;color: rgb(119,119,119);">
+                            <p style="padding: 15px; border-radius: 1px;">
+                                We are delighted you're joining our community Geneiue Mutual Benefit (GMB). Please click on the link below to validate your email<br>
+                            </p></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <table width="100%" cellspacing="0" cellpadding="0" border="0">
+        <tbody>
+        <tr>
+            <td align="center" style="padding: 0.0px 30.0px 30.0px 30.0px;">
+                <table border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                    <tr>
+                        <td bgcolor="#009cde" class="boxed" align="center" valign="middle"
+                            style="padding: 10.0px 90.0px 15.0px 90.0px;font-family: Calibri , Trebuchet , Arial , sans serif;font-size: 17.0px;line-height: 21.0px;color: rgba(255,255,255,.84);;">
+                            <a target="_blank" style="color: #c0e1fb;text-decoration: none;" href="{{ url }}">Validate Email<br></a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <table width="100%" cellspacing="0" cellpadding="0" border="0">
+        <tbody>
+        <tr>
+            <td style="padding: 0.0px 30.0px 10.0px 30.0px;font-style: italic;color: rgb(119,119,119); font-size: 0.9em" align="center">
+                This is link will only be available for 24hrs
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <style type="text/css">
+        a, a:hover, a:active, a:focus {
+            color: rgba(62, 176, 247, 1);
+            cursor: pointer;
+        }
+
+        .boxed:hover, .boxed:focus, .boxed:active {
+            box-shadow: 0 2px 2px 2px rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+        }
+
+        .boxed {
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+        }
+    </style>
+{% endblock %}
+
+

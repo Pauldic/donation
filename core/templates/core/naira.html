@@ -1,0 +1,110 @@
+{% extends "core/includes/base_back.html" %}
+{% load i18n static mathfilters humanize normalise_decimal %}
+
+{% block content_body %}
+    <div class="page-container">
+        <div class="main-page" style="padding: 10px;">
+            <table id="statement" class="table table-hover table-striped table-border">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Type</th>
+                    <th>Created</th>
+                    <th>Due Date</th>
+                    <th>Wallet</th>
+                    <th>Current</th>
+                    <th>Posted</th>
+                    <th>Initial</th>
+                </tr>
+            </thead>
+             <tbody>
+                {% for acc in accs %}
+                    <tr>
+                        <td>{{ acc.obj.id }}</td>
+                        {% if acc.obj.donation.type %}
+                            {% if acc.obj.donation.status in 'Processed,Processed Bonus' %}
+                                <td>Confirmed</td>
+                            {% else %}
+                                <td>Unconfirmed</td>
+                            {% endif %}
+                        {% else %}
+                            {% if acc.obj.status != 'Completed' %}
+                                <td><i>Widthdrawal</i></td>
+                            {% endif %}
+                        {% endif %}
+                        <td>{{ acc.created }}</td>
+                        <td>{{ acc.release|date }}</td>
+                        <td>
+                            {% if acc.obj.type == 'PH' %}
+                                30% PH
+                            {% elif acc.obj.type == 'SP'  %}
+                                10% Guider Bouns
+                            {% elif acc.obj.type == 'BS'  %}
+                                Bonus
+                            {% elif acc.obj.type == 'PF'  %}
+                                Fee
+                            {% endif %}
+                        </td>
+                        <td style="font-weight: 500">
+                            {{ acc.obj.currency.symbol }}{{ acc.obj.amount_live|default:acc.obj.amount|decimal_normalise }}
+                        </td>
+                        <td>
+                            {{ acc.obj.currency.symbol }}{{ acc.obj.amount|decimal_normalise }}
+                        </td>
+                        <td>
+                            {% if acc.obj.type != 'BS' %}
+                                {{ acc.obj.currency.symbol }}{{ acc.obj.amount_init|default:acc.obj.amount|decimal_normalise }}
+                            {% endif %}
+                        </td>
+                    </tr>
+             {% endfor %}
+             </tbody>
+        </table>
+        </div>
+    </div>
+
+
+    <style>
+        #statement td{padding: 5px;}
+        .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+            background-color: #337ab7;
+            border-color: #337ab7;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'datatables/css/dataTables.bootstrap.min.css' %}">
+    <script type="text/javascript" src="{% static 'datatables/js/jquery.dataTables.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'datatables/js/dataTables.bootstrap.min.js' %}"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#statement').DataTable({
+                order: [[ 6, "desc" ]],
+                stateSave: true,
+                iDisplayLength: 50
+            });
+
+        });
+
+        var now = '{{ now }}';
+        function statusFormater (val,row) {
+            if(row.type.trim()=="Confirmed"){
+              if(new Date(now) > new Date(row.release)) {
+                return '<span style="font-weight: bold; color: #008000">' + val + '</span>'
+              }else {
+                return '<span style="font-weight: bold; color: #0000ff">' + val + '</span>'
+              }
+            }else{
+              return '<span style="font-weight: bold; color: #ff0000">'+val+'</span>'
+            }
+        }
+        var toolbar_ = [{
+            text:'Add',
+            iconCls:'icon-add',
+            handler:function(){alert('add')}
+        },'-',{
+            text:'Save',
+            iconCls:'icon-save',
+            handler:function(){alert('save')}
+        }];
+    </script>
+{% endblock %}

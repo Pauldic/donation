@@ -1,0 +1,158 @@
+{% load i18n static normalise_decimal mathfilters %}
+
+
+<a href="javascript:void(0);" data-type="cash-out-all" class="pull-right" >Convertible all GMB Coin <b class="emoji x2" data-value="0x1F6CD"></b> </a>
+<br>
+<form id="coin-form">
+    <table class="table_ table-bordered_ table-stripped_" style="width:100%">
+        <tbody>
+        <tr>
+            <th style="border-bottom: 1px solid black" colspan="3">Convertible accounts</th>
+        </tr>
+        <tr>
+            <th style="border-bottom: 1px solid black" colspan=""></th>
+            <th style="border-bottom: 1px solid black" colspan="2" data-old-balance="{{ request.user.member.coin_account_balance }}">GMBC Balance: {{ request.user.member.coin_account_balance }}</th>
+        </tr>
+
+        {% for gh in accs %}
+            <tr data-group="accs">
+                <td style="border-bottom: 1px solid black">{{ gh.get_type_text }}-GMBC:</td>
+                <td data-gh-amount="{{ gh.amount|sub:gh.balance|decimal_normalise }}" data-rate="{{ gh.rate }}" data-gh-id="{{ gh.id }}" style="border-bottom: 1px solid black;min-width: 120px;padding-left: 20px;">
+                    {{ gh.currency.symbol }}{{ gh.amount|sub:gh.balance|decimal_normalise }}
+                    <a href="javascript:;" title="Transfer All Fund to GMBC" class="transfer">
+                        <b data-value="0x1F449" class="emoji pull-right"></b></a></td>
+                <td style="border-bottom: 1px solid black;padding-left: 10px;">
+                    <input name="gh_account_{{ forloop.counter }}" type="number" step="any" min="0" data-group="accs" data-id="{{ gh.id }}" data-init="{{ gh.amount|sub:gh.balance|decimal_normalise }}"
+                           data-currency="{{ gh.currency.code }}" data-rate="{{ gh.currency.rate|decimal_normalise }}" max="{{ gh.amount|sub:gh.balance|decimal_normalise }}" value="" placeholder="0.00" class="form-control input-sm gh-out"></td>
+            </tr>
+        {% endfor %}
+        {% if accs %}
+            <tr data-group="accs" style="font-style: italic;font-size: 0.9em;">
+                <td style="border-bottom: 1px solid black">Exchange Rate:</td>
+                <td style="border-bottom: 1px solid black">
+                    <span class=""> {{ btc.symbol }}{{ btc.rate|decimal_normalise }} per GMBC</span>
+                </td>
+                <td style="border-bottom: 1px solid black;">
+                    {% if local %}<span class="">{{ local.symbol }}{{ local.rate|decimal_normalise }} per GMBC</span>{% endif %}
+                </td>
+            </tr>
+        {% endif %}
+
+        <tr data-group="total">
+            <td colspan="2"><b>Total GMBC Value</b></td>
+            <td data-value-total="0.00" style=" font-weight: 600"><span class="pull-right" data-value-total="0.00">0.00</span></td>
+        </tr>
+        </tbody>
+
+    </table>
+<br>
+        <button type="submit" class="btn btn-primary pull-right">Convert to GMBC</button>
+<div class="clearfix"></div>
+</form>
+
+
+<script>
+    $(document).ready(function () {
+        emoji();
+        var old_balance = parseFloat($("th[data-old-balance]").data("old-balance"));
+
+        $("a[data-type='cash-out-all']").click(function () {
+            $("tr td a.transfer").trigger("click");
+        });
+
+        $("tr td input[type='number']").change(function () {
+            var accs = accs_btc = rate = rate_btc = total = 0.0;
+
+            $.each($("tr[data-group='accs'] td input[type='number']"), function (i, v) {
+                if($(v).data("currency")=="BTC"){
+                  accs_btc += parseFloat($(v).val().length > 0 ? $(v).val() : 0);
+                }else {
+                  accs += parseFloat($(v).val().length > 0 ? $(v).val() : 0);
+                }
+            });
+            rate = parseFloat("{{ local.rate }}")
+            rate_btc = parseFloat("{{ btc.rate }}")
+
+            if(accs > 0){
+                total += accs/rate
+            }
+            if(accs_btc > 0){
+                total += accs_btc/rate_btc
+            }
+            $("tr[data-group='total'] td[data-value-total] span").text(total)
+        });
+
+        $("tr td a.transfer").click(function () {
+            $($(this).parent()).next().find("input").val($(this).parent().data("gh-amount")).trigger("change");
+        });
+
+
+        currency_symbol = "{{ bank_account.currency.symbol }}";
+        $("#coin-form").submit(function (event) {
+            event.preventDefault();
+            var accs = 0.0; var rate = 0.0; var rate_btc = 0.0; var total = 0.0; var accs_btc = 0.0;
+            $("tr td input[name*='gh_account']").trigger("change");
+            var amount_requested = parseFloat($("tr[data-group='total'] td[data-value-total] span").text());
+            if(amount_requested < 1){
+                pwd("Not enough GMBC to Convert", true);
+                return;
+            }
+
+            var data = {}, coins = [], total_requested_coin = total_init_coin = 0;
+            $.each($("tr td input[type='number']"), function (i, v) {
+{#              console.log("----", accs, "   ", parseFloat($(v).val().length > 0 ? $(v).val() : 0), "     ",parseFloat('{{ local.rate }}'))#}
+{#              console.log("----", accs_btc, "   ", parseFloat($(v).val().length > 0 ? $(v).val() : 0), "     ",parseFloat('{{ btc.rate }}'))#}
+                if(parseFloat($(v).val()) > 0) {
+                    init = parseFloat($(v).data("init"))
+                    total_init_coin += init;
+                    if($(v).data("currency")=="BTC"){
+                      accs_btc += parseFloat($(v).val().length > 0 ? $(v).val() : 0)/parseFloat('{{ btc.rate }}');
+                      total_requested_coin += parseFloat($(v).val().length > 0 ? $(v).val() : 0)/parseFloat('{{ btc.rate }}');
+                      coins.push({id: $(v).data("id"), amount: parseFloat($(v).val()), type: "Bitcoin" })
+                    }else {
+                      accs += parseFloat($(v).val().length > 0 ? $(v).val() : 0)/parseFloat('{{ local.rate }}');
+                      total_requested_coin += parseFloat($(v).val().length > 0 ? $(v).val() : 0)/parseFloat('{{ local.rate }}');
+                      coins.push({id: $(v).data("id"), amount: parseFloat($(v).val()), type: "Local"})
+                    }
+
+                }
+            });
+
+            if(total_requested_coin > total_init_coin){
+                pwd("Your total GH cannot be more than "+currency_symbol+parseFloat($("i[data-type='maximum']").data("max-total")), true);
+                return;
+            }
+            data['coins_details'] = coins
+            data['local_coins'] = accs
+            data['btc_coins'] = accs_btc
+            data['old_balance'] = old_balance
+
+            processFeed("{% url 'core:coin-converter' %}", JSON.stringify(data), 'Processing Request...', true, 'POST', function (d) {
+                if (d.type == 'Success') {
+                    BootstrapDialog.alert({
+                        title: "Server Response",
+                        message: d.msg,
+                        onhide: function () {location = '{% url 'core:dashboard' %}'}
+                    });
+                } else {
+                    BootstrapDialog.alert(d.msg)
+                }
+            }, function (d) {
+                BootstrapDialog.alert(d.responseText)
+            });
+
+        });
+
+
+    });
+
+</script>
+<style>
+    .gh-out {
+        width: 80px;
+        float: right;
+        max-height: 20px;
+        font-size: .8em;
+        padding: 3px;
+    }
+</style>

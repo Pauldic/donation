@@ -1,0 +1,271 @@
+{% extends "core/includes/base_back.html" %}
+{% load i18n static notifications_tags humanize %}
+
+{% block content_body %}
+    <div class="page-container">
+        {#        <div class="page-header clearfix">#}
+        {#          <div class="pull-left">#}
+        {#            <h4 class="mt-0 mb-5">Profile</h4>#}
+        {#            <ol class="breadcrumb mb-0">#}
+        {#              <li><a href="{% url 'core:dashboard' %}">Home</a></li>#}
+        {#              <li class="active">Profile</li>#}
+        {#            </ol>#}
+        {#          </div>#}
+        {#        </div>#}
+
+        <div class="page-content container-fluid p-0">
+            <div class="row row-0">
+                <div class="col-lg-12">
+                    <div style="height: auto; " class="pl-10 pr-10 clearfix overlay text-white">
+                        <div class="pull-left media" style="width: 100%">
+                            <div class="media-left">
+                                <img src="{% static 'back/images/backgrounds/profile.png' %}" alt="" style="opacity: 1; z-index: -1" class="img-main img-responsive">
+                                <a href="javascript:void(0)" style="display: inline-block; border-radius: 50%; padding: 3px; background-color: #fff;" class="hidden-xs">
+                                    <img class="img-circle" width="100" alt="" src="{{ request.user.avatar_url }}"
+                                         onerror="if (this.src != '{% static 'back/images/users/19.jpg' %}') this.src = '{% static 'back/images/users/19.jpg' %}'">
+                                </a>
+                            </div>
+                            <div style="width: auto; display: inline-block;" class="media-body media-middle">
+                                <h2 class="media-heading">{{ request.user.member.full_name }}</h2>
+                                <div class="fs-20 hidden-sm hidden-xs">Member since {{ request.user.member.created|naturalday }}</div>
+                            </div>
+
+                            <div class="pull-right text-center" style="display: inline-block">
+                                <ul class="list-inline">
+                                    <li>
+                                        <div class="fs-24 fw-500">{{ request.user.member.coin_account_balance }}</div>
+                                        <p>GMB Coin</p>
+                                    </li>
+                                    <li>
+                                        <div class="fs-24 fw-500">{{ request.user.member.status }}</div>
+                                        <p>Account Status</p>
+                                    </li>
+                                </ul>
+                                <button type="button" class="manage-account btn btn-raised btn-block_ btn-primary">Sell GMBC</button>
+                                <button type="button" class="ph2coin btn btn-raised btn-block_ btn-primary">PH &raquo; GMBC</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row ml-10 mr-10 pt-10">
+                <div class="col-md-3">
+                    <div class="widget clear">
+                        <div class="widget-heading">
+                            <h3 class="widget-title">About me</h3>
+                        </div>
+                        <div class="widget-body">
+                            <ul class="media-list mb-0">
+                                {#                    <li class="media">#}
+                                {#                      <div class="media-left"><i class="ti-world text-info"></i></div>#}
+                                {#                      <div class="media-body">#}
+                                {#                        <p>{{ rootURL }}</p>#}
+                                {#                      </div>#}
+                                {#                    </li>#}
+                                <li class="media">
+                                    <div class="media-left"><i class="ti-tag text-info"></i></div>
+                                    <div class="media-body">
+                                        <p>Basic Member</p>
+                                    </div>
+                                </li>
+                                <li class="media">
+                                    <div class="media-left"><i class="ti-email text-info"></i></div>
+                                    <div class="media-body">
+                                        <p>{{ request.user.member.email }}</p>
+                                    </div>
+                                </li>
+                                <li class="media">
+                                    <div class="media-left"><i class="ti-home text-info"></i></div>
+                                    <div class="media-body">
+                                        <p>{{ request.user.member.country }}</p>
+                                    </div>
+                                </li>
+                                <li class="media">
+                                    <div class="media-left"><i class="ti-mobile text-info"></i></div>
+                                    <div class="media-body">
+                                        <p>{{ request.user.member.phone }}</p>
+                                    </div>
+                                </li>
+                                <li class="media">
+                                    <div class="media-left"><i class="ti-location-pin text-info"></i></div>
+                                    <div class="media-body">
+                                        <p>{{ code }}</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="widget clear">
+                        <div class="widget-heading">
+                            <h3 class="widget-title">Account Details</h3>
+                        </div>
+                        <div class="widget-body">
+                            {% for acc in request.user.member.bank_accounts.all %}
+                                <p><span>Name: </span>{{ acc.bank.name }}</p>
+                                <p><span>Number: </span>{{ acc.number }}</p>
+                                {% if acc.branch_name %}
+                                    <p><span>Branch: </span>{{ acc.branch_name }}</p>
+                                {% endif %}
+                                {% if acc.sort_code %}
+                                    <p><span>Sort Code: </span>{{ acc.sort_code }}</p>
+                                {% endif %}
+                                <hr>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="widget clear">
+                        <div class="widget-heading">
+                            <h3 class="widget-title">Skills</h3>
+                        </div>
+                        <div class="widget-body">
+                            <ul class="list-unstyled mb-0">
+                                <li>
+                                    <div class="block clearfix mb-5"><span class="pull-left fs-12">HTML5</span><span class="pull-right label label-outline label-primary">95%</span></div>
+                                    <div class="progress progress-xs">
+                                        <div role="progressbar" data-transitiongoal="85" class="progress-bar" style="width: 85%;" aria-valuenow="85"></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="block clearfix mb-5"><span class="pull-left fs-12">CSS</span><span class="pull-right label label-outline label-success">98%</span></div>
+                                    <div class="progress progress-xs">
+                                        <div role="progressbar" data-transitiongoal="98" class="progress-bar progress-bar-success" style="width: 98%;" aria-valuenow="98"></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="block clearfix mb-5"><span class="pull-left fs-12">Javascript</span><span class="pull-right label label-outline label-purple">85%</span></div>
+                                    <div class="progress progress-xs">
+                                        <div role="progressbar" data-transitiongoal="85" class="progress-bar progress-bar-purple" style="width: 85%;" aria-valuenow="85"></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="widget clear">
+                        <div class="widget-heading">
+                            <div class="media">
+                                {#                    <div class="media-left">#}
+                                {#                        <img class="media-object mo-lg img-circle" alt="" src="{{ request.user.avatar_url }}" onerror="if (this.src != '{%  static 'back/images/users/19.jpg' %}') this.src = '{%  static 'back/images/users/19.jpg' %}';">#}
+                                {#                    </div>#}
+                                <div class="media-body media-middle">
+                                    <div class="media-left"><i class="ti-world text-info"></i></div>
+                                    <div class="media-body">
+                                        <p>{{ rootURL }}</p>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="media-left"><i class="ti-timer text-info"></i> Online:
+                                        <time datetime="{{ audit.created }}" class="text-muted fs-12">{{ audit.created|date }} <i class="ti-time"></i> {{ audit.created|time }} </time>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-body">
+                            {#                    <div class="fb-page" data-href="{{ fb_page }}" data-width="500" data-tabs="timeline,messages,events" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="{{ fb_page }}" class="fb-xfbml-parse-ignore"><a href="{{ fb_page }}">Test</a></blockquote></div>#}
+                            {#                    <div class="fb-comments" data-href="{{ fb_page }}" data-numposts="5"></div>#}
+                            <div class="thumbnail"><img src="{% static 'back/images/backgrounds/02.jpg' %}" alt="">
+                                <div class="text-right caption">
+                                    <ul class="list-inline mb-0">
+                                        <li>
+                                            <div class="fb-like" data-href="{{ fb_page }}" data-layout="box_count" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
+                                            <div class="fb-share-button" data-href="{{ fb_page }}" data-layout="box_count" data-size="small" data-mobile-iframe="true">
+                                                <a class="fb-xfbml-parse-ignore" target="_blank"
+                                                   href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.facebook.com%2Fsdtestpage&amp;src=sdkpreparse">Share</a></div>
+                                            <div class="fb-follow" data-href="{{ fb_page }}" data-layout="standard" data-size="small" data-show-faces="true"></div>
+                                        </li>
+                                        {#                        <li><i class="ti-heart text-danger"></i> 4325</li>#}
+                                        {#                        <li><i class="ti-share text-success"></i> 3654</li>#}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {#              <div class="widget clear">#}
+                    {#                <div class="widget-heading">#}
+                    {#                  <div class="media">#}
+                    {#                    <div class="media-left"><img src="{% static 'back/images/users/12.jpg' %}" alt="" class="media-object mo-lg img-circle"></div>#}
+                    {#                    <div class="media-body media-middle">#}
+                    {#                      <p class="mb-0"><span class="fw-500">Pamela Day</span> at <span class="fw-500">Los Angeles</span></p>#}
+                    {#                      <time datetime="2015-12-10T20:50:48+07:00" class="text-muted fs-12">20 Jan 2016 <i class="ti-time"></i> 9:29 PM</time>#}
+                    {#                    </div>#}
+                    {##}
+                    {#                  </div>#}
+                    {#                </div>#}
+                    {#              </div>#}
+                </div>
+                <div class="col-md-3">
+                    <div class="widget clear">
+                        <div class="widget-heading">
+                            <h3 class="widget-title">Our Support Team</h3>
+                        </div>
+                        <div class="widget-body">
+                            <ul class="media-list mb-0">
+                                <li class="media"><a href="javascript:;" class="conversation-toggle">
+                                    <div class="media-left avatar"><img src="{% static 'back/images/users/10.jpg' %}" alt="" class="media-object img-circle"><span class="status bg-success"></span>
+                                    </div>
+                                    <div class="media-body">
+                                        <h5 class="media-heading">POP Support</h5>
+                                        <p class="text-muted mb-0">pop.support@gmbenefit.org</p>
+                                    </div>
+                                </a></li>
+                                <li class="media"><a href="javascript:;" class="conversation-toggle">
+                                    <div class="media-left avatar"><img src="{% static 'back/images/users/20.jpg' %}" alt="" class="media-object img-circle"><span class="status bg-success"></span>
+                                    </div>
+                                    <div class="media-body">
+                                        <h5 class="media-heading">How it Works/Registration</h5>
+                                        <p class="text-muted mb-0">registration@gmbenefit.or</p>
+                                    </div>
+                                </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="widget clear">
+                        <div class="widget-heading">
+                            <h3 class="widget-title">Current Session</h3>
+                        </div>
+                        <div class="widget-body">
+                            <ul class="media-list mb-0">
+                                <li class="media">
+                                    <div class="media-left"><i class="ti-control-record text-info"></i></div>
+                                    <div class="media-body">
+                                        <p>{{ audit.created|naturaltime }}</p>
+                                    </div>
+                                </li>
+                                <li class="media">
+                                    <div class="media-left"><i class="ti-control-record text-danger"></i></div>
+                                    <div class="media-body">
+                                        <p>{{ audit.ip }}</p>
+                                    </div>
+                                </li>
+                                <li class="media">
+                                    <div class="media-left"><i class="ti-control-record text-warning"></i></div>
+                                    <div class="media-body">
+                                        <p>{{ audit.browser }} {{ audit.browser_version }}</p>
+                                    </div>
+                                </li>
+                                <li class="media">
+                                    <div class="media-left"><i class="ti-control-record text-success"></i></div>
+                                    <div class="media-body">
+                                        <p>{{ audit.os }} {{ audit.os_version }}</p>
+                                    </div>
+                                </li>
+                                <li class="media">
+                                    <div class="media-left"><i class="ti-control-record text-primary"></i></div>
+                                    <div class="media-body">
+                                        <p>Via {{ audit.auth_backend }}</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {#    <script type="text/javascript" src="{% static 'jQuery/jquery-2.2.3.min.js' %}"></script>#}
+    <script type="text/javascript">
+      $(document).ready(function () {
+      })
+    </script>
+{% endblock %}

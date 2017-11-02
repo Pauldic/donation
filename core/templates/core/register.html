@@ -1,0 +1,308 @@
+{% extends "registration/base.html" %}
+{% load i18n static bootstrap %}
+
+{% block content_body %}
+
+
+<div class="bg-full-page login-full-bg">
+    <div class="row " style="background: rgba(0,0,0,0.4);">
+        <!-- Nav tabs -->
+        <div class="card absolute-center">
+            <div class="ms-hero-bg-primary ms-hero-img-mountain">
+                <div>
+                    <h2 class="text-center no-m pt-4 pb-4 color-white index-1"><b><a href="{% url 'core:index' %}" title="Home" style="color: white"><i class="fa fa-home"></i></a> Registration</b></h2></div>
+            </div>
+
+            <div class="row"  id="ms-login-tab">
+                <div class="col-xm-12" style="padding: 30px 40px 10px 30px">
+                    <form data-special="regForm" method="post" id="registerationForm" action="">
+
+                        {% csrf_token %}
+                        <fieldset>
+{#                            {{ form|bootstrap }}#}
+
+                            <div class="form-group has-primary">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+                                  <i class="fa fa-id-card-o"></i>
+                                </span>
+                                    {{ form.first_name.errors }}
+                                    <label class="control-label" for="id_first_name">First Name</label>
+                                    {{ form.first_name }}
+                                    <span class="material-input"></span>
+                                </div>
+                            </div>
+                            <div class="form-group has-primary">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+                                  <i class="fa fa-id-card-o"></i>
+                                </span>
+                                    {{ form.last_name.errors }}
+                                    <label class="control-label" for="id_last_name">Last Name</label>
+                                    {{ form.last_name }}
+                                    <span class="material-input"></span>
+                                </div>
+                            </div>
+                            <div class="form-group has-primary">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+                                  <i class="fa fa-envelope"></i>
+                                </span>
+                                    {{ form.email.errors }}
+                                    <label class="control-label" for="id_email">Email</label>
+                                    {{ form.email }}
+                                    <span class="material-input"></span>
+                                </div>
+                            </div>
+                            <div class="form-group has-primary">
+                                <div class="input-group tel-group">
+{#                                    <span class="input-group-addon"><i class="fa fa-phone"></i></span>#}
+                                    {{ form.country.errors }}
+                                    <label class="control-label" for="id_phone">Country</label>
+                                    {{ form.country }}
+{#                                    <input type="tel" id="id_phone" class="form-control">#}
+                                    <span class="material-input"></span>
+
+                                </div>
+                            </div>
+                            <div class="form-group has-primary">
+                                <div class="input-group tel-group">
+{#                                    <span class="input-group-addon"><i class="fa fa-phone"></i></span>#}
+                                    {{ form.phone.errors }}
+                                    <label class="control-label" for="id_phone">
+                                        <span id="id_phone_valid_msg" class="hide">✓ Valid</span>
+                                        <span id="id_phone_invalid_msg" class="hide">Invalid </span>
+                                        Phone</label>
+                                    {{ form.phone }}
+{#                                    <input type="tel" id="id_phone" class="form-control">#}
+                                    <span class="material-input"></span>
+{#                                    <span id="id_phone_valid_msg" class="hide">✓ Valid</span>#}
+{#                                    <span id="id_phone_invalid_msg" class="hide">Invalid </span>#}
+                                </div>
+                            </div>
+                            <div class="form-group has-primary">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+                                  <i class="fa fa-user"></i>
+                                </span>
+                                    {{ form.username.errors }}
+                                    <label class="control-label" for="id_username">Username</label>
+                                    {{ form.username }}
+                                    <span class="material-input"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group has-primary">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+                                  <i class="fa fa-lock"></i>
+                                </span>
+                                    {{ form.password.errors }}
+                                    <label class="control-label" for="id_password">Password</label>
+                                    {{ form.password }}
+                                    <span class="material-input"></span>
+                                </div>
+                            </div>
+                            <div class="form-group has-primary">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+                                  <i class="fa fa-lock"></i>
+                                </span>
+                                    <label class="control-label" for="id_password_2">Repeat Password</label>
+                                    <input type="password" class="form-control" id="id_password_2" placeholder=""/>
+                                    <span class="material-input"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group has-primary">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+                                  <i class="fa fa-signing"></i>
+                                </span>
+                                    {{ form.guider.errors }}
+                                    <label class="control-label" for="id_guider">Guider's Username</label>
+                                    {{ form.guider }}
+                                    <span class="material-input"></span>
+                                </div>
+                            </div>
+{#                            <a href="{% url 'core:login' %}" title="Login if you already have an account">Login</a>#}
+
+                            <button class="btn btn-raised btn-block btn-primary" type="submit">Register Now</button>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <a href="/" class="btn btn-white">
+                <i class="fa fa-home"></i> Go Home
+                <div class="ripple-container"></div>
+            </a>
+        </div>
+    </div>
+</div>
+    <script src="{% static 'clientjs/client.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'inte-tel-input/css/intlTelInput.css' %}">
+    <script src="{% static 'inte-tel-input/js/intlTelInput.js' %}"></script>
+
+    <style>
+        .country-list,.flag-container{
+            z-index: 100!important;
+            color: #4a4747;
+            font-weight: 400;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+
+            var countryData = $.fn.intlTelInput.getCountryData(), telInput = $("#id_phone"), countryDropdown = $("#id_country"), invalidMsg = $("#id_phone_invalid_msg"), validMsg = $("#id_phone_valid_msg");
+            telInput.intlTelInput({
+                utilsScript: "{% static 'inte-tel-input/js/utils.js' %}", // just for formatting/placeholders etc
+                geoIpLookup: function(callback) {
+                    processFeed("{{ ip_lookup }}", {}, null, false, 'get', function(d){
+                        callback(d.countryCode.toLowerCase())
+                    }, function (d) {});
+                },
+                preferredCountries: ['ng', 'gb'],
+                nationalMode: false,
+                autoPlaceholder: true,
+            });
+            var initialCountry = telInput.intlTelInput("getSelectedCountryData").iso2;
+            countryDropdown.val(initialCountry);
+
+            telInput.on("countrychange", function(e, countryData) {
+                countryDropdown.val(countryData.iso2);
+            });
+            countryDropdown.change(function() {
+                telInput.intlTelInput("setCountry", $(this).val());
+            });
+{#            {% if ip_lookup %}#}
+{#                processFeed("{{ ip_lookup }}", {}, null, false, 'get', function(d){#}
+{#                    countryDropdown.val(d.countryCode.toLowerCase());#}
+{#                    telInput.intlTelInput("setCountry", d.countryCode.toLowerCase());#}
+{#                }, function (d) {});#}
+{#            {% endif %}#}
+
+            var reset = function() {
+                telInput.removeClass("error");
+                invalidMsg.addClass("hide");
+                validMsg.addClass("hide");
+            };
+            telInput.blur(function() {
+                reset();
+                if ($.trim(telInput.val())) {
+                    if (telInput.intlTelInput("isValidNumber")) {
+                        validMsg.removeClass("hide");
+                    } else {
+                        telInput.addClass("error");
+                        invalidMsg.removeClass("hide");
+                    }
+                }
+            });
+            // on keyup / change flag: reset
+            telInput.on("keyup change", reset);
+            console.log(telInput.intlTelInput("getNumber"))
+
+            var client = new ClientJS();
+            var device = (client.getDeviceVendor() || "") + " " + (client.getDevice() || "");
+            $("#client-id").val(client.getFingerprint() + "::" + client.getBrowser() + " " + client.getBrowserVersion() + "::" + client.getOS() + " " + client.getOSVersion() + "::" +
+                    client.getCurrentResolution() + "::" + client.getAvailableResolution() + "::" + (device.trim() || 'Unknown'));
+
+            $("div.social-login a").click(function(e){
+                e.preventDefault();
+{#                TODO: Think of encripting this id_client value#}
+                location.href = $(this).prop('href').replace("/?", "/?client_id="+$("#client-id").val()+"&");
+            });
+
+
+
+
+            $("#registerationForm").submit(function (event) {
+                event.preventDefault();
+                if (validate().length>0){
+                    $.each(errors, function (i,v) { dialog=pwd(v, true); });
+                    return false;
+                }
+{#                processFeed(url, data, blocking, method, successCallback, errorCallback) {#}
+                processFeed(location.href, $('#registerationForm').serialize().replace("&phone=%2B","&phone="), "Processing.....", false, 'POST', function (d) {
+                    console.log(d);
+                    vv = d;
+                    html = "<br/><dl>";
+                    if (d.errors) {
+                        p = JSON.parse(d.errors)
+                        for (var key in p) {
+                            if (p.hasOwnProperty(key)) {
+                                html += "<dt>" + key.toUpperCase() + "</dt>"
+                                $.each(p[key], function (i, v) {
+                                    html += "<dd>" + v.message + "</dd>"
+                                });
+                            }
+                        }
+                        html += "</dl>";
+                    }
+
+                    if (d.type == "Success") {
+                        console.log("9888888")
+                        $('#registerationForm')[0].reset();
+                        BootstrapDialog.alert({
+                            message: d.msg,
+                            onhide: function(dialog){window.location = "{% url 'core:login' %}";}
+                        });
+                        $('#registerationForm button[type="submit"]').text('Redirecting...').attr('disable', true);
+                    } else {
+                        console.log("999999")
+                        console.log(d)
+                        BootstrapDialog.alert(d.msg+(html=="<br/><dl>"? "": html));
+                    }
+                }, function (d) {
+                    console.log("55555")
+                    console.log(d)
+                    BootstrapDialog.alert(d.responseText);
+                });
+            });
+
+
+
+            function validate() {
+                errors = [];
+                if (!isEmail($("#id_email").val())) {
+                    errors.push("Email has wrong entry.")
+                }
+                if (!telInput.intlTelInput("isValidNumber")) {
+                    errors.push("Phone has wrong entry, please enter correct phone number");
+                }
+                if ($("#id_first_name").val().length === 0) {
+                    errors.push("First Name Not a valid name. Please make a valid entry");
+                }
+                if ($("#id_last_name").val().length === 0) {
+                    errors.push("Last Name Not a valid name. Please make a valid entry");
+                }
+{#                if ($("#id_bank_name").val().length === 0) {#}
+{#                    errors.push("Please select your Bank Name");#}
+{#                }#}
+{#                if (isNaN($("#id_account_number").val()) || $("#id_account_number").val().length != 10) {#}
+{#                    errors.push("Bank Account Number has wrong entry, please provide your NUBAN 10 digits account number");#}
+{#                }#}
+                if ($("#id_country").val().length === 0) {
+                    errors.push("Please select your Country of residence");
+                }
+{#                if ($("#id_state").val().length === 0) {#}
+{#                    errors.push("Please select your State of residence");#}
+{#                }#}
+{#                if ($("#id_address").val().trim().length === 0) {#}
+{#                    errors.push("Please select your City of residence");#}
+{#                }#}
+                if ($("#id_username").val().trim().length < 4) {
+                    errors.push("Enter username (character length greater than 3)");
+                }
+                if ($("#id_password").val().trim() != $("#id_password_2").val().trim()) {
+                    errors.push("Password mismatch, please enter same password for both password fields");
+                }else if ($("#id_password").val().trim().length < 6 || $("#id_password_2").val().trim().length < 6) {
+                    errors.push("Enter password (character length greater than 5)");
+                }
+                return errors;
+            }
+        });
+var dd;
+    </script>
+{% endblock %}

@@ -1,0 +1,16 @@
+<form action="{% url "social:complete" partial_backend_name %}" method="post" role="form">
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+    <input type="hidden" name="partial_token" value="{{ partial_token }}">
+
+
+    <p>Your email address is required.</p>
+    <div class="form-group">
+        <label class="control-label" for="email">Email address:</label>
+        <input class="form-control" id="email" placeholder="Email" type="email" name="email" value="" autofocus/>
+    </div>
+
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-primary">Continue</button>
+
+</form>
+

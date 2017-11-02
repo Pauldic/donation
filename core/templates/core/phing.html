@@ -1,0 +1,130 @@
+{% load i18n static normalise_decimal humanize %}
+
+<div class="row">
+    {% if error %}
+        <div class="col-md-12">
+            <div class="bootstrap-dialog-message">{{ error|safe }}</div>
+        </div>
+    {% else %}
+        <div class="col-md-12">
+            <p>For a sustainable community we allow gradual increment of PH Growth and strongly adverse you participate with ONLY your spare money.
+                Your profile is allowed to PH within the range of
+                {% if phing_options|length > 1 %}
+                    {{ local.symbol }}{{ request.user.member.min_ph|decimal_normalise|intcomma }} to {{ local.symbol }}{{ request.user.member.max_ph|decimal_normalise|intcomma }} for your local
+                    currency ({{ local.code }}) or
+                {% endif %}
+                {{ btc.symbol }}{{ request.user.member.min_ph_btc|decimal_normalise }} to {{ btc.symbol }}{{ request.user.member.max_ph_btc|decimal_normalise }} for Bitcoin (BTC)
+            </p>
+            <hr>
+        </div>
+        <div class="col-md-12">
+            <form>
+
+                <div class="form-group">
+                    {% for ph in phing_options %}
+                        <div class="radio-custom radio-inline">
+                            <input id="currency-{{ forloop.counter }}" type="radio" data-roi="{{ ph.1 }}" data-min="{{ request.user.member.min_ph|decimal_normalise }}"
+                                   data-max="{{ request.user.member.max_ph|decimal_normalise }}" data-min-btc="{{ request.user.member.min_ph_btc|decimal_normalise }}"
+                                   data-max-btc="{{ request.user.member.max_ph_btc|decimal_normalise }}" data-multiple="{{ ph.2 }}" name="currency" value="{{ ph.0 }}">
+                            <label for="currency-{{ forloop.counter }}">{{ ph.0 }}</label>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    <label for="amount">Amount
+                        <small></small>
+                    </label>
+                    <input id="amount" type="number" name="amount" class="form-control">
+                </div>
+
+                <div class="text-right">
+                    <button type="submit" id="ph-ok" class="btn btn-outline btn-primary">Ok</button>
+                    <button type="reset" class="btn btn-outline btn-warning" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+            {#            <div class="bootstrap-dialog-message">You can Provide Help between Min: <b>₦1,000</b>, Max: <b>₦100,000</b><br><i>Please PH only in the multiple of ₦1000</i><br></div>#}
+        </div>
+    {% endif %}
+
+
+</div>
+
+<script>
+  activation_fee = function (currency) {
+    processFeed('{% url 'core:ph-4-coin' 'first' %}', {c_type: currency}, 'Please Wait....', false, 'POST', function (d) {
+      if (d.type == 'Info') {
+        BootstrapDialog.alert(d.msg)
+      } else {
+        BootstrapDialog.alert({
+          title: 'GMC Server Response',
+          message: d.msg,
+          onhide: function (dialog) {window.location = '{% url 'core:dashboard' %}'}
+        })
+      }
+    }, function (d) {
+      BootstrapDialog.alert(d.responseText)
+    })
+  }
+
+  $(document).ready(function () {
+    $('input[type=\'radio\']').change(function () {
+      $('label[for=\'amount\']>small').html(' <i>' + $(this).data('roi') + '%</i>')
+    })
+    $('#ph-ok').click(function (d) {
+      d.preventDefault()
+      amount = parseFloat($('input[name=\'amount\']').val())
+      if (isNaN(amount)) {
+        pwd('Please enter a valid amount', true)
+        return
+      }
+      if (typeof $('input[name=\'currency\']:checked').val() == 'undefined') {
+        pwd('Please select Currency', true)
+        return
+      } else {
+        if ($('input[name=\'currency\']:checked').val() == 'Bitcoin') {
+          min = parseFloat($('input[name=\'currency\']:checked').data('min-btc'))
+          max = parseFloat($('input[name=\'currency\']:checked').data('max-btc'))
+          if (amount < min || amount > max) {
+            pwd('PH amount (BTC ' + amount + ') must be within the range BTC [' + min + ' - ' + max + '] ', true)
+            return
+          } else {
+            multiple = parseFloat(parseFloat($('input[name=\'currency\']:checked').data('multiple')))
+            if ((amount / multiple) % 1 > 0) {
+              pwd('PH amount (BTC ' + amount + ') must be in multiple of ' + multiple, true)
+              return
+            }
+          }
+        } else {
+          min = parseFloat($('input[name=\'currency\']:checked').data('min'))
+          max = parseFloat($('input[name=\'currency\']:checked').data('max'))
+          if (amount < min || amount > max) {
+            pwd("Amount ({{ local.code }} " + amount + ") must be within the range {{ local.code }} [" + min + ' - ' + max + '] ', true)
+            return
+          } else {
+            multiple = parseFloat(parseFloat($('input[name=\'currency\']:checked').data('multiple')))
+            if (amount % multiple > 0) {
+              pwd("PH amount ({{ local.code }} " + amount + ') must be in multiple of ' + multiple, true)
+              return
+            }
+          }
+        }
+      }
+
+      processFeed('{% url 'core:ph' %}', {amount: amount, c_type: $('input[name=\'currency\']:checked').val()}, 'Please Wait....', false, 'POST', function (d) {
+        if (d.type == 'Info') {
+          BootstrapDialog.alert(d.msg)
+        } else {
+          BootstrapDialog.alert({
+            message: d.msg,
+            onhide: function (dialog) {window.location = '{% url 'core:dashboard' %}'},
+          })
+        }
+      }, function (d) {
+        BootstrapDialog.alert(d.type + '<br>' + d.responseText)
+      });
+
+    })
+
+  })
+</script>
+

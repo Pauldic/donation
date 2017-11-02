@@ -1,0 +1,385 @@
+{% load i18n static bootstrap humanize %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Booster &mdash; A free HTML5 Template by FREEHTML5.CO</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="HelpBox is a Pair to Pair Donation platform"/>
+    <meta name="keywords"
+          content="ponzi, ponzi scheme, ponzi website, donation, donation website, paying, GH, PH, getting help, get help, provide help, fast paying, fast pay, money doubler,Latest Ponzi schemes, September ponzi scheme "/>
+
+
+  <!--
+	//////////////////////////////////////////////////////
+
+	FREE HTML5 TEMPLATE
+	DESIGNED & DEVELOPED by FREEHTML5.CO
+
+	Website: 		http://freehtml5.co/
+	Email: 			info@freehtml5.co
+	Twitter: 		http://twitter.com/fh5co
+	Facebook: 		https://www.facebook.com/fh5co
+
+	//////////////////////////////////////////////////////
+	 -->
+
+  <!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut png" href="favicon.png">
+
+	<!-- Google Webfonts -->
+	<link href='//fonts.googleapis.com/css?family=Roboto:400,300,100,500' rel='stylesheet' type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="{% static 'front/css/animate.css'  %}">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="{% static 'front/css/icomoon.css' %}">
+	<!-- Owl Carousel -->
+	<link rel="stylesheet" href="{% static 'front/css/owl.carousel.min.css' %}">
+	<link rel="stylesheet" href="{% static 'front/css/owl.theme.default.min.css' %}">
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="{% static 'front/css/magnific-popup.css' %}">
+	<!-- Theme Style -->
+	<link rel="stylesheet" href="{% static 'front/css/style.css' %}">
+	<!-- Modernizr JS -->
+	<script src="{% static 'front/js/modernizr-2.6.2.min.js' %}"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="{% static 'front/js/respond.min.js' %}"></script>
+	<![endif]-->
+
+        <style>
+            nav.navbar ul.navbar-nav a, nav.navbar div.navbar-header a{
+                color: white!important;
+            }
+            nav.navbar{
+                background: rgba(105, 56, 0, 0.67)!important;;
+            }
+            #fh5co-header > .navbar li.active a > span .border {
+                background: #e6a058;
+            }
+            .owl-carousel-fullwidth .item .fh5co-owl-text .fh5co-lead {
+                font-size: 4em;
+            }
+
+            .logo{
+                height: 60px;
+                text-align: center;
+                font: 0/0 a;
+            }
+            .logo:before {    /* create a full-height inline block pseudo=element */
+                content: ' ';
+                display: inline-block;
+                vertical-align: middle;  /* vertical alignment of the inline element */
+                height: 100%;
+            }
+            .logo img {
+                display: inline-block;
+                vertical-align: middle;  /* vertical alignment of the inline element */
+                font: 16px/1 Arial sans-serif;        /* <-- reset the font property */
+                height: 40px;
+            }
+            .fh5co-nav-toggle.active i::before, .fh5co-nav-toggle.active i::after,.fh5co-nav-toggle i::before, .fh5co-nav-toggle i::after, .fh5co-nav-toggle.active i, .fh5co-nav-toggle i {
+                background: #fff;
+            }
+            #fh5co-footer {  padding: 0;}
+        </style>
+	</head>
+	<body>
+
+	<header id="fh5co-header" role="banner">
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+				<!-- Mobile Toggle Menu Button -->
+				<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse" data-target="#fh5co-navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
+{#				<img src="{% static 'front/images/favicon.png' %}" style="float: left; padding-right: 10px" />#}
+				<div class="logo"><img src="{% static 'front/images/helpboxwhite.png' %}"  /></div>
+{#                    <a class="navbar-brand" href="{% url 'core:index' %}">Booster</a>#}
+				</div>
+				<div id="fh5co-navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="active"><a href="{% url 'core:index' %}"><span>Home <span class="border"></span></span></a></li>
+
+                        {% if request.user.is_active %}
+                            <li><a href="{% url 'core:dashboard' %}"><span>Dashboard <span class="border"></span></span></a></li>
+                            <li><a href="{% url 'core:logout' %}"><span>Logout of My Box <span class="border"></span></span></a></li>
+                        {% else %}
+                            <li><a href="{% url 'core:login' %}"><span>Login To My Box <span class="border"></span></span></a></li>
+                            <li><a href="{% url 'core:register' %}"><span>Register <span class="border"></span></span></a></li>
+                        {% endif %}
+						<li><a href="https://t.me/helpbox"><span>Telegram <span class="border"></span></span></a></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<!-- END .header -->
+
+	<div class="fh5co-slider">
+		<div class="owl-carousel owl-carousel-fullwidth">
+		    <div class="item" style="background-image:url({% static 'front/images/slide_1.jpg' %})">
+		    	<div class="fh5co-overlay"></div>
+		    	<div class="container">
+		    		<div class="row">
+		    			<div class="col-md-8 col-md-offset-2">
+			    			<div class="fh5co-owl-text-wrap">
+						    	<div class="fh5co-owl-text text-center to-animate">
+						    		<h1 class="fh5co-lead">Help is Love!</h1>
+                                    <h2 class="fh5co-sub-lead">What a greater Love than to Love your neighbor as you Love yourself. <br>At <b>HelpBox</b>, That is what we Do</h2>
+						    	</div>
+						    </div>
+					    </div>
+		    		</div>
+		    	</div>
+		    </div>
+		    <div class="item" style="background-image:url({% static 'front/images/slide_2.jpg' %})">
+		    	<div class="fh5co-overlay"></div>
+		    	<div class="container">
+		    		<div class="row">
+		    			<div class="col-md-8 col-md-offset-2">
+			    			<div class="fh5co-owl-text-wrap">
+						    	<div class="fh5co-owl-text text-center to-animate">
+						    		<h1 class="fh5co-lead">It Pays to Help</h1>
+									<h2 class="fh5co-sub-lead">At <b>HelpBox</b>, we Put Help and we Take Help... The Help you Put in his/her Box today will lead you to Taking Help from another's Box tomorrow <a href="https://t.me/helpbox">#HelpPays</a></h2>
+						    	</div>
+						    </div>
+					    </div>
+		    		</div>
+		    	</div>
+		    </div>
+		    <div class="item" style="background-image:url({% static 'front/images/slide_3.jpg' %})">
+		    	<div class="fh5co-overlay"></div>
+		    	<div class="container">
+		    		<div class="row">
+		    			<div class="col-md-8 col-md-offset-2">
+			    			<div class="fh5co-owl-text-wrap">
+						    	<div class="fh5co-owl-text text-center to-animate">
+						    		<h1 class="fh5co-lead">Fidelity in Action</h1>
+									<h2 class="fh5co-sub-lead">We always stand on our promise of putting smiles on your face, help us stand on your Action made with Put Help Button</h2>
+						    	</div>
+						    </div>
+					    </div>
+		    		</div>
+		    	</div>
+		    </div>
+		    <div class="item" style="background-image:url({% static 'front/images/slide_4.jpg' %})">
+		    	<div class="fh5co-overlay"></div>
+		    	<div class="container">
+		    		<div class="row">
+		    			<div class="col-md-8 col-md-offset-2">
+			    			<div class="fh5co-owl-text-wrap">
+						    	<div class="fh5co-owl-text text-center to-animate">
+						    		<h1 class="fh5co-lead">Testimony</h1>
+                                    <h2 class="fh5co-sub-lead">At <b>HelpBox</b> we do not only smile home with the help received, we share our testimony because we <i>overcame by the blood of the Lamb, and by the word of our testimony</i></h2>
+						    	</div>
+						    </div>
+					    </div>
+		    		</div>
+		    	</div>
+		    </div>
+		</div>
+	</div>
+	<div id="fh5co-main">
+		<!-- Features -->
+
+		<div id="fh5co-features">
+			<div class="container">
+				<div class="row text-center">
+					<div class="col-md-8 col-md-offset-2">
+						<h2 class="fh5co-section-lead">Key Principle</h2>
+                        <h3 class="fh5co-section-sub-lead"><b>HelpBox</b> is a renowned peer to peer donation community, with the intent of putting smiles on the faces of every participant. We Achieve this through free will donation among participating members</h3>
+					</div>
+					<div class="fh5co-spacer fh5co-spacer-md"></div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-sm-6 fh5co-feature-border">
+						<div class="fh5co-feature">
+							<div class="fh5co-feature-icon to-animate">
+								<i class="icon-bag"></i>
+							</div>
+							<div class="fh5co-feature-text">
+								<h3>{{ roi }}% with in 0 - 72hrs</h3>
+								<p>When you Put Help in a Member's Box we ensure that you are rewarded in the same manner within 0 - 72hrs. This happens with a benefit of {{ roi }}% added to your Box</p>
+{#								<p><a href="javascript:;">Read more</a></p>#}
+							</div>
+						</div>
+						<div class="fh5co-feature no-border">
+							<div class="fh5co-feature-icon to-animate">
+								<i class="icon-head"></i>
+							</div>
+							<div class="fh5co-feature-text">
+								<h3>User Satisfaction</h3>
+								<p>Far far away, behind the word mountains, far from the countries Vokalia.</p>
+{#								<p><a href="#">Read more</a></p>#}
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-6">
+						<div class="fh5co-feature">
+							<div class="fh5co-feature-icon to-animate">
+								<i class="icon-microphone"></i>
+							</div>
+							<div class="fh5co-feature-text">
+								<h3>Recommitment Policy</h3>
+								<p>We have deviced strategic recommitment policy that is convenient and sustainable. We ensure every member retain 20% of his/her Put Help in the system  </p>
+{#								<p><a href="#">Read more</a></p>#}
+							</div>
+						</div>
+						<div class="fh5co-feature no-border">
+							<div class="fh5co-feature-icon to-animate">
+								<i class="icon-clock2"></i>
+							</div>
+							<div class="fh5co-feature-text">
+								<h3>24/7 Support</h3>
+								<p>Our viable admins are always on the standby to support our members any time any day </p>
+{#								<p><a href="#">Read more</a></p>#}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Features -->
+
+
+		<div class="fh5co-spacer fh5co-spacer-lg"></div>
+		<!-- Products -->
+		<div class="container" id="fh5co-products">
+			<div class="row text-left">
+				<div class="col-md-8">
+					<h2 class="fh5co-section-lead">Experience it in a Better Way <small><a href="{% url 'core:register' %}" title="Register" >Get Started</a> </small></h2>
+{#					<h3 class="fh5co-section-sub-lead">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</h3>#}
+				</div>
+				<div class="fh5co-spacer fh5co-spacer-md"></div>
+			</div>
+			<div class="row">
+				<div class="col-md-3 col-sm-6 col-xs-6 col-xxs-12 fh5co-mb30">
+					<div class="fh5co-product">
+						<img src="{% static 'front/images/slide_1.jpg' %}" alt="" class="img-responsive img-rounded to-animate">
+						<h4>Help is Love</h4>
+						<p>What a greater Love than to Love your neighbor as you Love yourself. <br>At <b>HelpBox</b>, That is what we Do</p>
+{#						<p><a href="#">Read more</a></p>#}
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 col-xs-6 col-xxs-12 fh5co-mb30">
+					<div class="fh5co-product">
+						<img src="{% static 'front/images/slide_2.jpg' %}" alt="" class="img-responsive img-rounded to-animate">
+						<h4>It Pays to Help</h4>
+						<p>At <b>HelpBox</b>, we Put Help and we Take Help... The Help you Put in his/her Box today will lead you to Taking Help from another's Box tomorrow <a href="https://t.me/helpbox">#HelpPays</a></p>
+					</div>
+				</div>
+				<div class="visible-sm-block visible-xs-block clearfix"></div>
+				<div class="col-md-3 col-sm-6 col-xs-6 col-xxs-12 fh5co-mb30">
+					<div class="fh5co-product">
+						<img src="{% static 'front/images/slide_3.jpg' %}" alt="" class="img-responsive img-rounded to-animate">
+						<h4>Fidelity in Action</h4>
+						<p>We always stand on our promise of putting smiles on your face, help us stand on your Action made with Put Help Button</p>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 col-xs-6 col-xxs-12 fh5co-mb30">
+					<div class="fh5co-product">
+						<img src="{% static 'front/images/slide_4.jpg' %}" alt="" class="img-responsive img-rounded to-animate">
+						<h4>Testimony</h4>
+						<p>At <b>HelpBox</b> we do not only smile home with the help received, we share our testimony because we <i>overcame by the blood of the Lamb, and by the word of our testimony</i></p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<!-- Products -->
+		<div class="fh5co-spacer fh5co-spacer-lg"></div>
+
+{#		<div id="fh5co-clients">#}
+{#			<div class="container">#}
+{#				<div class="row">#}
+{#					<div class="col-md-3 col-sm-6 col-xs-6 col-xxs-12 fh5co-client-logo text-center to-animate"><img src="{% static 'front/images/client_1.png' %}" alt="FREEHTML5.co Free HTML5 Bootstrap Template" class="img-responsive"></div>#}
+{#					<div class="col-md-3 col-sm-6 col-xs-6 col-xxs-12 fh5co-client-logo text-center to-animate"><img src="{% static 'front/images/client_2.png' %}" alt="FREEHTML5.co Free HTML5 Bootstrap Template" class="img-responsive"></div>#}
+{#					<div class="visible-sm-block visible-xs-block clearfix"></div>#}
+{#					<div class="col-md-3 col-sm-6 col-xs-6 col-xxs-12 fh5co-client-logo text-center to-animate"><img src="{% static 'front/images/client_3.png' %}" alt="FREEHTML5.co Free HTML5 Bootstrap Template" class="img-responsive"></div>#}
+{#					<div class="col-md-3 col-sm-6 col-xs-6 col-xxs-12 fh5co-client-logo text-center to-animate"><img src="{% static 'front/images/client_4.png' %}" alt="FREEHTML5.co Free HTML5 Bootstrap Template" class="img-responsive"></div>#}
+{#				</div>#}
+{#			</div>#}
+{#		</div>#}
+
+		<div class="fh5co-bg-section" style="background-image: url({% static 'front/images/slide_2.jpg' %}); background-attachment: fixed;">
+			<div class="fh5co-overlay"></div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<div class="fh5co-hero-wrap">
+							<div class="fh5co-hero-intro text-center">
+								<h1 class="fh5co-lead"><span class="quo">&ldquo;</span>It is not just all about what we get, it is about making you smile again</h1>
+								<p class="author">&mdash; <cite>Paul Smith</cite></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<footer id="fh5co-footer">
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-sm-6">
+{#					<div class="fh5co-footer-widget">#}
+						<h2 class="fh5co-footer-logo">HelpBox</h2>
+						<p>The platform you can trust</p>
+{#					</div>#}
+				</div>
+				<div class="col-md-6 col-sm-6">
+                    <h2 class="fh5co-footer-logo">
+						<ul class="fh5co-social">
+							<li><a href="#"><i class="icon-facebook"></i></a></li>
+							<li><a href="#"><i class="icon-twitter"></i></a></li>
+							<li><a href="#"><i class="icon-instagram"></i></a></li>
+							<li><a href="#"><i class="icon-linkedin"></i></a></li>
+							<li><a href="#"><i class="icon-youtube"></i></a></li>
+						</ul>
+                    </h2>
+{#					</div>#}
+				</div>
+
+			</div>
+		</div>
+
+	</footer>
+
+
+	<!-- jQuery -->
+<script src="{% static 'jQuery/jquery-2.2.3.min.js' %}"></script>
+	<!-- jQuery Easing -->
+	<script src="{% static 'front/test/js/jquery.easing.1.3.js' %}"></script>
+	<!-- Bootstrap -->
+	<script src="{% static 'front/test/js/bootstrap.min.js' %}"></script>
+	<!-- Owl carousel -->
+	<script src="{% static 'front/test/js/owl.carousel.min.js' %}"></script>
+	<!-- Waypoints -->
+	<script src="{% static 'front/test/js/jquery.waypoints.min.js' %}"></script>
+	<!-- Magnific Popup -->
+	<script src="{% static 'front/test/js/jquery.magnific-popup.min.js' %}"></script>
+	<!-- Main JS -->
+	<script src="{% static 'front/test/js/main.js' %}"></script>
+
+
+	</body>
+</html>

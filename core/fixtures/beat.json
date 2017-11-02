@@ -1,0 +1,184 @@
+[
+{
+  "model": "django_celery_beat.periodictask",
+  "pk": 1,
+  "fields": {
+    "name": "Test Schedule",
+    "task": "donate_v1.testing",
+    "interval": 2,
+    "crontab": null,
+    "solar": null,
+    "args": "[]",
+    "kwargs": "{}",
+    "queue": null,
+    "exchange": null,
+    "routing_key": null,
+    "expires": null,
+    "enabled": false,
+    "last_run_at": null,
+    "total_run_count": 0,
+    "date_changed": "2017-09-28T03:02:55.270Z",
+    "description": ""
+  }
+},
+{
+  "model": "django_celery_beat.periodictask",
+  "pk": 2,
+  "fields": {
+    "name": "Automatic GH",
+    "task": "core.gh_scheduler",
+    "interval": 7,
+    "crontab": null,
+    "solar": null,
+    "args": "[]",
+    "kwargs": "{}",
+    "queue": null,
+    "exchange": null,
+    "routing_key": null,
+    "expires": null,
+    "enabled": false,
+    "last_run_at": null,
+    "total_run_count": 0,
+    "date_changed": "2017-10-20T14:42:32.688Z",
+    "description": ""
+  }
+},
+{
+  "model": "django_celery_beat.periodictask",
+  "pk": 3,
+  "fields": {
+    "name": "GH Matcher",
+    "task": "core.gh_matcher_scheduler",
+    "interval": 5,
+    "crontab": null,
+    "solar": null,
+    "args": "[]",
+    "kwargs": "{}",
+    "queue": null,
+    "exchange": null,
+    "routing_key": null,
+    "expires": null,
+    "enabled": false,
+    "last_run_at": null,
+    "total_run_count": 0,
+    "date_changed": "2017-09-28T12:00:54.574Z",
+    "description": ""
+  }
+},
+{
+  "model": "django_celery_beat.periodictask",
+  "pk": 4,
+  "fields": {
+    "name": "Defaulters Cleanup",
+    "task": "core.cleanup_defaulters",
+    "interval": 7,
+    "crontab": null,
+    "solar": null,
+    "args": "[]",
+    "kwargs": "{}",
+    "queue": null,
+    "exchange": null,
+    "routing_key": null,
+    "expires": null,
+    "enabled": false,
+    "last_run_at": null,
+    "total_run_count": 0,
+    "date_changed": "2017-09-28T12:00:54.590Z",
+    "description": ""
+  }
+},
+{
+  "model": "django_celery_beat.periodictask",
+  "pk": 5,
+  "fields": {
+    "name": "Credit Computer",
+    "task": "core.bonus_computer",
+    "interval": 7,
+    "crontab": null,
+    "solar": null,
+    "args": "[]",
+    "kwargs": "{}",
+    "queue": null,
+    "exchange": null,
+    "routing_key": null,
+    "expires": null,
+    "enabled": false,
+    "last_run_at": null,
+    "total_run_count": 0,
+    "date_changed": "2017-10-20T14:41:22.083Z",
+    "description": ""
+  }
+},
+{
+  "model": "django_celery_beat.intervalschedule",
+  "pk": 1,
+  "fields": {
+    "every": 3,
+    "period": "seconds"
+  }
+},
+{
+  "model": "django_celery_beat.intervalschedule",
+  "pk": 2,
+  "fields": {
+    "every": 2,
+    "period": "seconds"
+  }
+},
+{
+  "model": "django_celery_beat.intervalschedule",
+  "pk": 3,
+  "fields": {
+    "every": 5,
+    "period": "seconds"
+  }
+},
+{
+  "model": "django_celery_beat.intervalschedule",
+  "pk": 4,
+  "fields": {
+    "every": 5,
+    "period": "minutes"
+  }
+},
+{
+  "model": "django_celery_beat.intervalschedule",
+  "pk": 5,
+  "fields": {
+    "every": 10,
+    "period": "seconds"
+  }
+},
+{
+  "model": "django_celery_beat.intervalschedule",
+  "pk": 6,
+  "fields": {
+    "every": 1,
+    "period": "minutes"
+  }
+},
+{
+  "model": "django_celery_beat.intervalschedule",
+  "pk": 7,
+  "fields": {
+    "every": 20,
+    "period": "seconds"
+  }
+},
+{
+  "model": "django_celery_beat.intervalschedule",
+  "pk": 8,
+  "fields": {
+    "every": 10,
+    "period": "minutes"
+  }
+},
+{
+  "model": "django_celery_beat.intervalschedule",
+  "pk": 9,
+  "fields": {
+    "every": 7,
+    "period": "minutes"
+  }
+}
+]

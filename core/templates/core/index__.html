@@ -1,0 +1,630 @@
+{% extends "core/includes/base.html" %}
+{% load i18n static bootstrap humanize %}
+
+
+{% block content_body %}
+    <!-- End Navbar -->
+    <div class="wrapper">
+        <div class="page-header clear-filter" filter-color="orange">
+            <div class="page-header-image" data-parallax="true" style="background-image: url({% static 'front/img/leopardo-corre-1280x800.jpg' %});">
+            </div>
+            <div class="container">
+                <div class="content-center brand">
+                    <img class="n-logo" src="{% static 'front/img/mmmFasttrack-logo2.png' %}" alt="">
+                    <h1 class="h1-seo">Restoring the Glory</h1>
+                    <h2>Together We Can Change The World</h2>
+                </div>
+                <h6 class="category category-absolute">Your 30% on a Fast Track</h6>
+            </div>
+        </div>
+
+        <div class="main">
+            <!-- <div class="section section-images">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="hero-images-container">
+                                <img src="{% static 'front/img/hero-image-1.png' %}" alt="">
+                            </div>
+                            <div class="hero-images-container-1">
+                                <img src="{% static 'front/img/hero-image-2.png' %}" alt="">
+                            </div>
+                            <div class="hero-images-container-2">
+                                <img src="{% static 'front/img/hero-image-3.png' %}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <div class="section section-basic">
+                <div class="container">
+                    <h3 class="title" style="padding-top: 20px; margin-bottom: 20px;">Learn More About FUNDFastTrack</h3>
+                    <div class="row">
+                        <ol class="card" style="padding: 20px 40px">
+                            <li>Register on the website.</li>
+                            <li>Enter the Personal Office (PO).</li>
+                            <li>There will be two big buttons: “Provide Help” and “Get Help”.</li>
+                            <li>If you want to put your money, so click “Provide Help” and point the sum of money, you would like to put in the System. The minimal sum is 1,000 Naira while maximum is 1,000,000</li>
+                            <li>You will get in the same moment Naira in your PO, and they begin to grow with the rates of {{roi}}% every 3 days.
+                            (Naira is only the currency inside the system.) By the way You get Naira, but you cannot sell them, they will be under the status “Unconfirmed”, because You didn't transfer your money, you just decided to do that.</li>
+                            <li>Then you will get the order with bank details of a person that you must transfer the money.
+                            The order will also have the contact details of that person, so you can talk with him if you wish and make sure, that he is real and alive man, same as You are.
+                            There is no central account in FUNDFastTrack, to collect all the money of participants (and from where they could be stolen easily). All the money transfers are made directly between participants.
+                            It means that everything is quite clear and honest. FundFastTrack plays just a role as some kind of a dispatch, which connect the participants.</li>
+                            <li>Transfer the money to that participant. He confirms the receive, and after that Your Naira become “confirmed”. That's it! Now You can sell them at any moment, fully or in parts.</li>
+                            <li>If you want to sell your Naira, click “Get Help” and point the sum.
+                            Another participant will get the order and he will transfer money to You, provide help. Same You did it before. But don't forget to confirm you money receive, after You get the money to Your bank account. (Not before! Beware of fraudsters!) Or the sender couldn't confirm his Naira.</li>
+                            <li>You can take a look of PO and all this buttons "Provide Help" and "Get help" in the DEMO.</li>
+                            <li>You can read detailed rules of system on the page "What is FundFastTrack".</li>
+                            <li>How to Provide Help (“buy” Naira)?</li>
+                            <li>How to Get Help (“sell” Naira)?</li>
+                        </ol>
+                        <p>
+                            We suggest you to participate with a small sum at the beginning, not critical for You, and go through the full process. From registration until you get the money. And so You will understand everything and all doubts will disappear<br><br>
+                            Good Luck! Long Live FundFastTrack!
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- End .section-navbars  -->
+            <div class="section section-tabs">
+                <div class="container">
+                    <div class="row" id="faq">
+                        <div class="col-md-12" style="color: #2E962E" >
+                            <h2>FundFastTrack FAQ</h2>
+                        </div>
+                        <div class="col-md-12">
+                            <div id="accordion" class="checkout">
+                                <div class="panel checkout-step">
+                                    <div> <span class="checkout-step-number">1.</span>
+                                        <h6 class="checkout-step-title"> <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-1" >Who can join FundFastTrack?</a></h6>
+                                    </div>
+                                    <div id="collapse-1" class="collapse in">
+                                        <p>Any person of legal age who lives in Nigeria or who is a citizen of Nigeria can join the FundFastTrack Nigeria Community.</p>
+                                        <p>The Community doesn’t contrast people one against another and doesn’t act on the principle of "divide and conquer".</p>
+                                        <p>Everyone contributes to the common good. The participants are asked only to follow the recommendations and avoid benefiting from others.</p>
+                                    </div>
+                                </div>
+                                <div class="panel checkout-step">
+                                    <div role="tab" id="heading-2"> <span class="checkout-step-number">2.</span>
+                                        <h6 class="checkout-step-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-2" >How to register in FundFastTrack?</a> </h6>
+                                    </div>
+                                    <div id="collapse-2" class="panel-collapse collapse">
+                                        <p>If you want to be a part of the Community, you should register on the official FundFastTrack website or by one of Guider’s.</p>
+                                        <p>To register in FundFastTrack you need to go to FundFastTrack website [ <a href="https://www.myhelpbox.com" target="_blank">www.myhelpbox.com</a> ] and click on “Registration” button in the upper right corner.</p>
+
+
+                                    </div>
+                                </div>
+                                <div class="panel checkout-step">
+                                    <div role="tab" id="heading-3"> <span class="checkout-step-number">3.</span>
+                                        <h6 class="checkout-step-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-3"  >What is a “Personal Office”?</a> </h6>
+                                    </div>
+                                    <div id="collapse-3" class="panel-collapse collapse">
+                                        <img src="{% static 'front/img/demo/ph-gh.png' %}">
+                                        Personal Office is a personalized section of the site, available for registered members. Through Personal Office you can:
+                                        <ul>
+                                            <li>Provide and Get Help (“buy” and “sell” Naira)
+                                                <ul>
+                                                    <li>See how your Naira’s grow</li>
+                                                    <li>Create “letters of happiness”</li>
+                                                </ul>
+                                            </li>
+                                            <li>Register newcomers and manage their Personal Office (if you are Guider)
+                                                <ul>
+                                                    <li>See your referrals and team</li>
+                                                </ul>
+                                            </li>
+                                            <li>Get in touch with:
+                                                <ul>
+                                                    <li>The Support Team — if you need to solve Personal Office issues</li>
+                                                    <li>Your Guider — if you need any advice or help</li>
+                                                    <li>Contact transfer Recipient or Sender — if you need to clear something up about transfer</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                        <p>&nbsp;</p>
+                                        <hr style="clear:both;">
+                                        <p>&nbsp;</p>
+                                        <p><img src="{% static 'front/img/demo/mypage.png' %}" style="padding-left: 40px; padding-right: 40px; float: right;"></p>
+                                        <ul>
+                                            <li>Make personal settings
+                                                <ul>
+                                                    <li>Edit your personal Contact info</li>
+                                                    <li>Change Privacy settings</li>
+                                                    <li>Add your bank accounts</li>
+                                                    <li>Сonnect mobile devices to be able to use Personal Office on a tablet or a smartphone</li>
+                                                    <li>Change your Referrer and appoint Confidant</li>
+                                                    <li>Change Personal Office language and time-zone</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                                <div class="panel checkout-step">
+                                    <div role="tab" id="heading-4"> <span class="checkout-step-number">4.</span>
+                                        <h6 class="checkout-step-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-4"  >How to login into Personal Office?</a> </h6>
+                                    </div>
+                                    <div id="collapse-4" class="panel-collapse collapse">
+                                        <div class="checkout-step-body">
+                                            <img src="{% static 'front/img/demo/home.png' %}">
+                                            <p>In order to access your Personal Office:</p>
+                                            <p>➔	You need to go to fundfastrack.com</p>
+                                            <p>➔	Also you can click on “LOGIN TO FundFastTrack” button in the right upper corner of the FundFastTrack official website.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel checkout-step">
+                                    <div role="tab" id="heading-5"> <span class="checkout-step-number">5.</span>
+                                        <h6 class="checkout-step-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-5"  >How to recover a password for Personal Office?</a> </h6>
+                                    </div>
+                                    <div id="collapse-5" class="panel-collapse collapse">
+                                        <div class="checkout-step-body">Coming Soon</div>
+                                    </div>
+                                </div>
+                                <div class="panel checkout-step">
+                                    <div role="tab" id="heading-6"> <span class="checkout-step-number">6.</span>
+                                        <h6 class="checkout-step-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-6"  >How to add an Account in Personal Office?</a> </h6>
+                                    </div>
+                                    <div id="collapse-6" class="panel-collapse collapse">
+                                        <div class="checkout-step-body">Coming Soon</div>
+                                    </div>
+                                </div>
+                                <div class="panel checkout-step">
+                                    <div role="tab" id="heading-7"> <span class="checkout-step-number">7.</span>
+                                        <h6 class="checkout-step-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-7"  >What is “Naira”?</a> </h6>
+                                    </div>
+                                    <div id="collapse-7" class="panel-collapse collapse">
+                                        <div class="checkout-step-body">Coming Soon</div>
+                                    </div>
+                                </div>
+                                <div class="panel checkout-step">
+                                    <div role="tab" id="heading-8"> <span class="checkout-step-number">8.</span>
+                                        <h6 class="checkout-step-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-8"  >How to Provide Help (“buy” Naira)?</a> </h6>
+                                    </div>
+                                    <div id="collapse-8" class="panel-collapse collapse">
+                                        <div class="checkout-step-body">Coming Soon</div>
+                                    </div>
+                                </div>
+                                <div class="panel checkout-step">
+                                    <div role="tab" id="heading-9"> <span class="checkout-step-number">9.</span>
+                                        <h6 class="checkout-step-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-9"  >How to Get Help (“sell” Naira)?</a> </h6>
+                                    </div>
+                                    <div id="collapse-9" class="panel-collapse collapse">
+                                        <div class="checkout-step-body">Coming Soon</div>
+                                    </div>
+                                </div>
+                                <div class="panel checkout-step">
+                                    <div role="tab" id="heading-10"> <span class="checkout-step-number">10.</span>
+                                        <h6 class="checkout-step-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-10"  >How to write a “Letter of happiness”?</a> </h6>
+                                    </div>
+                                    <div id="collapse-10" class="panel-collapse collapse">
+                                        <div class="checkout-step-body">Coming Soon</div>
+                                    </div>
+                                </div>
+                                <div class="panel checkout-step">
+                                    <div role="tab" id="heading-11"> <span class="checkout-step-number">11.</span>
+                                        <h6 class="checkout-step-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-11"  >Who are “Referrers” and “Referrals”?</a> </h6>
+                                    </div>
+                                    <div id="collapse-11" class="panel-collapse collapse">
+                                        <div class="checkout-step-body">Coming Soon</div>
+                                    </div>
+                                </div>
+                                <div class="panel checkout-step">
+                                    <div role="tab" id="heading-12"> <span class="checkout-step-number">12.</span>
+                                        <h6 class="checkout-step-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-12"  >What is a “Referral Link”?</a> </h6>
+                                    </div>
+                                    <div id="collapse-12" class="panel-collapse collapse">
+                                        <div class="checkout-step-body">Coming Soon</div>
+                                    </div>
+                                </div>
+                                <div class="panel checkout-step">
+                                    <div role="tab" id="heading-13"> <span class="checkout-step-number">13.</span>
+                                        <h6 class="checkout-step-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-13"  >What is an “Invite”?</a> </h6>
+                                    </div>
+                                    <div id="collapse-13" class="panel-collapse collapse">
+                                        <div class="checkout-step-body">Coming Soon</div>
+                                    </div>
+                                </div>
+                                <div class="panel checkout-step">
+                                    <div role="tab" id="heading-14"> <span class="checkout-step-number">14.</span>
+                                        <h6 class="checkout-step-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-14"  >Where can I post my Referral Link?</a> </h6>
+                                    </div>
+                                    <div id="collapse-14" class="panel-collapse collapse">
+                                        <div class="checkout-step-body">Coming Soon</div>
+                                    </div>
+                                </div>
+                                <div class="panel checkout-step">
+                                    <div role="tab" id="heading-15"> <span class="checkout-step-number">15.</span>
+                                        <h6 class="checkout-step-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-15"  >Who are “Guider”, “Trustor” and “Confidant”?</a> </h6>
+                                    </div>
+                                    <div id="collapse-15" class="panel-collapse collapse">
+                                        <div class="checkout-step-body">Coming Soon</div>
+                                    </div>
+                                </div>
+                                <div class="panel checkout-step">
+                                    <div role="tab" id="heading-16"> <span class="checkout-step-number">16.</span>
+                                        <h6 class="checkout-step-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-16"  >What types of Bonuses can I get?</a> </h6>
+                                    </div>
+                                    <div id="collapse-16" class="panel-collapse collapse">
+                                        <div class="checkout-step-body">Coming Soon</div>
+                                    </div>
+                                </div>
+                                <div class="panel checkout-step">
+                                    <div role="tab" id="heading-17"> <span class="checkout-step-number">17.</span>
+                                        <h6 class="checkout-step-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-17"  >How to participate in FundFastTrack safely?</a> </h6>
+                                    </div>
+                                    <div id="collapse-17" class="panel-collapse collapse">
+                                        <div class="checkout-step-body">Coming Soon</div>
+                                    </div>
+                                </div>
+                                <div class="panel checkout-step">
+                                    <div role="tab" id="heading-18"> <span class="checkout-step-number">18.</span>
+                                        <h6 class="checkout-step-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-18"  >How to get in touch with the Support Team?</a> </h6>
+                                    </div>
+                                    <div id="collapse-18" class="panel-collapse collapse">
+                                        <div class="checkout-step-body">Coming Soon</div>
+                                    </div>
+                                </div>
+                                <div class="panel checkout-step">
+                                    <div role="tab" id="heading-19"> <span class="checkout-step-number">19.</span>
+                                        <h6 class="checkout-step-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-19"  >What to do in case of unforeseen problems?</a> </h6>
+                                    </div>
+                                    <div id="collapse-19" class="panel-collapse collapse">
+                                        <div class="checkout-step-body">Coming Soon</div>
+                                    </div>
+                                </div>
+                                <div class="panel checkout-step">
+                                    <div role="tab" id="heading-20"> <span class="checkout-step-number">20.</span>
+                                        <h6 class="checkout-step-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-20"  >What to do if I can’t access to Personal Office website?</a> </h6>
+                                    </div>
+                                    <div id="collapse-20" class="panel-collapse collapse">
+                                        <div class="checkout-step-body">Coming Soon</div>
+                                    </div>
+                                </div>
+                                <div class="panel checkout-step">
+                                    <div role="tab" id="heading-21"> <span class="checkout-step-number">21.</span>
+                                        <h6 class="checkout-step-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-21"  >How can I participate in FundFastTrack with my mobile devices?</a> </h6>
+                                    </div>
+                                    <div id="collapse-21" class="panel-collapse collapse">
+                                        <div class="checkout-step-body">Coming Soon</div>
+                                    </div>
+                                </div>
+                                <div class="panel checkout-step">
+                                    <div role="tab" id="heading-22"> <span class="checkout-step-number">22.</span>
+                                        <h6 class="checkout-step-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-22"  >How to use Bitcoin wallet and buy & sell bitcoins?</a> </h6>
+                                    </div>
+                                    <div id="collapse-22" class="panel-collapse collapse">
+                                        <div class="checkout-step-body">Coming Soon</div>
+                                    </div>
+                                </div>
+                                <div class="panel checkout-step">
+                                    <div role="tab" id="heading-23"> <span class="checkout-step-number">23.</span>
+                                        <h6 class="checkout-step-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-23"  >How to use Google Authenticator?</a> </h6>
+                                    </div>
+                                    <div id="collapse-23" class="panel-collapse collapse">
+                                        <div class="checkout-step-body">Coming Soon</div>
+                                    </div>
+                                </div>
+                                <div class="panel checkout-step">
+                                    <div role="tab" id="heading-24"> <span class="checkout-step-number">24.</span>
+                                        <h6 class="checkout-step-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-24"  >How to protect Personal Office from hacking?</a> </h6>
+                                    </div>
+                                    <div id="collapse-24" class="panel-collapse collapse">
+                                        <div class="checkout-step-body">Coming Soon</div>
+                                    </div>
+                                </div>
+                                <div class="panel checkout-step">
+                                    <div role="tab" id="heading-25"> <span class="checkout-step-number">25.</span>
+                                        <h6 class="checkout-step-title"> <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-25"  >New Member Recruiting Guide?</a> </h6>
+                                    </div>
+                                    <div id="collapse-25" class="panel-collapse collapse">
+                                        <div class="checkout-step-body">Coming Soon</div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- End Section Tabs -->
+            <div class="section section-pagination">
+
+            </div>
+
+
+            <div class="section" id="carousel">
+                <div class="container">
+                    <h3 class="title">Testimonies</h3>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div id="carouselExampleControls-1" class="carousel slide">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carouselExampleIndicators-1" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carouselExampleIndicators-1" data-slide-to="1"></li>
+{#                                    <li data-target="#carouselExampleIndicators-1" data-slide-to="2"></li>#}
+{#                                    <li data-target="#carouselExampleIndicators-1" data-slide-to="3"></li>#}
+                                </ol>
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="carousel-item active">
+{#                                        <img class="d-block" src="{% static 'img/bg1.jpg' %}" alt="First slide">#}
+                                        <div class="d-block text-center">
+                                            Member Name 1
+                                        </div>
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <p>Testimonies Coming Soon<br>Testimonies Coming Soon<br>Testimonies Coming Soon</p>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+{#                                        <img class="d-block" src="{% static 'img/bg3.jpg' %}" alt="Second slide">#}
+                                        <div class="d-block text-center" >
+                                            Member Name 2
+                                        </div>
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <p>Testimonies Coming Soon<br>Testimonies Coming Soon<br>Testimonies Coming Soon</p>
+                                        </div>
+                                    </div>
+{#                                    <div class="carousel-item">#}
+{#                                        <img class="d-block" src="{% static 'img/bg4.jpg' %}" alt="Third slide">#}
+{#                                        <div class="carousel-caption d-none d-md-block">#}
+{#                                            <h5>Yellowstone National Park, United States</h5>#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                    <div class="carousel-item">#}
+{#                                        <img class="d-block" src="{% static 'img/bg4.jpg' %}" alt="Fourth slide">#}
+{#                                        <div class="carousel-caption d-none d-md-block">#}
+{#                                            <h5>Yellowstone National Park, United States</h5>#}
+{#                                        </div>#}
+{#                                    </div>#}
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleControls-1" role="button" data-slide="prev">
+                                    <i class="now-ui-icons arrows-1_minimal-left"></i>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleControls-1" role="button" data-slide="next">
+                                    <i class="now-ui-icons arrows-1_minimal-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div id="carouselExampleControls-2" class="carousel slide">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carouselExampleIndicators-2" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carouselExampleIndicators-2" data-slide-to="1"></li>
+                                </ol>
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="carousel-item active">
+{#                                        <img class="d-block" src="{% static 'img/bg1.jpg' %}" alt="First slide">#}
+                                        <div class="d-block text-center">
+                                            Member Name 3
+                                        </div>
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <p>Testimonies Coming Soon<br>Testimonies Coming Soon<br>Testimonies Coming Soon</p>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+{#                                        <img class="d-block" src="{% static 'img/bg3.jpg' %}" alt="Second slide">#}
+                                        <div class="d-block text-center" >
+                                            Member Name 4
+                                        </div>
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <p>Testimonies Coming Soon<br>Testimonies Coming Soon<br>Testimonies Coming Soon</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleControls-2" role="button" data-slide="prev">
+                                    <i class="now-ui-icons arrows-1_minimal-left"></i>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleControls-2" role="button" data-slide="next">
+                                    <i class="now-ui-icons arrows-1_minimal-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div id="carouselExampleControls-3" class="carousel slide">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carouselExampleIndicators-3" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carouselExampleIndicators-3" data-slide-to="1"></li>
+                                </ol>
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="carousel-item active">
+{#                                        <img class="d-block" src="{% static 'img/bg1.jpg' %}" alt="First slide">#}
+                                        <div class="d-block text-center">
+                                            Member Name 5
+                                        </div>
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <p>Testimonies Coming Soon<br>Testimonies Coming Soon<br>Testimonies Coming Soon</p>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+{#                                        <img class="d-block" src="{% static 'img/bg3.jpg' %}" alt="Second slide">#}
+                                        <div class="d-block text-center" >
+                                            Member Name 6
+                                        </div>
+                                        <div class="carousel-caption d-none d-md-block">
+                                            <p>Testimonies Coming Soon<br>Testimonies Coming Soon<br>Testimonies Coming Soon</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleControls-3" role="button" data-slide="prev">
+                                    <i class="now-ui-icons arrows-1_minimal-left"></i>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleControls-3" role="button" data-slide="next">
+                                    <i class="now-ui-icons arrows-1_minimal-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--  end notifications -->
+
+            <!-- Typography -->
+{#            <div class="section section-javascript" id="javascriptComponents">#}
+{#                <div class="container">#}
+{#                    <h3 class="title">Javascript components</h3>#}
+{#                    <div class="row" id="modals">#}
+{#                        <div class="col-md-6">#}
+{#                            <h4>Modal</h4>#}
+{#                            <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">#}
+{#                                Launch Modal#}
+{#                            </button>#}
+{#                            <button class="btn btn-warning" data-toggle="modal" data-target="#myModal1">#}
+{#                                Launch Modal Mini#}
+{#                            </button>#}
+{#                        </div>#}
+{#                        <div class="col-md-6">#}
+{#                            <h4>Popovers</h4>#}
+{#                            <button type="button" class="btn btn-default" data-color="popover-primary" data-toggle="popover" data-placement="left" title="Popover on left" data-content="Here will be some very useful information about his popover.<br> Here will be some very useful information about his popover." data-container="body">On left</button>#}
+{#                            <button type="button" class="btn btn-default" data-toggle="popover" data-placement="top" title="Popover on top" data-content="Here will be some very useful information about his popover." data-container="body">On top</button>#}
+{#                            <button type="button" class="btn btn-default" data-toggle="popover" data-placement="bottom" title="Popover on bottom" data-content="Here will be some very useful information about his popover." data-container="body">On bottom</button>#}
+{#                            <button type="button" class="btn btn-default" data-toggle="popover" data-placement="right" title="Popover on right" data-content="Here will be some very useful information about his popover." data-container="body">On right</button>#}
+{#                        </div>#}
+{#                        <br />#}
+{#                        <br />#}
+{#                        <div class="col-md-6">#}
+{#                            <h4>Datepicker</h4>#}
+{#                            <div class="row">#}
+{#                                <div class="col-md-6">#}
+{#                                    <div class="datepicker-container">#}
+{#                                        <div class="form-group">#}
+{#                                            <input type="text" class="form-control date-picker" value="10/05/2016" / data-datepicker-color="primary">#}
+{#                                        </div>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="col-md-6">#}
+{#                            <h4>Tooltips</h4>#}
+{#                            <button type="button" class="btn btn-default btn-tooltip" data-toggle="tooltip" data-placement="left" title="Tooltip on left" data-container="body" data-animation="true" data-delay="100">On left</button>#}
+{#                            <button type="button" class="btn btn-default btn-tooltip" data-toggle="tooltip" data-placement="top" title="Tooltip on top" data-container="body" data-animation="true">On top</button>#}
+{#                            <button type="button" class="btn btn-default btn-tooltip" data-toggle="tooltip" data-placement="bottom" title="Tooltip on bottom" data-container="body" data-animation="true">On bottom</button>#}
+{#                            <button type="button" class="btn btn-default btn-tooltip" data-toggle="tooltip" data-placement="right" title="Tooltip on right" data-container="body" data-animation="true">On right</button>#}
+{#                            <div class="clearfix"></div>#}
+{#                            <br>#}
+{#                            <br>#}
+{#                        </div>#}
+{#                        <div class="col">#}
+{#                            <h4>Carousel</h4>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+        </div>
+
+
+        <!-- Sart Modal -->
+        <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" style="background: #FFB237">
+                    <div class="modal-header justify-content-center">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                        </button>
+                        <h4 class="title title-up">NOTICE</h4>
+                    </div>
+                    <div class="modal-body text-center">
+                        <p>
+                        <h2>Nice to have here... </h2>
+                        <h4>We getting ready to Rocking on a Fast Track</h4>
+                        <h2><small>PHing Starts 22nd of August</small></h2>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+{#                        <button type="button" class="btn btn-default">Nice Button</button>#}
+{#                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>#}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                        </button>
+                        <h4 class="title title-up">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default">Nice Button</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  End Modal -->
+        <!-- Mini Modal -->
+        <div class="modal fade modal-mini modal-primary" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header justify-content-center">
+                        <div class="modal-profile">
+                            <i class="now-ui-icons users_circle-08"></i>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <p>Always have an access to your profile</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-link btn-neutral">Back</button>
+                        <button type="button" class="btn btn-link btn-neutral" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  End Modal -->
+        <footer class="footer" data-background-color="black">
+            <div class="container">
+                <nav>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="javascript:;" data-toggle="modal" data-target="#noticeModal">Registration</a></li>
+                        <li><a href="{% url 'core:login' %}" >Login To FundFastTrack</a></li>
+                    </ul>
+                </nav>
+                <div class="copyright">
+                    Note: <i>We are not in anyway related or associated with MMM</i>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <style>
+      .navbar.navbar-transparent {
+        background-color: transparent !important;
+        box-shadow: none;
+        color: #FFFFFF;
+        padding-top: 20px;
+      }
+    </style>
+{% endblock %}
+
+
+{% block more_footer %}
+
+    {#        <script src="{% static 'bootstrap-notify/bootstrap-notify.min.js' %}"></script>#}
+    {#        <script src="{% static 'bootbox/bootbox.js' %}"></script>#}
+{#    <script src="{% static 'jquery.countdown/jquery.countdown.min.js' %}"></script>#}
+{##}
+{#    <script>#}
+{#      $(document).ready(function () {#}
+{#        $('span.start-time').countdown('{{ opening_date }}')#}
+{#          .on('update.countdown', function (event) {#}
+{#            $(this).html(event.strftime('%d <small>Days</small> %H <small>Hours</small> %M <small>Mins</small> %S <small>Secs</small>'))#}
+{#          })#}
+{#          .on('finish.countdown', function (event) {#}
+{#            $(this).html('Mill Funds Registration Just Started!!!')#}
+{#          })#}
+{#      })#}
+{##}
+{#    </script>#}
+{% endblock %}

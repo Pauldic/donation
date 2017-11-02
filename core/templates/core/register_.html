@@ -1,0 +1,227 @@
+{% extends "core/includes/base_home.html" %}
+{% load i18n static bootstrap %}
+
+{% block breadcrumb %}
+    <li class="active">Registration</li>
+{% endblock %}
+<!-- / .title -->
+
+{% block content_body %}
+
+<div class="full-content-center">
+
+    <!-- Page Title -->
+    <section class="page-title text-center" style="background-image: url({% static 'front/img/page_title/about_title_bg.jpg' %});">
+        <div class="container relative clearfix">
+            <div class="page-title__outer">
+                <div class="page-title__inner">
+                    <h1 class="page-title__title white">Mill Funds Member</h1>
+                    <ol class="breadcrumb">
+                        <li><a href="{% url 'core:index' %}#home">Home</a></li>
+                        <li class="active">Sign Up</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end page title -->
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12" style="margin-top: 20px;">
+                <form method="post" id="registerationForm" action="." novalidate_>
+                    <legend>Add Mill Funds Member
+                        {% if sponsor and not '_system' %}
+                            <span class="float: right"><small style="font-style: italic;float: right;font-size: 0.7em;"><b>Sponsor: </b>{{ sponsor }}</small></span>{% else %}
+{#                            <small style="font-size: 0.6em;font-style: italic;float: right;">Please fill all fields correctly</small>#}
+                        {% endif %}
+                    </legend>
+                    {% csrf_token %}
+                    {{ form|bootstrap }}
+                    <div>
+                        <input type="checkbox" id="show-hide" name="show-hide" value="">
+                        <label for="show-hide">Show Password</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="squaredOne" name="squaredOne" value="">
+                        <label for="squaredOne"><span>By Checking this box I authorise Mill Funds to send me EMails on all Mill Funds related transactions. I have read and accept the <strong><a href="{% url 'core:warning' %}" target="_blank"> warning</a></strong> & agree.  </span></label>
+                    </div>
+
+                    <div class="btn-group btn-group-justified" role="group" style="margin-bottom: 65px; margin-top: 30px">
+{#                        <div class="btn-group hidden-xs" role="group">#}
+{#                            <button type="reset" class="btn btn-default btn-lg">Reset</button>#}
+{#                        </div>#}
+{#                                                <div class="btn-group" role="group">#}
+{#                                                    <button type="button" id="verify-send-btn" class="btn btn-default btn-lg" data-urll="{% url 'core:phone-verify' email token '08000000000' '000000' %}">Verify Phone</button>#}
+{#                                                </div>#}
+                        <div class="btn-group" role="group">
+                            <button type="submit" class="btn btn-primary btn-lg" id="submit" disabled>Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block more_footer %}
+    <script src="{% static 'bootstrap-notify/bootstrap-notify.min.js' %}"></script>
+    <script src="{% static 'bootbox/bootbox.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            var sentCount = 0;
+            {#            $("#id_phone").blur(function () {#}
+            {#                if (isNaN($("#id_phone").val()) || $("#id_phone").val().length != 11) {#}
+            {#                    $.notify({icon: "fa fa-exclamation-triangle", title: "", message: "Please provide a valid Phone number"}, {type: 'warning', z_index: 9999999});#}
+            {#                    return;#}
+            {#                }#}
+            {#                if (sentCount < 4 && confirm("Hello, we would like to send a verification code to " + $("#id_phone").val() + ". If this phone number is incorrect please cancel this now and provide us a valid phone number. You will not be able to change the phone number after now")) {#}
+            {#                    $("#id_phone").prop('readonly', true);#}
+            {#                    url = "{% url 'core:phone-verify-request' email token '08000000000' %}".replace("08000000000", $("#id_phone").val());#}
+            {#                    postForm(url, {}, null, 'GET', function (d) {#}
+            {#                        if (d.data) {#}
+            {#                            $("#id_verification_code").val(d.data)#}
+            {#                        }#}
+            {#                        $.notify({icon: "fa fa-exclamation-triangle", title: "", message: d.msg}, {type: 'success', z_index: 9999999});#}
+            {#                    }, function (d) {#}
+            {#                        $.notify({icon: "fa fa-exclamation-triangle", title: "", message: d.responseText}, {type: 'danger', z_index: 9999999});#}
+            {#                    });#}
+            {#                } else {#}
+            {#                    $("#id_phone").focus();#}
+            {#                }#}
+            {#            });#}
+
+{#            $("#verify-send-btn").click(function () {#}
+{#                if (isNaN($("#id_phone").val()) || $("#id_phone").val().length != 11) {#}
+{#                    $.notify({icon: "fa fa-exclamation-triangle", title: "", message: "Please provide a valid Phone number"}, {type: 'warning', z_index: 9999999});#}
+{#                    return;#}
+{#                }#}
+{#                if (isNaN($("#id_verification_code").val()) || $("#id_verification_code").val().length != 6) {#}
+{#                    $.notify({icon: "fa fa-exclamation-triangle", title: "", message: "Please provide a valid verification code sent to your Phone number"}, {type: 'warning', z_index: 9999999});#}
+{#                    return;#}
+{#                }#}
+{#                url = location.protocol + "//" + location.host + $("#verify-send-btn").data("urll").replace("08000000000", $("#id_phone").val()).replace("000000", $("#id_verification_code").val());#}
+{#                postForm(url, {}, $("#verify-send-btn"), 'GET', function (d) {#}
+{#                    if (d.type === "Success") {#}
+{#                        $.notify({icon: "fa fa-exclamation-triangle", title: "", message: d.msg}, {type: 'success', z_index: 9999999});#}
+{#                        $("#registerationForm button[type='submit']").prop('disabled', false).removeClass("btn-default").addClass("btn-primary");#}
+{#                        $("#verify-send-btn").removeClass("btn-default").addClass("btn-success");#}
+{#                        $("#id_verification_code").prop("readonly", true);#}
+{#                    } else {#}
+{#                        $("#registerationForm button[type='submit']").prop('disabled', true).addClass("btn-default").removeClass("btn-primary");#}
+{#                        $.notify({icon: "fa fa-exclamation-triangle", title: "", message: d.msg}, {type: 'warning', z_index: 9999999});#}
+{#                        $("#verify-send-btn").addClass("btn-default").removeClass("btn-success");#}
+{#                        $("#id_verification_code").prop("readonly", false);#}
+{#                    }#}
+{#                }, function (d) {#}
+{#                    BootstrapDialog.alert({#}
+{#                        message: d.responseText#}
+{#                    });#}
+{#                });#}
+{#            });#}
+
+            $("#squaredOne").click(function(){
+                if($("#squaredOne").is(":checked")){
+                    $("#registerationForm button[type='submit']").prop('disabled', false)
+                }else {
+                    $("#registerationForm button[type='submit']").prop('disabled', true)
+                }
+            });
+
+            $("#show-hide").click(function(){
+                if($("#show-hide").is(":checked")){
+                    $("#id_password").prop('type', 'text')
+                }else {
+                    $("#id_password").prop('type', 'password')
+                }
+            });
+
+            $("#registerationForm").submit(function (event) {
+                event.preventDefault();
+                if (validate().length>0){
+                    $.each(errors, function (i,v) {
+                        $.notify({icon: "fa fa-exclamation-triangle", title: "", message: v}, {type: 'warning', z_index: 9999999});
+                    });
+                    return false;
+                }
+{#                processFeed(url, data, blocking, method, successCallback, errorCallback) {#}
+                processFeed(location.href, $('#registerationForm').serialize(), "Processing.....", false, 'POST', function (d) {
+                    vv = d;
+                    html = "<br/><dl>";
+                    if (d.errors) {
+                        p = JSON.parse(d.errors)
+                        for (var key in p) {
+                            if (p.hasOwnProperty(key)) {
+                                html += "<dt>" + key.toUpperCase() + "</dt>"
+                                $.each(p[key], function (i, v) {
+                                    html += "<dd>" + v.message + "</dd>"
+                                });
+                            }
+                        }
+                        html += "</dl>";
+                    }
+
+                    if (d.type == "Success") {
+                        $('#registerationForm')[0].reset();
+                        $.notify({icon: "fa fa-exclamation-triangle", title: "", message: d.msg}, {type: 'success', z_index: 9999999});
+                        $('#registerationForm button[type="submit"]').text('Redirecting...').attr('disable', true);
+                        setTimeout(function () {
+                            window.location = "{% url 'core:login' %}";
+                        }, 4000)
+                    } else {
+                        $.notify({icon: "fa fa-exclamation-triangle", title: "", message: d.msg}, {type: 'warning', z_index: 9999999});
+                        console.log(d.errors)
+                    }
+                }, function (d) {
+                    $.notify({icon: "fa fa-exclamation-triangle", title: "", message: d.responseText}, {type: 'danger', z_index: 9999999});
+                });
+            });
+
+
+            function validate() {
+                errors = [];
+                if ($("#id_email").val().length < 8 || !($("#id_email").val().includes("@")) || !($("#id_email").val().includes("."))) {
+                    errors.push("Email has wrong entry. Don't try manipulating this, you will NOT pass our Server integrity check")
+                }
+                if (isNaN($("#id_phone").val()) || $("#id_phone").val().length != 11) {
+                    errors.push("Phone has wrong entry, expected format: 08034567890");
+                }
+                if ($("#id_first_name").val().length === 0 || $("#id_first_name").val().trim().split(" ").length < 2) {
+                    errors.push("Bank Account Name Not a valid name. Please make a valid entry");
+                }
+                if ($("#id_bank_name").val().length === 0) {
+                    errors.push("Please select your Bank Name");
+                }
+                if (isNaN($("#id_account_number").val()) || $("#id_account_number").val().length != 10) {
+                    errors.push("Bank Account Number has wrong entry, please provide your NUBAN 10 digits account number");
+                }
+{#                if ($("#id_country").val().length === 0) {#}
+{#                    errors.push("Please select your Country of residence");#}
+{#                }#}
+{#                if ($("#id_state").val().length === 0) {#}
+{#                    errors.push("Please select your State of residence");#}
+{#                }#}
+{#                if ($("#id_address").val().trim().length === 0) {#}
+{#                    errors.push("Please select your City of residence");#}
+{#                }#}
+                if ($("#id_username").val().trim().length < 4) {
+                    errors.push("Enter username (character length greater than 3)");
+                }
+                if ($("#id_password").val().trim().length < 6) {
+                    errors.push("Enter password (character length greater than 5)");
+                }
+                return errors;
+            }
+
+        });
+
+    </script>
+    <style>
+        .breadcrumb {
+            display: none;
+        }
+
+        .form-control {
+            padding: 10px 15px;
+        }
+    </style>
+{% endblock %}

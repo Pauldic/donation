@@ -1,0 +1,230 @@
+{% load i18n static mathfilters humanize normalise_decimal %}
+{#<div id="gh-dialog-3" class="easyui-dialog" title="Request to cash out Naira" style="width:80%;height:350px;max-width:600px;padding:10px"#}
+{#     data-options="onResize:function(){$(this).dialog('center');},modal:true,closed:true">#}
+
+<b>Enter amount to be withdrawn from </b>
+<p>
+    Withdrawal Currency: {{ bank_account.currency.code }} ({{ bank_account.currency.symbol }}) <br>
+    Only withdraw in multiple of: <i data-type="gh-multiple">{{ bank_account.currency.symbol }}{{ gh_multiple|decimal_normalise }}</i> <br>
+    Maximum to withdraw: <i data-type="maximum" data-previous="{{ gh_balance|decimal_normalise }}" data-max-gh="{{ max_gh|decimal_normalise }}" data-max-bouns="{{ ghable_bouns|decimal_normalise }}" data-max-total="{{ max_gh|addition:ghable_bouns|decimal_normalise }}">
+    {{ bank_account.currency.symbol }}{{ max_gh|addition:ghable_bouns|decimal_normalise }}</i> <br>
+</p>
+<a href="javascript:void(0);" data-type="cash-out-all" class="pull-right" >Cash out all ({{ bank_account.currency.symbol }}) <b class="emoji x2" data-value="0x1F6CD"></b> </a>
+<br>
+<b></b>
+<form id="gh-form">
+    <table class="table_ table-bordered_ table-stripped_" style="width:100%">
+        <tbody>
+        <tr>
+            <th style="border-bottom: 1px solid black" colspan="2">GHable accounts available</th>
+            <th style="border-bottom: 1px solid black" class="text-center"> {{ bank_account.currency.code }} ({{ bank_account.currency.symbol }})</th>
+            {#            <td></td>#}
+        </tr>
+        <tr>
+            <td style="border-bottom: 1px solid black" colspan="3" class="text-center">Available GMBC Bonus</td>
+            {#            <td> </td>#}
+        </tr>
+
+        {% for gh in accs %}
+            <tr data-type="gh">
+                <td style="border-bottom: 1px solid black">{{ gh.get_type_text }}-GMBC:</td>
+                <td data-gh-amount="{{ gh.amount|sub:gh.balance|decimal_normalise }}" data-gh-id="{{ gh.id }}" style="border-bottom: 1px solid black;min-width: 120px;padding-left: 20px;">
+                    {{ bank_account.currency.symbol }}{{ gh.amount|sub:gh.balance|decimal_normalise }}
+                    <a href="javascript:;" title="Transfer All Fund" class="transfer"><b data-value="0x1F449" class="emoji pull-right"></b></a></td>
+                <td style="border-bottom: 1px solid black;padding-left: 10px;">
+                    <input name="gh_account_{{ forloop.counter }}" type="number" step="any" min="0" max="{{ gh.amount|sub:gh.balance|decimal_normalise }}" value="" placeholder="0.00" class="form-control input-sm gh-out"></td>
+            </tr>
+        {% endfor %}
+
+        {% for gh in pending_bonus %}
+            <tr data-type="bs">
+                <td style="border-bottom: 1px solid black">{{ gh.get_type_text }}-GMBC:</td>
+                <td data-gh-amount="{{ gh.amount|sub:gh.balance|decimal_normalise }}" data-gh-id="{{ gh.id }}" style="border-bottom: 1px solid black;min-width: 120px;padding-left: 20px;">
+                    {{ bank_account.currency.symbol }}{{ gh.amount|sub:gh.balance|decimal_normalise }}
+                    <a href="javascript:;" title="Transfer All Fund" class="transfer"><b data-value="0x1F449" class="emoji pull-right"></b></a></td>
+                <td style="border-bottom: 1px solid black;padding-left: 10px;">
+                    <input name="gh_account_{{ forloop.counter }}" type="number" step="any" max="{{ gh.amount|sub:gh.balance|decimal_normalise }}" value="" placeholder="0.00" class="form-control input-sm gh-out"></td>
+            </tr>
+        {% endfor %}
+
+        <tr data-type="bal">
+            <td style="border-bottom: 1px solid black" colspan="2">Amount saved for next GH</td>
+            <td style="border-bottom: 1px solid black" id="next-gh-value" data-next-gh=""><span class="pull-right">{{ bank_account.currency.symbol }}<span data-value>{{ gh_balance|decimal_normalise }}</span></span></td>
+        </tr>
+        <tr data-type="out">
+            <td colspan="2">Total withdrawal amount</td>
+            <td id="cash-out-value" data-cash-out="0.00"><span class="pull-right">{{ bank_account.currency.symbol }}<span data-value>0.00</span></span></td>
+        </tr>
+        </tbody>
+
+    <form 
+    </table>
+<br>
+        <button type="submit" class="btn btn-primary pull-right">Cash Out GMBC-{{ bank_account.currency.symbol }}</button>
+</form>
+<br>
+<br>
+
+{#</div>#}
+
+<script>
+    $(document).ready(function () {
+        emoji();
+        var multiple = parseInt('{{ gh_multiple }}');
+        var old_balance = parseInt('{{ gh_balance|decimal_normalise }}');
+        var gh_ids = '{{ gh_ids }}'
+        var factor = parseFloat("{{ factor }}")
+
+        $("#cash-out-link").click(function () {
+            var total = 0;
+            $.each($("table td[data-gh-amount]"), function (i, v) {
+                total += parseInt($(v).data("gh-amount"))
+            });
+            if (factor > 1) {
+              var _old_balance = old_balance * factor
+              var _multiple = multiple * factor
+              var _total = total * factor
+              var bal = ((_old_balance + _total) % _multiple)/factor
+            }else{
+              var bal = (old_balance + total) % multiple
+            }
+
+            $("#cash-out-value").text(total - bal);
+            $("#cash-out-value").data("cash-out", total - bal);
+            $("#next-gh-value").text(bal);
+            $("#next-gh-value").data("next-gh", bal);
+
+            if (parseInt($("#cash-out-value").data("cash-out")) > 999) {
+                $("#gh-btn").linkbutton({disabled: false})
+            } else {
+                $("#gh-btn").linkbutton({disabled: true})
+            }
+        });
+
+        $("a[data-type='cash-out-all']").click(function () {
+            $("tr td a.transfer").trigger("click");
+        });
+
+        $("tr td input[type='number']").change(function () {
+            var sum = 0.0, multiple = parseFloat('{{ gh_multiple }}');
+            $.each($("tr td input[type='number']"), function (i, v) {
+                sum += parseFloat($(v).val().length > 0 ? $(v).val() : 0)
+            });
+
+            var total_requested = old_balance + sum;
+            if(factor > 1){
+              var _total_requested = total_requested * factor;
+              var _multiple = multiple * factor
+              var out = (_total_requested - (_total_requested % _multiple))/factor;
+              var bal = (_total_requested % _multiple)/factor
+            }else {
+              var out = total_requested - (total_requested % multiple);
+              var bal = total_requested % multiple
+            }
+
+            $("tr[data-type='bal'] td[data-next-gh] span[data-value]").html(bal);
+            $("tr[data-type='out'] td[data-cash-out] span[data-value]").html(out);
+        });
+
+        $("tr td a.transfer").click(function () {
+            $($(this).parent()).next().find("input").val($(this).parent().data("gh-amount")).trigger("change");
+        });
+
+        currency_symbol = "{{ bank_account.currency.symbol }}";
+        $("#gh-form").submit(function (event) {
+            event.preventDefault();
+            $("tr td input[name*='gh_account']").trigger("change");
+            var amount_requested = parseFloat($("tr[data-type='out'] td[data-cash-out] span[data-value]").html());
+            if(! amount_requested > 0){
+                pwd("Nothing found to GH", true);
+                return;
+            }
+
+            var data = {}, ghes = [], change_gh = 0, total_requested_gh = 0, total_init_gh = 0;
+            $.each($("tr[data-type='gh'] input[name*='gh_account']"), function (i, v) {
+                if(parseFloat($(v).val()) > 0) {
+                    init = parseFloat($(v).parent().parent().find("td[data-gh-amount]").data("gh-amount"))
+                    total_requested_gh += parseFloat($(v).val());
+                    total_init_gh += init;
+                    change_gh += (init - parseFloat($(v).val()));
+                    ghes.push({id: $(v).parent().parent().find("td[data-gh-amount]").data("gh-id"), amount: parseFloat($(v).val()), })
+                }
+            });
+
+            var bouns = [], change_bouns = 0, total_requested_bouns = 0, total_init_bouns = 0;
+            $.each($("tr[data-type='bs'] input[name*='gh_account']"), function (i, v) {
+                if(parseFloat($(v).val()) > 0) {
+                    init = parseFloat($(v).parent().parent().find("td[data-gh-amount]").data("gh-amount"));
+                    total_requested_bouns += parseFloat($(v).val());
+                    total_init_bouns += init;
+                    change_bouns += (init - parseFloat($(v).val()));
+                    bouns.push({id: $(v).parent().parent().find("td[data-gh-amount]").data("gh-id"), amount: parseFloat($(v).val()), })
+                    console.log(init+" :\t: "+parseFloat($(v).val()))
+                    console.log(total_init_gh+" :\t: "+total_requested_bouns)
+                    console.log($(v).parent().parent().find("td[data-gh-amount]").data("gh-id"))
+                }
+            });
+
+            if((total_init_gh+total_init_bouns) > parseFloat($("i[data-type='maximum']").data("max-total"))){
+                pwd("Your total GH cannot be more than "+currency_symbol+parseFloat($("i[data-type='maximum']").data("max-total")), true);
+                return;
+            }
+            if(total_init_bouns > parseFloat($("i[data-type='maximum']").data("max-bouns"))){
+                pwd("Your total Bouns GH cannot be more than "+currency_symbol+parseFloat($("i[data-type='maximum']").data("max-bouns")), true);
+                return;
+            }
+            data['ghes'] = ghes
+            data['bouns'] = bouns
+            data['requested_gh'] = total_requested_gh
+            data['requested_bouns'] = total_requested_bouns
+            data['total'] = parseFloat($("i[data-type='maximum']").data("max-total"));
+            data['old_balance'] = old_balance
+            processFeed("{% url 'core:gh-board' '0000' %}".replace("0000", {{ bank_account.id }}), JSON.stringify(data), 'Processing GH Request...', true, 'POST', function (d) {
+                if (d.type == 'Success') {
+                    BootstrapDialog.alert({
+                        title: "Server Response",
+                        message: d.msg,
+                        onhide: function () {location = '{% url 'core:dashboard' %}'}
+                    });
+                } else {
+                    BootstrapDialog.alert(d.msg)
+                }
+            }, function (d) {
+                BootstrapDialog.alert(d.responseText)
+            });
+
+        });
+
+
+    });
+
+    function gh() {
+        data = {next_gh: $("#next-gh-value").data("next-gh"), cash_out_value: $("#cash-out-value").data("cash-out"), 'gh_ids': gh_ids}
+        processFeed("./", data, "Processing GH...", false, "POST", function (d) {
+            $.messager.alert({
+                title: 'Response',
+                msg: d.msg,
+                fn: function () {
+                    location = "{% url 'core:dashboard' %}"
+                }
+            });
+        }, function (d) {
+            $.messager.alert({
+                title: 'Response',
+                msg: d.msg
+            });
+
+        })
+    }
+
+</script>
+
+<style>
+    .gh-out {
+        width: 80px;
+        float: right;
+        max-height: 20px;
+        font-size: .8em;
+        padding: 3px;
+    }
+</style>

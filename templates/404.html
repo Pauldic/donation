@@ -1,0 +1,12 @@
+{% extends "core/includes/base_back.html" %}
+
+{% block content_body %}
+        <div class="error-page text-center">
+            <div class="container">
+                <h1>404</h1>
+                <h2>PAGE NOT FOUND!</h2>
+                <p>We're sorry, the page you requested cannot be found. Please go back to home page.</p>
+                <a href="{% url 'core:index' %}" class="btn btn-custom2 btn-lg min-width">Back to Home</a>
+            </div><!-- End .container -->
+        </div><!-- End .error-page -->
+{% endblock %}

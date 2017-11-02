@@ -1,0 +1,282 @@
+{% extends "registration/base.html" %}
+{% load i18n static bootstrap %}
+
+{% block content_body %}
+
+
+<div class="bg-full-page login-full-bg">
+    <div class="row " style="background: rgba(0,0,0,0.4);">
+        <!-- Nav tabs -->
+        <div class="card absolute-center">
+            <div class="ms-hero-bg-primary ms-hero-img-mountain">
+                <div>
+                    <h2 class="text-center no-m pt-4 pb-4 color-white index-1"><b><a href="{% url 'core:index' %}" title="Home" style="color: white"><i class="fa fa-home"></i></a>  Login Form</b></h2></div>
+            </div>
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#ms-login-tab" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-user"></i> Login</a></li>
+                <li role="presentation"><a href="#ms-register-tab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-user"></i> Register</a></li>
+                <li role="presentation"><a href="#ms-recovery-tab" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-lock"></i> Recovery</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade active in" id="ms-login-tab">
+                    <form data-special="regForm" role="form" id='loginform' action="{% url 'core:login' %}" method="post">
+                        <fieldset>
+                            {% if form.errors %}
+                                <div style="color: #000;font-size: 12px; margin: 0 10px 0 0;line-height: 21px;">
+                                    <span>Incorrect username or password. <a href="{% url 'core:password_reset' %}" title="Reset My Password">Forgot Password</a> </span>
+                                </div>
+                            {% endif %}
+
+                        {% if next %}
+                            {% if user.is_authenticated %}
+                                <p class='lf_line' style="color: #000;font-size: 12px; margin: 0 10px 0 0;line-height: 21px;">You don't have access to this page. To proceed, please login with an account that has access.</p>
+                            {% else %}
+                                <p style="color: #000;font-size: 12px; margin: 0 10px 0 0;line-height: 21px;"></p>
+                            {% endif %}
+                        {% endif %}
+
+                        {% csrf_token %}
+                        <input type="hidden" name="id_client" id="client-id" value="">
+
+                            <div class="form-group has-primary">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+                                  <i class="fa fa-user"></i>
+                                </span>
+                                    <label class="control-label" for="ms-form-user">Email</label>
+                                    {{ form.username }}
+                                    <span class="material-input"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group has-primary">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+                                  <i class="fa fa-lock"></i>
+                                </span>
+                                    <label class="control-label" for="ms-form-user">Password</label>
+                                    {{ form.password }}
+                                    <span class="material-input"></span>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group has-primary">
+                                <div class="col-xs-5">
+                                    <div class="pure-checkbox" style="line-height: 45px">
+                                        <input id="checkbox" name="checkbox" type="checkbox">
+                                        <label for="checkbox">Remember</label>
+                                    </div>
+                                </div>
+                                <div class="col-xs-7">
+                                    <button class="btn btn-raised btn-primary pull-right">Login</button>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </form>
+                    <div class="text-center social-login">
+                        <h3>Login with</h3>
+                        <a href="{% url 'social:begin' 'github' %}?" class="wave-effect-light btn btn-raised btn-github">
+                            <i class="fa fa-github"></i> Github</a>
+                        <a href="{% url 'social:begin' 'facebook' %}?" class="wave-effect-light btn btn-raised btn-facebook">
+                            <i class="fa fa-facebook"></i> Facebook</a>
+                        <a href="{% url 'social:begin' 'twitter' %}?" class="wave-effect-light btn btn-raised btn-twitter">
+                            <i class="fa fa-twitter"></i> Twitter</a>
+                        <a href="{% url "social:begin" "google-oauth2" %}?" class="wave-effect-light btn btn-raised btn-google">
+                            <i class="fa fa-google"></i> Google</a>
+                        <a href="{% url 'social:begin' 'yahoo-oauth2' %}?" class="wave-effect-light btn btn-raised btn-yahoo">
+                            <i class="fa fa-yahoo"></i> Yahoo</a>
+                    </div>
+                </div>
+
+
+
+                <div role="tabpanel" class="tab-pane fade" id="ms-register-tab">
+                    <form data-special="regForm" method="post" action="">
+
+                        {% csrf_token %}
+                        <fieldset>
+{#                            {{ form|bootstrap }}#}
+
+                            <div class="form-group has-primary">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+                                  <i class="fa fa-id-card-o"></i>
+                                </span>
+                                    {{ form.first_name.errors }}
+                                    <label class="control-label" for="id_first_name">First Name</label>
+                                    {{ form.first_name }}
+                                    <span class="material-input"></span>
+                                </div>
+                            </div>
+                            <div class="form-group has-primary">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+                                  <i class="fa fa-id-card-o"></i>
+                                </span>
+                                    {{ form.last_name.errors }}
+                                    <label class="control-label" for="id_last_name">Last Name</label>
+                                    {{ form.first_name }}
+                                    <span class="material-input"></span>
+                                </div>
+                            </div>
+                            <div class="form-group has-primary">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+                                  <i class="fa fa-envelope"></i>
+                                </span>
+                                    {{ form.email.errors }}
+                                    <label class="control-label" for="id_email">Email</label>
+                                    {{ form.email }}
+                                    <span class="material-input"></span>
+                                </div>
+                            </div>
+                            <div class="form-group has-primary">
+                                <div class="input-group tel-group">
+{#                                    <span class="input-group-addon"><i class="fa fa-phone"></i></span>#}
+                                    {{ form.phone.errors }}
+                                    <label class="control-label" for="id_phone">Phone</label>
+                                    {{ form.phone }}
+{#                                    <input type="tel" id="id_phone" class="form-control">#}
+                                    <span class="material-input"></span>
+                                </div>
+                            </div>
+                            <div class="form-group has-primary">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+                                  <i class="fa fa-user"></i>
+                                </span>
+                                    {{ form.username.errors }}
+                                    <label class="control-label" for="id_username">Username</label>
+                                    {{ form.username }}
+                                    <span class="material-input"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group has-primary">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+                                  <i class="fa fa-lock"></i>
+                                </span>
+                                    {{ form.password.errors }}
+                                    <label class="control-label" for="id_password">Password</label>
+                                    {{ form.password }}
+                                    <span class="material-input"></span>
+                                </div>
+                            </div>
+                            <div class="form-group has-primary">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+                                  <i class="fa fa-lock"></i>
+                                </span>
+                                    <label class="control-label" for="ms-form-user">Repeat Password</label>
+                                    <input type="password" class="form-control" id="ms-form-user" placeholder=""/>
+                                    <span class="material-input"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group has-primary">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+                                  <i class="fa fa-lock"></i>
+                                </span>
+                                    {{ form.guider.errors }}
+                                    <label class="control-label" for="id_guider">Guider's Username</label>
+                                    {{ form.guider }}
+                                    <span class="material-input"></span>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-raised btn-block btn-primary">Register Now</button>
+                        </fieldset>
+                    </form>
+                </div>
+
+
+                <div role="tabpanel" class="tab-pane fade" id="ms-recovery-tab">
+
+                    <form data-special="regForm" method="post" action=".">
+                        <fieldset>
+                            <div class="form-group has-primary">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+                                  <i class="fa fa-user"></i>
+                                </span>
+                                    <label class="control-label" for="ms-form-user">Email</label>
+                                    <input type="email" class="form-control" id="ms-form-user" placeholder=""/>
+                                    <span class="material-input"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group has-primary">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+                                  <i class="fa fa-lock"></i>
+                                </span>
+                                    <label class="control-label" for="ms-form-user">Password</label>
+                                    <input type="password" class="form-control" id="ms-form-user" placeholder=""/>
+                                    <span class="material-input"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group has-primary">
+                                <div class="input-group">
+                                <span class="input-group-addon">
+                                  <i class="fa fa-lock"></i>
+                                </span>
+                                    <label class="control-label" for="ms-form-user">Repeat Password</label>
+                                    <input type="password" class="form-control" id="ms-form-user" placeholder=""/>
+                                    <span class="material-input"></span>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-raised btn-block btn-primary">Send Password</button>
+
+
+                        </fieldset>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <a href="/" class="btn btn-white">
+                <i class="fa fa-home"></i> Go Home
+                <div class="ripple-container"></div>
+            </a>
+        </div>
+    </div>
+</div>
+    <script src="{% static 'clientjs/client.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'inte-tel-input/css/intlTelInput.css' %}">
+    <script src="{% static 'inte-tel-input/js/intlTelInput.min.js' %}"></script>
+
+    <style>
+        .country-list,.flag-container{
+            z-index: 100!important;
+            color: #4a4747;
+            font-weight: 400;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+
+            $("#id_phone").intlTelInput();
+            var client = new ClientJS();
+            var device = (client.getDeviceVendor() || "") + " " + (client.getDevice() || "");
+            $("#client-id").val(client.getFingerprint() + "::" + client.getBrowser() + " " + client.getBrowserVersion() + "::" + client.getOS() + " " + client.getOSVersion() + "::" +
+                    client.getCurrentResolution() + "::" + client.getAvailableResolution() + "::" + (device.trim() || 'Unknown'));
+
+            $("div.social-login a").click(function(e){
+                e.preventDefault();
+{#                TODO: Think of encripting this id_client value#}
+                location.href = $(this).prop('href').replace("/?", "/?client_id="+$("#client-id").val()+"&");
+            });
+
+        });
+
+    </script>
+{% endblock %}

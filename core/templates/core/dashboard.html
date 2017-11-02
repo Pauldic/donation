@@ -1,0 +1,778 @@
+{% extends "core/includes/base_back.html" %}
+{% load i18n static mathfilters humanize normalise_decimal %}
+
+{% block content_body %}
+    <style>
+        /*
+     * Global add-ons
+     */
+
+        .sub-header {
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        /*
+         * Top navigation
+         * Hide default border to remove 1px line.
+         */
+        .navbar-fixed-top {
+            border: 0;
+        }
+
+        /*
+         * Sidebar
+         */
+
+        /* Hide for mobile, show later */
+        .sidebar {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .sidebar {
+                position: fixed;
+                top: 51px;
+                bottom: 0;
+                left: 0;
+                z-index: 1000;
+                display: block;
+                padding: 20px;
+                overflow-x: hidden;
+                overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+                background-color: #f5f5f5;
+                border-right: 1px solid #eee;
+            }
+        }
+
+        .nav-sidebar > .active > a,
+        .nav-sidebar > .active > a:hover,
+        .nav-sidebar > .active > a:focus {
+            color: #fff;
+            background-color: #428bca;
+        }
+
+        /*
+         * Main content
+         */
+
+        .main {
+            padding: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .main {
+                padding-right: 40px;
+                padding-left: 40px;
+            }
+        }
+
+        .main .page-header {
+            margin-top: 0;
+        }
+
+        /*
+         * Placeholder dashboard ideas
+         */
+
+        .placeholders {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .placeholders h4 {
+            margin-bottom: 0;
+        }
+
+        .placeholder {
+            margin-bottom: 20px;
+        }
+
+        .placeholder img {
+            display: inline-block;
+            border-radius: 50%;
+        }
+
+        .circle, .circle-full {
+            cursor: pointer;
+            box-shadow: 4px 3px 3px rgba(33, 150, 243, 0.33);
+            background: rgba(58, 124, 222, 0.03);
+            width: 200px;
+            height: 200px;
+            border-radius: 100px;
+            /*border: 2px solid argb;*/
+        }
+
+        .circle:hover {
+            box-shadow: 0 10px 16px 0 rgba(33, 150, 243, 0.2), 0 6px 20px 0 rgba(33, 150, 243, 0.19)
+        }
+
+        .circle-full:hover {
+            box-shadow: 4px 3px 3px rgba(33, 150, 243, 0.33);
+        }
+
+        .circle-full {
+            box-shadow: 0 10px 16px 0 rgba(33, 150, 243, 0.2), 0 6px 20px 0 rgba(33, 150, 243, 0.19)
+        }
+
+        .circle div, .circle-full div {
+            position: relative;
+            left: 19px;
+            top: 19px;
+            width: 90px;
+            height: 90px;
+            color: white;
+            text-align: center;
+        }
+
+        .panel-shadow {
+            box-shadow: rgba(0, 0, 0, 0.3) 7px 7px 7px;
+        }
+
+        .panel-white {
+            border: 1px solid #dddddd;
+        }
+
+        .panel-white .panel-heading {
+            color: #333;
+            background-color: #fff;
+            border-color: #ddd;
+        }
+
+        .panel-white .panel-footer {
+            background-color: #fff;
+            border-color: #ddd;
+        }
+
+        .post .post-heading {
+            height: 95px;
+            padding: 20px 15px;
+        }
+
+        .post .post-heading .avatar {
+            width: 60px;
+            height: 60px;
+            display: block;
+            margin-right: 15px;
+        }
+
+        .post .post-heading .meta .title {
+            margin-bottom: 0;
+        }
+
+        .post .post-heading .meta .title a {
+            color: black;
+        }
+
+        .post .post-heading .meta .title a:hover {
+            color: #aaaaaa;
+        }
+
+        .post .post-heading .meta .time {
+            margin-top: 8px;
+            color: #999;
+        }
+
+        .post .post-image .image {
+            width: 100%;
+            height: auto;
+        }
+
+        .post .post-description {
+            padding: 15px;
+        }
+
+        .post .post-description p {
+            font-size: 14px;
+        }
+
+        .post .post-description .stats {
+            margin-top: 20px;
+        }
+
+        .post .post-description .stats .stat-item {
+            display: inline-block;
+            margin-right: 15px;
+        }
+
+        .post .post-description .stats .stat-item .icon {
+            margin-right: 8px;
+        }
+
+        .post .post-footer {
+            border-top: 1px solid #ddd;
+            padding: 15px;
+        }
+
+        .post .post-footer .input-group-addon a {
+            color: #454545;
+        }
+
+        .post .post-footer .comments-list {
+            padding: 0;
+            margin-top: 20px;
+            list-style-type: none;
+        }
+
+        .post .post-footer .comments-list .comment {
+            display: block;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .post .post-footer .comments-list .comment .avatar {
+            width: 35px;
+            height: 35px;
+        }
+
+        .post .post-footer .comments-list .comment .comment-heading {
+            display: block;
+            width: 100%;
+        }
+
+        .post .post-footer .comments-list .comment .comment-heading .user {
+            font-size: 14px;
+            font-weight: bold;
+            display: inline;
+            margin-top: 0;
+            margin-right: 10px;
+        }
+
+        .post .post-footer .comments-list .comment .comment-heading .time {
+            font-size: 12px;
+            color: #aaa;
+            margin-top: 0;
+            display: inline;
+        }
+
+        .post .post-footer .comments-list .comment .comment-body {
+            margin-left: 50px;
+        }
+
+        .post .post-footer .comments-list .comment > .comments-list {
+            margin-left: 50px;
+        }
+
+        .time-to-pay {
+            font-size: 2em;
+        }
+
+        .placeholders .placeholder {
+            text-align: center;
+        }
+
+        .placeholder .circle-full, .placeholder .circle {
+            display: inline-block;
+        }
+
+        .progress .progress-lable {
+            font-weight: 500;
+        }
+
+        .progress .progress-lable i {
+            padding-right: 10px;
+        }
+
+        .arrow-pointer {
+            line-height: 40px;
+            margin-left: 10%;
+            font-size: 1.6em;
+        }
+        .widget-body a i:hover{color: #0667D6; }
+        .gh-shadow .easy-pie-chart i{  color: #FFB61E;  }
+        .gh-shadow .widget-body { background-color: rgba(252, 249, 227, 0.69); cursor: pointer;}
+        .gh-shadow .widget-body:hover { background-color: rgba(252, 249, 227, 0.3);}
+        .gh-shadow {  box-shadow: 0 10px 16px 0 rgb(245, 213, 153), 0 6px 20px 0 rgb(228, 224, 215);  }
+        .gh-shadow:hover {  box-shadow: 0 10px 16px 0 rgb(247, 225, 185);  }
+
+        .ph-shadow .easy-pie-chart i{  color: #0667D6;  }
+        .ph-shadow {  box-shadow: 0 10px 16px 0 rgba(161, 190, 220, 0.47), 0 6px 20px 0 rgba(60, 154, 228, 0.53);  }
+        .ph-shadow:hover {  box-shadow: 0 10px 16px 0 rgba(161, 190, 220, 0.47) }
+        .ph-shadow .widget-body {  background-color: rgba(134, 179, 230, 0.1);  cursor: pointer;}
+        .ph-shadow .widget-body:hover {  background-color: rgba(134, 179, 230, 0.3); }
+
+        .cancel-shadow {
+            box-shadow: 0 10px 16px 0 rgba(32, 112, 195, 0.74), 0 6px 20px 0 rgba(29, 116, 185, 0.6);
+        }
+
+        .completed-shadow {
+            box-shadow: 0 10px 16px 0 rgba(32, 112, 195, 0.74), 0 6px 20px 0 rgba(29, 116, 185, 0.6);
+        }
+        .counter small{
+            font-size: 12px!important;
+            display: block;
+        }
+        .counter small{
+            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
+        }
+
+
+
+    </style>
+    <div class="page-container">
+        <div class="page-header clearfix">
+            <div class="pull-left">
+                <h4 class="mt-0 mb-5">Dashboard</h4>
+                <ol class="breadcrumb mb-0">
+                    <li><a href="{% url 'core:dashboard' %}">Home</a></li>
+                    <li class="active">Dashboard</li>
+                </ol>
+            </div>
+        </div>
+        <div class="page-content container-fluid">
+            <div class="progress progress-striped progress-sm active">
+                <div role="progressbar" data-transitiongoal="20" class="progress-bar progress-bar-danger" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"><span class="progress-lable">My PH Strength<i
+                        class="pull-right"> 20%</i></span></div>
+            </div>
+            {#            <div class="progress progress-striped progress-sm active">#}
+            {#                <div role="progressbar" data-transitiongoal="55" class="progress-bar progress-bar-info" aria-valuenow="55" style="width: 55%;"></div>#}
+            {#            </div>#}
+
+            <div class="col-xs-12 main ">
+                <div class="row placeholders">
+                    <div class="col-xs-12 col-md-4 placeholder">
+                        <div class="circle-full">
+                            <div>N 30,000.00</div>
+                        </div>
+                        <div class="clear"></div>
+                        <div>
+                            <h4><a href="javascript:;" id="ph-btn"> Provide Help</a></h4>
+                            <span class="text-muted">Something else</span>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-md-4 placeholder">
+                        <div class="circle">
+                            <div>N 30,000.00</div>
+                        </div>
+                        <div>
+                            <h4><a href="javascript:;" id="gh-btn"> Request Help</a></h4>
+                            <span class="text-muted">Something else</span>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-md-4 placeholder">
+                        <div class="circle-full">
+                            <div>N 30,000.00</div>
+                        </div>
+                        <div>
+                            <h4><a href="javascript:;" class="ph2coin">Trade GMBC</a> </h4>
+                            <span class="text-muted">Something else</span>
+                        </div>
+                    </div>
+
+                    {#                    <div class="col-xs-6 col-sm-3 placeholder">#}
+                    {#                        <div class="circle">#}
+                    {#                            <div>N 30,000.00</div>#}
+                    {#                        </div>#}
+                    {#                        <h4>Pending Withdrawal</h4>#}
+                    {#                        <span class="text-muted">Something else</span>#}
+                    {#                    </div>#}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-9">
+                    <div class="row">
+                        {% for td in matches %}
+                            <div class="col-md-4 col-sm-6">
+                                {% if td.sender == request.user.member %}
+                                    <div class="widget text-center ph-shadow">
+                                        <div class="widget-body" data-tdid="{{ td.id }}">
+                                            <div class="clearfix">
+                                                <div class="pull-left"><a href="javascript:;" class="widget-timer" data-tdid="{% if td.status == 'Awaiting Confirmation' %}{{ td.id }}{% endif %}"><i class="ti-timer text-muted"></i></a></div>
+                                                <span><small>{{ td.created|date }}</small></span>
+                                                <div class="pull-right"><a href="javascript:;" class="widget-messaging" data-tdid="{{ td.id }}"><i class="ti-email text-muted"></i></a></div>
+                                            </div>
+                                            <h5 class="mb-5">{{ td.id }}</h5>
+
+                                            <div class="fs-36 fw-600 mb-20 counter"><span>{{ td.currency.symbol }}{{ td.amount|decimal_normalise }}</span>
+                                                <small class="fs-5 text-center text-warning" data-type="PH" data-status="{{ td.status }}" data-transaction-detail="{{ td.id }}">{{ td.status }}</small>
+                                                <small class="fs-5 time-to-pay text-center text-warning" data-created="{{ td.created }}" data-paid="{{ td.proof_date }}" data-expires="{{ td.expires }}" data-type="PH" data-status="{{ td.status }}" data-transaction-detail="{{ td.id }}">{{ td.status }}</small>
+                                                <div class="progress progress-xs" style="margin-bottom: 0px">
+                                                    <div role="progressbar" data-transitiongoal="0" class="progress-bar progress-bar-default" aria-valuenow="0" style=""></div>
+                                                </div>
+                                            </div>
+
+                                            <div data-percent="{% if td.status == 'Awaiting Payment' %}50{% elif td.status == 'Awaiting Confirmation' %}90{% elif td.status in 'Exception,Paused (Recycle),Paused (Exception)' %}90{% else %}100{% endif %}" style="height: 140px; width: 140px; line-height: 120px; padding: 10px;" class="easy-pie-chart fs-36">
+                                                <i class="center {% if td.status == 'Awaiting Payment' %}ti-stats-up{% elif td.status == 'Awaiting Confirmation' %}ti-credit-card{% elif td.status == 'Confirmed' %}ti-medall{% elif td.status == 'Cancelled' %}ti-na{% elif td.status in 'Exception,Paused (Recycle),Paused (Exception)' %}ti-help{% else %}100{% endif %}"></i>
+                                                <canvas height="280" width="280" style="height: 140px; width: 140px;"></canvas>
+                                            </div>
+
+                                            <div class="clearfix mt-20">
+                                                <div class="pull-left">
+                                                    <div class="fs-12">You</div>
+                                                    <div class="text-danger">sender</div>
+                                                </div>
+                                                <div class="pull-left arrow-pointer">
+                                                    <a href="javascript:;"><i class="ti-angle-double-right"></i></a>
+                                                </div>
+                                                <div class="pull-right">
+                                                    <div class="fs-12">{{ td.transaction.owner.username }}</div>
+                                                    <div class="text-success">receiver</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="widget text-center gh-shadow">
+                                        <div class="widget-body" data-tdid="{{ td.id }}">
+                                            <div class="clearfix">
+                                                <div class="pull-left"><a href="javascript:;" class="widget-timer" data-tdid="{% if td.status == 'Awaiting Payment' %}{{ td.id }}{% endif %}" ><i class="ti-timer text-muted"></i></a></div>
+                                                <span><small>{{ td.created|date }}</small></span>
+                                                <div class="pull-right"><a href="javascript:;" class="widget-messaging" data-tdid="{{ td.id }}"><i class="ti-email text-muted"></i></a></div>
+                                            </div>
+                                            <h5 class="mb-5">{{ td.id }}</h5>
+                                            <div class="fs-36 fw-600 mb-20 counter"><span>{{ td.currency.symbol }}{{ td.amount|decimal_normalise }}</span>
+                                                <small class="fs-5 text-center text-warning" data-expires="{{ td.expires }}" data-type="GH" data-status="{{ td.status }}" data-transaction-detail="{{ td.id }}">{{ td.status }}</small>
+                                                <small class="fs-5 time-to-pay text-center text-warning" data-created="{{ td.created }}" data-paid="{{ td.proof_date }}" data-expires="{{ td.expires }}" data-type="PH" data-status="{{ td.status }}" data-transaction-detail="{{ td.id }}">{{ td.status }}</small>
+                                                <div class="progress progress-xs" style="margin-bottom: 0px">
+                                                    <div role="progressbar" data-transitiongoal="0" class="progress-bar progress-bar-default" aria-valuenow="0" style=""></div>
+                                                </div>
+                                            </div>
+
+                                            <div data-percent="{% if td.status == 'Awaiting Payment' %}50{% elif td.status == 'Awaiting Confirmation' %}90{% elif td.status in 'Exception,Paused (Recycle),Paused (Exception)' %}90{% else %}100{% endif %}" style="height: 140px; width: 140px; line-height: 120px; padding: 10px;" class="easy-pie-chart fs-36">
+                                                <i class="center {% if td.status == 'Awaiting Payment' %}ti-stats-down{% elif td.status == 'Awaiting Confirmation' %}ti-credit-card{% elif td.status == 'Confirmed' %}ti-medall{% elif td.status == 'Cancelled' %}ti-na{% elif td.status in 'Exception,Paused (Recycle),Paused (Exception)' %}ti-help{% else %}100{% endif %}"></i>
+                                                <canvas height="280" width="280" style="height: 140px; width: 140px;"></canvas>
+                                            </div>
+                                            <div class="clearfix mt-20">
+                                                <div class="pull-left">
+                                                    <div class="fs-12">{{ td.sender.username }}</div>
+                                                    <div class="text-danger">sender</div>
+                                                </div>
+                                                <div class="pull-left arrow-pointer">
+                                                    <a href="javascript:;"><i class="ti-angle-double-right"></i></a>
+                                                </div>
+                                                <div class="pull-right">
+                                                    <div class="fs-12">You</div>
+                                                    <div class="text-success">receiver</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    {#                    <div class="fb-comments" data-href="{{ fb_page }}" data-numposts="5"></div>#}
+                </div>
+                <div class="col-sm-3 col-xs-12">
+                    {% for acc in accounts %}
+                        <div
+                                {% if acc.obj.type not in 'Withdrawal,Coin' %}
+                                    {% if acc.obj.status in 'Processed,Processed Bonus,Cancelled,Timeout' %}
+                                        class="panel panel-default"
+                                    {% else %}
+                                        class="panel panel-info"
+                                    {% endif %}
+                                {% else %}
+                                    {% if acc.obj.status in 'Completed,Cancelled' %}
+                                        class="panel panel-default"
+                                    {% else %}
+                                        class="panel panel-warning"
+                                    {% endif %}
+                                {% endif %}>
+
+                            <div class="panel-heading">
+                                {% if acc.obj.type not in 'Withdrawal,Coin' %}
+                                    <h3 class="panel-title"><i class="ti-briefcase"></i> Provide Help
+                                        {% if acc.obj.status == 'Pending' %}
+                                            <a href="javascript:cancelPh('{{ acc.obj.donation.id }}', '{{ acc.obj.id }}');" class="translate" style="float:right;">
+                                                <i class="ti-na text-danger"></i>
+                                            </a>
+                                        {% else %}
+                                            <a href="javascript:void(0);" class="translate" style="float:right;"><i class="ti-more"></i> </a>
+                                        {% endif %}
+                                    </h3>
+                                {% else %}
+                                    <h3 class="panel-title"><i class="ti-gift"></i> Receive Help</h3>
+                                {% endif %}
+
+                            </div>
+                            <div class="panel-body">
+                                <small class="text-warning"><i>{{ acc.obj.id }}</i><br></small>
+                                <span class="translate">Amount</span>: <span class="">{{ acc.obj.currency.symbol }}</span>
+                                <span class="">{{ acc.obj.amount|decimal_normalise|intcomma }}</span> <br>
+                                <span class=""><span class="translate">Balance</span>: <span class="">{{ acc.obj.currency.symbol }}</span>
+                                    <span class="">{{ acc.obj.balance|decimal_normalise|intcomma }}</span><br></span>
+                                <span class="translate">Created</span>: <span class="">{{ acc.obj.created|date:"M d, Y" }}</span><br>
+                                <span class="translate">Member</span>: <span class="">{{ acc.obj.owner.username }}</span><br>
+                                <span></span><br>
+                                {% if acc.obj.type not in 'Withdrawal,Coin' %}
+                                    {% if acc.obj.status in 'Pending' %}
+                                        <span class="translate"><i>Waiting till maturity time</i><i class="pull-right">80%</i></span>
+                                        <div class="progress progress-xs">
+                                            <div role="progressbar" data-transitiongoal="65" class="progress-bar progress-bar-warning" aria-valuenow="65" style="width: 65%;"></div>
+                                        </div>
+                                    {% elif acc.obj.status in 'Processing' %}
+                                        <span class="translate"><i>Waiting fullfilment</i><i class="pull-right">80%</i></span>
+                                        <div class="progress progress-xs">
+                                            <div role="progressbar" data-transitiongoal="65" class="progress-bar progress-bar-default" aria-valuenow="65" style="width: 65%;"></div>
+                                        </div>
+                                    {% elif acc.obj.status in 'Processed,Processed Bonus' %}
+                                        <span class="translate"><i>Completed</i><i class="pull-right">80%</i></span>
+                                    {% elif acc.obj.status in 'Partial' %}
+                                        <span class="translate"><i>Please wait, matching on progress</i></span>
+                                        <div class="progress progress-xs">
+                                            <div role="progressbar" data-transitiongoal="65" class="progress-bar progress-bar-success" aria-valuenow="65" style="width: 65%;"></div>
+                                        </div>
+                                    {% elif acc.obj.status in 'Cancelled,Blocked,Timeout' %}
+                                        <span class="translate">Cancelled<i class="pull-right">80%</i></span>
+                                        <div class="progress progress-xs">
+                                            <div role="progressbar" data-transitiongoal="65" class="progress-bar progress-bar-danger" aria-valuenow="65" style="width: 65%;"></div>
+                                        </div>
+                                    {% elif acc.obj.status in 'Paused (Exception),Paused (Recycle)' %}
+                                        <span class="translate"><i>Contexted, pending resolution</i><i class="pull-right">80%</i></span>
+                                        <div class="progress progress-xs">
+                                            <div role="progressbar" data-transitiongoal="65" class="progress-bar progress-bar-primary" aria-valuenow="65" style="width: 65%;"></div>
+                                        </div>
+                                    {% endif %}
+                                {% else %}
+                                    {% if acc.obj.status in 'Pending' %}
+                                        <span class="translate"><i>Queued waiting to be matched</i></span>
+                                        <div class="progress progress-xs">
+                                            <div role="progressbar" data-transitiongoal="65" class="progress-bar progress-bar-warning" aria-valuenow="65" style="width: 65%;"></div>
+                                        </div>
+                                    {% elif acc.obj.status in 'Processing' %}
+                                        <span class="translate"><i>Waiting fulfilment</i></span>
+                                        <div class="progress progress-xs">
+                                            <div role="progressbar" data-transitiongoal="65" class="progress-bar progress-bar-warning" aria-valuenow="65" style="width: 65%;"></div>
+                                        </div>
+                                    {% elif acc.obj.status in 'Completed' %}
+                                        <span class="translate"><i>Completed</i></span>
+                                    {% elif acc.obj.status in 'Incomplete' %}
+                                        <span class="translate"><i>Please wait, matching on progress</i></span>
+                                        <div class="progress progress-xs">
+                                            <div role="progressbar" data-transitiongoal="65" class="progress-bar progress-bar-warning" aria-valuenow="65" style="width: 65%;"></div>
+                                        </div>
+                                    {% elif acc.obj.status in 'Cancelled' %}
+                                        <span class="translate"><del>Cancelled</del></span>
+                                        <div class="progress progress-xs">
+                                            <div role="progressbar" data-transitiongoal="65" class="progress-bar progress-bar-warning" aria-valuenow="65" style="width: 65%;"></div>
+                                        </div>
+                                    {% elif acc.obj.status in 'Paused (Exception),Paused (Recycle)' %}
+                                        <span class="translate"><i>Contexted, pending resolution</i></span>
+                                        <div class="progress progress-xs">
+                                            <div role="progressbar" data-transitiongoal="65" class="progress-bar progress-bar-warning" aria-valuenow="65" style="width: 65%;"></div>
+                                        </div>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .progress {
+            margin: -20px;
+            margin-top: 0;
+        }
+    </style>
+
+
+    <script type="text/javascript" src="{% static 'jquery.countdown/jquery.countdown.min.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            var max = parseInt("{{ max }}")
+            $('.progress .progress-bar').css("width", function () {
+                return $(this).attr("aria-valuenow") + "%";
+            });
+            var phOptions = {barColor:"#0667D6",trackColor:"#E6E6E6",scaleColor:!1,scaleLength:0,lineCap:"round",lineWidth:10,size:140,animate:{duration:4e3,enabled:!0}}
+            var ghOptions = {barColor:"#FFB61E",trackColor:"#E6E6E6",scaleColor:!1,scaleLength:0,lineCap:"round",lineWidth:10,size:140,animate:{duration:4e3,enabled:!0}}
+            $(".gh-shadow .easy-pie-chart").easyPieChart(ghOptions)
+            $(".ph-shadow .easy-pie-chart").easyPieChart(phOptions)
+            $(".widget-body .widget-messaging").click(function (d) {
+                console.log("Messaging....")
+                return false
+            });
+            $(".widget-body .widget-timer").click(function (d) {
+                var tdid = $(this).data('tdid');
+                if($(this).data('tdid').length > 3){
+                    BootstrapDialog.show({
+                      title: "<i class='ti-timer'></i> Extend Expection Time",
+                      message: $('<div></div').load("{% url 'core:extend-time' td_sample %}".replace('{{ td_sample }}', $(this).data('tdid'))),
+                      buttons: [{
+                            label: 'Cancel',
+                            action: function (dialog) {dialog.close();}
+                        }, {
+                            label: 'Extend',
+                            cssClass: 'btn-primary',
+                            action: function (dialog) {
+                                if (parseInt($("#extend-time").val()) < 0 || parseInt($("#extend-time").val()) > parseInt(max)) {
+                                    pwd("Time must be within 0 - "+max+ " hours", true);
+                                    return;
+                                }
+                                processFeed("{% url 'core:extend-time' td_sample %}".replace("{{ td_sample }}", tdid), {time: $("#extend-time").val()}, 'Processing Your Request...', false, 'POST', function (d) {
+                                    if (d.type == 'Success') {
+                                        BootstrapDialog.alert({
+                                            title: "Server Response",
+                                            message: d.msg,
+                                            onhide: function () {
+                                                location = '{% url 'core:dashboard' %}'
+                                            }
+                                        });
+                                    } else {
+                                        BootstrapDialog.alert(d.msg)
+                                    }
+                                }, function (d) {
+                                    BootstrapDialog.alert(d.responseText)
+                                });
+                            }
+                        }]
+                    })
+                }
+                return false
+            });
+            $(".widget-body").click(function (d) {
+                BootstrapDialog.show({
+                    title: 'Payment Details',
+                    message: $('<div></div>').load("{% url 'core:receiver-details' td_sample %}".replace('{{ td_sample }}', $(this).data('tdid'))),
+                })
+            });
+
+
+            var getRate = function (startTime, endTime, totalMinsRemaining) {
+                var minsDiff = Math.abs(new Date(endTime) - new Date(startTime))/(1000*60);
+                return totalMinsRemaining / minsDiff * 100;
+            };
+
+            $.each($("small.time-to-pay"), function (i, v) {
+                var endTime = $(v).data('expires');
+                var status = $(this).data('status');
+                var startTime = null;
+                if (status == 'Awaiting Payment') {
+                    startTime = new Date($(this).data('created'))
+                }else if(status == 'Awaiting Confirmation'){
+                    startTime = new Date($(this).data('paid'))
+                }else if (status == 'Confirmed') {
+                    $(v).html(" <i class='ti-wand'></i> Congratulations"); return true;
+                }else if (status == 'Cancelled'){
+                    $(v).html("Not Finished").prop("style", "color: #e21d27;");
+                    $(v).parent().parent().find(".easy-pie-chart").data('easyPieChart', null);
+                    phOptions['barColor']="#e84b53"
+                    $(this).parent().parent().find(".easy-pie-chart").easyPieChart(phOptions)
+                    $(this).parent().parent().find("i.center").prop("style", "color: #e21d27;")
+                    $(this).parent().parent().find("div.counter small").prop("style", "color: #e21d27;")
+                    $(this).parent().parent().find("div.counter>span").html("<del>"+$(this).parent().parent().find("div.counter>span").text()+"</del")
+                    return true;
+                }else if (status == 'Exception'){
+                    $(v).html("Payment Not Seen"); return true;
+                }else {
+                    console.log(status +"\t" + $(this).data('transaction-detail'))
+                    return true;
+                }
+
+                $(v).countdown(endTime)
+                    .on('update.countdown', function (event) {
+                        var rate = getRate(startTime, endTime, event.offset.totalMinutes);
+                        var style = (rate>66.66)? "primary" : (rate>33.33)? "warning" : "danger";
+{#                        console.log(startTime + "\n" + endTime + "\n" + Math.abs(new Date(endTime) - new Date(startTime))/(1000*60) +"\n" + event.offset.totalMinutes + "\n" + rate + "\t"+ style)#}
+                        $(this).text(event.strftime('%I Hrs %M Mins %S Secs')).removeClass('text-warning text-primary text-danger').addClass("text-"+style);
+                        $(v).parent().find('div[role="progressbar"]').prop("class", "progress-bar progress-bar-"+style).prop("style", "width: "+rate+"%;").data("transitiongoal", rate)
+                    })
+                    .on('finish.countdown', function (event) {
+                        $(this).html("<small>Awaiting Cancellation</small>");
+                        if (status == 'Awaiting Confirmation'){
+                            $(this).html("<small>Grace Window</small>");
+                            $(this).parent().parent().find(".easy-pie-chart").data('easyPieChart', null);
+                            phOptions['barColor']="#e84b53"
+                            $(this).parent().parent().find(".easy-pie-chart").easyPieChart(phOptions)
+                            $(this).parent().parent().find("i.center").prop("class", "ti-help").prop("style", "color: #e21d27;")
+                            return
+                        }
+
+                        processFeed("{% url 'core:pay-timeout' td_sample %}".replace('{{ td_sample }}', $(v).data('transaction-detail')), {tdid: $(this).data('transaction-detail')}, null, false, 'POST', function (d) {
+                            console.log("We have sent '" + $(v).data('transaction-detail') + "' for cancellation and see server reponse: <b>" + d.msg + "</b>", true);
+                        }, function (d) {
+                            console.log(d.responseText)
+                        });
+                });
+            });
+
+            $("#gh-btn").click(function () {
+                title = "<center><i class='ti-wallet' aria-hidden='true'></i> Request Get Help (GH)</center>";
+                html = "<p>Please specify where you want your GMBC to be sent to</p><br>"
+
+                {% for ba in request.user.member.bank_accounts.all %}
+                    html += '<div class="radio-custom radio-inline"><input id="id_bank_account_{{ forloop.counter }}" type="radio"  name="bank_account" value="{{ ba.id }}"><label for="id_bank_account_{{ forloop.counter }}">{{ ba.bank.name }} ({{ ba.number }}) <b>{{ ba.currency.symbol }} - ({{ ba.currency.name }})</b></label>';
+                {% endfor %}
+                {% if request.user.member.bank_accounts.all|length == 0 %}
+                    html = 'You currently do not have any Account associated with your profile. Please <a href="javascript:;" class="manage-account"> Add Account</a>'
+                {% endif %}
+
+                BootstrapDialog.show({
+                    title: title,
+                    message: html,
+                    buttons: [{
+                        label: 'Cancel',
+                        action: function (dialog) {
+                            dialog.close();
+                        }
+                    }, {
+                        label: 'Contiune',
+                        action: function (dialog) {
+                            x = $("input[type='radio'][name='bank_account']:checked").val();
+                            if (typeof x === "undefined") {
+                                pwd("Please select destination Account", true);
+                                return;
+                            }
+                            BootstrapDialog.show({
+                                title: title,
+                                message: $('<div></div>').load("{% url 'core:gh-board' '0000' %}".replace('0000', x)),
+                                onshown: function () {
+                                    emoji()
+                                },
+
+                            });
+                        }
+                    }]
+                });
+            });
+
+
+            $("#ph-btn").click(function () {
+                BootstrapDialog.show({
+                    title: "<center><i class='ti-wallet' aria-hidden='true'></i> Provide Help (PH)</center>",
+                    message: $('<div></div>').load("{% url 'core:ph-request' %}")
+                });
+            });
+
+
+
+        });
+
+        function cancelPh(did, aid) {
+                BootstrapDialog.show({
+                    title: "Confirm Cancellation",
+                    message: "Hello {{ request.user.first_name }}, you have requested to cancel your PH order '" + aid + "'. Be aware some token will be deducted from your GMBC wallet for this action",
+                    buttons: [{
+                        label: 'No do not Cancel',
+                        action: function (dialog) {
+                            dialog.close();
+                        }
+                    }, {
+                        label: 'Yes Cancel',
+                        action: function (dialog) {
+                            processFeed('{% url 'core:cancel-ph' %}', {did: did}, 'Processing Cancellation Request...', false, 'POST', function (d) {
+                                if (d.type == 'Success') {
+                                    BootstrapDialog.alert({
+                                        title: "Server Response",
+                                        message: d.msg,
+                                        onhide: function () {
+                                            location = '{% url 'core:dashboard' %}'
+                                        }
+                                    });
+                                } else {
+                                    BootstrapDialog.alert(d.msg)
+                                }
+                            }, function (d) {
+                                BootstrapDialog.alert(d.responseText)
+                            });
+                        }
+                    }]
+                });
+        }
+    </script>
+{% endblock %}

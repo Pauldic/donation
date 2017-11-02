@@ -1,0 +1,605 @@
+{% extends "core/includes/base_back.html" %}
+{% load i18n static mathfilters humanize %}
+
+{% block content_body %}
+    <div data-options="region:'center'">
+        <!-- <div class="panel layout-panel layout-panel-center" style="left: 0px; top: 50px; width: 1280px;"> -->
+        <div id="work_area" region="center" title="" class="panel-body panel-body-noheader layout-body panel-noscroll" style="width: 1278px; height: 630px;">
+            <div class="easyui-layout layout" fit="true" style="margin: 0px; padding: 0px; width: 1278px; height: 630px;">
+                <div class="panel layout-panel layout-panel-center" style="left: 0px; top: 0px; width: 1278px;">
+                    <div region="center" style="padding-top: 20px; width: 1276px; height: 608px;" title="" class="panel-body panel-body-noheader layout-body">
+                        <div class="menu_ww_wrap">
+                            <div class="menu_ww">
+                                <div class="menu_warning translate">
+                                    <big><b><a href="javascript:;">WARNING!</a> THIS IS A COMMUNITY OF MUTUAL FINANCIAL HELP!</b> Participate only with spare money. Don't contribute all the money you
+                                        have.
+                                    </big>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div id="banner-wrapper">
+                            <a href="javascript:;" target="_blank" class="banner-item" style="background: url({% static 'back/images/advert.png' %}) no-repeat; height:80px;"></a>
+                        </div>
+
+                        <table width="1000" border="0" align="center" cellpadding="0" cellspacing="0">
+                            <tbody>
+                                <tr>
+                                    <td colspan="2">
+                                        <div id="desktop_notices"></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <table width="1000" border="0" align="center" cellpadding="0" cellspacing="0">
+                                            <tbody>
+                                            <tr>
+                                                <!--PH Block-->
+                                                <td width="50%" style="padding-right: 4px">
+                                                    <div id="put_help" class="phing_button" onclick="$('#ph-dialog').dialog('open')">
+                                                        <span id="dyn_desktop_2"></span>
+                                                        <div>
+                                                            <span class="translate">Provide Help</span><br>
+                                                            <i class="translate">Acquire Naira (Make a Contribution)</i>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <!--GH Block-->
+                                                <td width="50%" style="padding-left: 4px">
+                                                    <div id="get_help" class="ghing_button" onclick="$('#gh-dialog-1').dialog('open')">
+                                                        <div>
+                                                            <span class="translate">Get Help</span><br>
+                                                            <i class="translate">"Cash-Out" Naira</i>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><span id="dyn_desktop_3"></span></td>
+                                                <td><span id="dyn_desktop_3">
+                                                    {% if request.user.member.frozen_balance > 0 %}<b>Old Balance: {{ request.user.member.frozen_balance }}</b>{% endif %}
+                                                </span></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <br><br>
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td valign="top">
+                                        <div id="cell_arrg" style="padding-right: 8px;">
+
+                                            <!--Matching-->
+
+                                            <div id="cell_arrg" style="padding-right: 8px;">
+                                                {% for td in matches %}
+                                                    {% if td.sender == request.user.member %}
+                                                        <div class="arrg phing" style="cursor: pointer;">
+                                                    {% else %}
+                                                        <div class="arrg ghing" style="cursor: pointer;">
+                                                    {% endif %}
+                                                        <table width="100%" border="0" cellspacing="2" cellpadding="2" class="arrg_tbarrg">
+                                                            <tbody>
+                                                                <tr>
+                                                                {% if td.status == 'Awaiting Payment' %}
+                                                                    <td width="36" rowspan="2" class="arrg_num">
+                                                                        <img src="{% static 'back/img/play.png' %}" width="36" height="36" class="arrg_status_img">
+                                                                        <span class="arrg_sm10"><span class="translate">Number</span>:<br></span><span class="arrg_id">{{ td.id }}</span><br>
+                                                                    </td>
+                                                                    {% if td.sender == request.user.member %}
+                                                                        <td class="arrg_status_name">You have to make payment. (Request to Provide help {{ td.account.id }})</td>
+                                                                    {% else %}
+                                                                        <td class="arrg_status_name">Expect payment confirmation. (Request for help {{ td.transaction.id }})</td>
+                                                                    {% endif %}
+                                                                    <td class="arrg_wait" style="width: 110px; color: red;">Time to Finish<br>{{ td.expires|naturaltime }}</td>
+                                                                {% elif td.status == 'Awaiting Confirmation' %}
+                                                                    <td width="36" rowspan="2" class="arrg_num">
+                                                                        <span class="arrg_sm10"><span class="translate">Number</span>:<br></span><span class="arrg_id">{{ td.id }}</span><br>
+                                                                        <img src="{% static 'back/img/strelka32.png' %}" width="36" height="36" class="arrg_status_img"><br>
+                                                                    </td>
+                                                                    {% if td.sender == request.user.member %}
+                                                                        <td class="arrg_status_name">Wait for confirmation (Request to Provide help {{ td.account.id }})</td>
+                                                                    {% else %}
+                                                                        <td class="arrg_status_name">Payment Completed (Request for help {{ td.transaction.id }})</td>
+                                                                    {% endif %}
+                                                                    <td class="arrg_wait" style="width: 110px; color: red;">Time to Finish<br>{{ td.expires|naturaltime }}</td>
+                                                                {% elif td.status == 'Confirmed' %}
+                                                                    <td width="36" rowspan="2" class="arrg_num">
+                                                                        <span class="arrg_sm10"><span class="translate">Number</span>:<br></span><span class="arrg_id">{{ td.id }}</span><br>
+                                                                        <img src="{% static 'back/img/ok.png' %}" width="36" height="36" class="arrg_status_img"><br>
+                                                                    </td>
+                                                                    {% if td.sender == request.user.member %}
+                                                                        <td class="arrg_status_name">Receipt confirmed receiption. (Request to Provide help {{ td.account.id }})</td>
+                                                                    {% else %}
+                                                                        <td class="arrg_status_name">You confirmed funds reception. (Request for help {{ td.transaction.id }})</td>
+                                                                    {% endif %}
+                                                                    <td class="arrg_wait" style="width: 110px; color: red;">Finished<br></td>
+                                                                {% elif td.status == 'Cancelled' %}
+                                                                    <td width="36" rowspan="2" class="arrg_num">
+                                                                        <span class="arrg_sm10"><span class="translate">Number</span>:<br></span><span class="arrg_id">{{ td.id }}</span><br>
+                                                                        <img src="{% static 'back/img/block.png' %}" width="36" height="36" class="arrg_status_img"><br>
+                                                                    </td>
+                                                                    {% if td.sender == request.user.member %}
+                                                                        <td class="arrg_status_name">Cancelled Order. (Request to Provide help {{ td.account.id }})</td>
+                                                                    {% else %}
+                                                                        <td class="arrg_status_name">Cancelled Order. (Request for help {{ td.transaction.id }})</td>
+                                                                    {% endif %}
+                                                                    <td class="arrg_wait" style="width: 110px; color: red;">Cancelled<br></td>
+                                                                {% else %}
+                                                                    <td width="36" rowspan="2" class="arrg_num">
+                                                                        <span class="arrg_sm10"><span class="translate">Number</span>:<br></span><span class="arrg_id">{{ td.id }}</span><br>
+                                                                        <img src="{% static 'back/img/loading.gif' %}" width="36" height="36" class="arrg_status_img"><br>
+                                                                    </td>
+                                                                    {% if td.sender == request.user.member %}
+                                                                        <td class="arrg_status_name"><b>You are invited to our Solution Group @ftsolution Case ID: <i>{{ td.transaction.id }}</i>. Present your case ID and Username Only as u Join and wait patiently for the admins</td>
+                                                                    {% else %}
+                                                                        <td class="arrg_status_name"><b>You are invited to our Solution Group @ftsolution Case ID: <i>{{ td.transaction.id }}</i>. Present your case ID and Username Only as u Join and wait patiently for the admins</b></td>
+                                                                    {% endif %}
+                                                                    <td class="arrg_wait" style="width: 110px; color: red;">Time to Finish<br>{{ td.expires|naturaltime }}</td>
+                                                                {% endif %}
+
+                                                                <td class="arrg_msg" style="width:120px;"><span>Messages: 0</span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="3">
+                                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="arrg_num">
+                                                                                    <span class="arrg_sm10"><span class="translate">Date of creating</span>:<br></span><span class="arrg_date">{{ td.created|date:"M d, Y" }}</span>
+                                                                                </td>
+                                                                                <td class="arrg_name1">
+                                                                                    {% if td.sender == request.user.member %}
+                                                                                        <span class="arrg_user_in"> You</span>
+                                                                                        <div class="arrg_bank_in">{{ td.sender.bank_account.bank.name }}</div>
+                                                                                    {% else %}
+                                                                                        <span class="arrg_user_in"> {{ td.sender.first_name }}</span>
+                                                                                        <div class="arrg_bank_in">{{ td.sender.bank_account.bank.name }}</div>
+                                                                                    {% endif %}
+
+
+                                                                                </td>
+                                                                                <td align="center" class="arrg_summ">
+                                                                                    <span class="arrg_summ_in">&gt;</span> &nbsp; <span class="arrg_amt">{{ td.amount|intcomma }} NGN</span> &nbsp; <span class="arrg_summ_out">&gt;</span>
+{#                                                                                    <div class="arrg_out_files" style="">#}
+{#                                                                                        <span class="files"><span class="translate">Confirmation</span>:</span>#}
+{#                                                                                        <a href="" target="_blank" class="_screens"><img src="{% static 'back/img/png.png' %}"></a>#}
+{#                                                                                    </div>#}
+                                                                                </td>
+                                                                                <td class="arrg_name2">
+                                                                                    {% if td.sender == request.user.member %}
+                                                                                        <span class="arrg_user_out"> {{ td.sender.first_name }}</span>
+                                                                                        <div class="arrg_bank_out">{{ td.transaction.owner.bank_account.bank.name }}</div>
+                                                                                    {% else %}
+                                                                                        <span class="arrg_user_out"> You</span>
+                                                                                        <div class="arrg_bank_out">{{ td.transaction.owner.bank_account.bank.name }}</div>
+                                                                                    {% endif %}
+                                                                                </td>
+                                                                                <td width="30">
+                                                                                    <img src="{% static 'back/img/printout.png' %}" width="30" height="30" onclick="arrgClickPrint(event, this); return false"
+                                                                                         style="cursor: pointer; display: none;" class="arrg_print">
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td colspan="5" style="text-align:right;padding-top:5px;">
+                                                                                    <a href="javascript:;"  onclick="gh_board('#account-detail-dialog', 'Detailed Order Information', '{% url 'core:receiver-details' td.id %}');" class="neoui-greybutton translate">Details &gt;&gt;</a>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <div class="attention_message translate" style="display: none; color: #bf0000; padding: 10px; text-align: center">IMPORTANT NOTE: send only the
+                                                                        EXACT AMOUNT indicated in the order (please check the numbers after the decimal point in the payment amount)
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                        </table>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+
+                                            <div id="arrg_pagination" style="" class="pagination">
+                                                <table cellspacing="0" cellpadding="0" border="0">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td><select class="pagination-page-list">
+                                                                <option>10</option>
+                                                                <option>20</option>
+                                                                <option>30</option>
+                                                                <option selected="selected">50</option>
+                                                            </select></td>
+                                                            <td>
+                                                                <div class="pagination-btn-separator"></div>
+                                                            </td>
+                                                            <td><a href="javascript:void(0)" icon="pagination-first" class="l-btn l-btn-plain l-btn-disabled"><span class="l-btn-left"><span
+                                                                    class="l-btn-text"><span
+                                                                    class="l-btn-empty pagination-first">&nbsp;</span></span></span></a></td>
+                                                            <td><a href="javascript:void(0)" icon="pagination-prev" class="l-btn l-btn-plain l-btn-disabled"><span class="l-btn-left"><span
+                                                                    class="l-btn-text"><span
+                                                                    class="l-btn-empty pagination-prev">&nbsp;</span></span></span></a></td>
+                                                            <td>
+                                                                <div class="pagination-btn-separator"></div>
+                                                            </td>
+                                                            <td><span style="padding-left:6px;">Page</span></td>
+                                                            <td><input class="pagination-num" type="text" value="1" size="2"></td>
+                                                            <td><span style="padding-right:6px;">out of 3</span></td>
+                                                            <td>
+                                                                <div class="pagination-btn-separator"></div>
+                                                            </td>
+                                                            <td><a href="javascript:void(0)" icon="pagination-next" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text"><span
+                                                                    class="l-btn-empty pagination-next">&nbsp;</span></span></span></a></td>
+                                                            <td><a href="javascript:void(0)" icon="pagination-last" class="l-btn l-btn-plain"><span class="l-btn-left"><span class="l-btn-text"><span
+                                                                    class="l-btn-empty pagination-last">&nbsp;</span></span></span></a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <div class="pagination-info"></div>
+                                                <div style="clear:both;"></div>
+                                            </div>
+
+
+
+                                            </div>
+                                        </div>
+                                    </td>
+
+
+                                    <td valign="top">
+                                        <div id="cell_orders" style="padding-left: 8px;">
+
+                                            <!--Order-->
+                                            {% for acc in accounts %}
+                                                <div
+                                                        {% if acc.obj.type %}
+                                                            {% if acc.obj.status in 'Processed,Processed Bonus,Cancelled,Timeout' %}
+                                                                class="phing hidden"
+                                                            {% else %}
+                                                                class="phing"
+                                                            {% endif %}
+                                                        {% else %}
+                                                            {% if acc.obj.status in 'Completed,Cancelled' %}
+                                                                class="ghing hidden"
+                                                            {% else %}
+                                                                class="ghing"
+                                                            {% endif %}
+                                                        {% endif %}>
+                                                    <table width="100%" border="0" cellspacing="6" cellpadding="0">
+                                                        <tbody>
+                                                        <tr>
+                                                            <td><img src="{% static 'back/img/strelka32.png' %}" width="32" height="32"></td>
+
+                                                            {% if acc.obj.type %}
+                                                                <td class="ord_title"><span class="translate">Request to provide help</span><br><span class="order_in_id">{{ acc.obj.id }}</span></td>
+                                                            {% else %}
+                                                                <td class="ord_title"><span class="translate">Request to get help</span><br><span class="order_in_id">{{ acc.obj.id }}</span></td>
+                                                            {% endif %}
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2" class="ord_body">
+                                                                <div class="ord_body_info">
+                                                                    <span class="translate">Participant</span>: <span class="order_in_fio">{{ acc.obj.owner.username }}</span><br>
+                                                                    <span class="translate">Amount</span>: <span class="order_in_amount">{{ acc.obj.amount|floatformat:2|intcomma }}</span> <span
+                                                                        class="order_in_currency">NGN</span><br>
+                                                                    <span class="rest_in"><span class="translate">Balance</span>: <span
+                                                                            class="order_in_rest">{{ acc.obj.balance|floatformat:2|intcomma }}</span> <span class="order_in_currency">NGN</span><br></span>
+                                                                    <span class="translate">Date</span>: <span class="order_in_date">{{ acc.obj.created|date:"M d, Y" }}</span><br>
+                                                                    <span class="order_in_mavro"></span><br>
+                                                                    {#                                                                        {% if acc.obj.status == 'Pending' %}#}
+                                                                    {#                                                                            <span class="translate">Status</span>: <a href="javascript:cancelPh('{{ acc.obj.donation.id }}');" class="neoui-greybutton translate">Cancel</a>#}
+                                                                    {#                                                                        {% else %}#}
+                                                                    {#                                                                            <span class="translate">Status</span>: <span class="order_in_status">{{ acc.obj.status }}</span>#}
+                                                                    {#                                                                        {% endif %}#}
+                                                                    <span class="translate">Status</span>: <span class="order_in_status">{{ acc.obj.status }}</span>
+                                                                </div>
+                                                                {% if request.user.member.is_fake %}
+                                                                    <div style="float: right" onclick="$.messager.alert({title:'Error', msg: 'Bank Details Not Fund', timeout:0, showType:'fade'})"><img
+                                                                            src="{% static 'back/img/block.png' %}" alt=""></div>
+                                                                {% endif %}
+                                                            </td>
+                                                        </tr>
+
+
+                                                        <tr>
+                                                            <td colspan="2">
+                                                                {% if acc.obj.status == 'Pending' %}
+                                                                    <a href="javascript:cancelPh('{{ acc.obj.donation.id }}');" class="neoui-greybutton translate" style="float:right;">Cancel</a>
+                                                                {% else %}
+                                                                    <a href="javascript:void(0);" class="neoui-greybutton translate" style="float:right;">Details&gt;&gt;</a>
+                                                                {% endif %}
+
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            {% endfor %}
+
+                                        </div>
+
+
+                                        <div class="hide_archived_orders_link" style="margin-left: 8px; margin-bottom: 8px; float: right;" attr="clone">
+                                            <nobr><a class="easyui-linkbutton l-btn" href="javascript:;" onclick="hideArchivedOrders()">
+                                                <span class="l-btn-text">Hide archived requests</span></a></nobr>
+                                        </div>
+
+                                        <div id="orders_pagination" style="" class="pagination">
+                                            <table cellspacing="0" cellpadding="0" border="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td><select class="pagination-page-list">
+                                                            <option>10</option>
+                                                            <option>20</option>
+                                                            <option>30</option>
+                                                            <option selected="selected">50</option>
+                                                        </select></td>
+                                                        <td>
+                                                            <div class="pagination-btn-separator"></div>
+                                                        </td>
+                                                        <td><a href="javascript:void(0)" icon="pagination-first" class="l-btn l-btn-plain l-btn-disabled"><span class="l-btn-left"><span
+                                                                class="l-btn-text"><span
+                                                                class="l-btn-empty pagination-first">&nbsp;</span></span></span></a></td>
+                                                        <td><a href="javascript:void(0)" icon="pagination-prev" class="l-btn l-btn-plain l-btn-disabled"><span class="l-btn-left"><span class="l-btn-text"><span
+                                                                class="l-btn-empty pagination-prev">&nbsp;</span></span></span></a></td>
+                                                        <td>
+                                                            <div class="pagination-btn-separator"></div>
+                                                        </td>
+                                                        <td><span style="padding-left:6px;">Page</span></td>
+                                                        <td><input class="pagination-num" type="text" value="1" size="2"></td>
+                                                        <td><span style="padding-right:6px;">out of 1</span></td>
+                                                        <td>
+                                                            <div class="pagination-btn-separator"></div>
+                                                        </td>
+                                                        <td><a href="javascript:void(0)" icon="pagination-next" class="l-btn l-btn-plain l-btn-disabled"><span class="l-btn-left"><span class="l-btn-text"><span
+                                                                class="l-btn-empty pagination-next">&nbsp;</span></span></span></a></td>
+                                                        <td><a href="javascript:void(0)" icon="pagination-last" class="l-btn l-btn-plain l-btn-disabled"><span class="l-btn-left"><span class="l-btn-text"><span
+                                                                class="l-btn-empty pagination-last">&nbsp;</span></span></span></a></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="pagination-info"></div>
+                                            <div style="clear:both;"></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+                <div class="layout-split-proxy-h"></div>
+                <div class="layout-split-proxy-v"></div>
+            </div>
+        </div>
+
+
+        <div id="ph-dialog" class="easyui-dialog" title="Provide Help" style="width:80%;height:400px;max-width:600px;padding:10px"
+             data-options="onResize:function(){$(this).dialog('center');},modal:true,closed:true">
+            <ul class="params-list">
+                <li id="bank_btc">
+                    <label>
+                        <span class="translate display-inline">Choose the most convenient method to provide help to another participant</span>
+                        <span title="Choose the most convenient way of making a contribution (providing help) – either in your local currency (NGN) through a bank transfer to recipient's account or bank card, or in bitcoins (BTC), using your Bitcoin wallet. <b>If you choosing bitcoin transfer, you immediately get a bonus – 3% is added to your contribution sum.</b>"
+                              class="easyui-tooltip npopover">?</span>
+                    </label>
+                    <div>
+                        <ul class="h_list deposit_list">
+                            <li class="deposit_list_item">
+                                <span id="bank_radio"><input type="radio" name="bank_type" value="1" checked="checked">BANK </span>
+                            </li>
+                            <li>
+                                <span id="btc_radio"><input type="radio" name="bank_type" value="2" disabled="true">BTC</span>
+                                <span class="easyui-tooltip npopover" title="Learn more about Bitcoin <a href='javascript:;' target='_blank'>here</a>">?</span>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li id="deposit">
+                    <label class="translate">Naira Types</label>
+                    <div id="deposit_list">
+                        <ul class="deposit_list h_list">
+                            <li class="deposit_list_item">
+                                <input type="radio" name="deposit_id" value="" checked="checked">
+                                <label class="deposit_list_label">Naira-30%</label>
+                                <span class="easyui-tooltip npopover" title="30% return on investiment">?</span>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li id="currency_list" style="display: none;">
+                    <label class="translate">Specify which currency you will use in the system</label>
+                    <ul class="h_list">
+                        <li>
+                            <input type="radio" name="currency" value="2" checked="checked">
+                            <span class="currency_name">BTC</span>
+                            <span class="easyui-tooltip npopover"
+                                  title="Your funds will be stored and will grow in the Bitcoin virtual currency. <a href='javascript:;' target='_blank'>Learn more</a>">?</span>
+                        </li>
+                        <li>
+                            <input type="radio" name="currency" value="566">
+                            <span class="currency_name">NGN</span>
+                            <span class="easyui-tooltip npopover" title="Your funds will be stored and will grow in the local fiduciary currency of your respective country.">?</span>
+                        </li>
+                    </ul>
+                </li>
+                <li id="amount">
+                    <label class="translate">Amount</label>
+                    <div class="input-desc"><input type="text" id="ph-amount" name="amount" maxlength="12" onblur="isPhOkay($('#ph-amount'), $('#terms_agree'))">
+                        <div class="input-desc__text">NGN</div>
+                    </div>
+                    <div class="form-hint-message" id="amount_hint">Amount has to be a multiple of 1,000. Minimum provide help amount is 1000 & Maximum is 1,000,000.00.</div>
+                </li>
+                <li class="noList">
+                    <label class="translate" for="terms_agree">
+                        <input type="checkbox" id="terms_agree" class="chbox-row" onchange="isPhOkay($('#ph-amount'), $('#terms_agree'))">
+                        <span id="terms" class="chbox-row-text terms-text">I read the <a href="javascript:;" target="_blank">THE WARNING</a>, and I fully understand all the risks. I make decision to participate in FundFastTrack, being of sound mind and memory.<br
+                                class="clear"></span>
+                    </label>
+                </li>
+            </ul>
+            <div id="order_in_buttons" class="text-center buttons-list">
+                <a href="javascript:;" class="easyui-linkbutton button_cancel l-btn" iconcls="icon-cancel" onclick="$('#ph-dialog').dialog('close')">Close</a>
+                <a href="javascript:void(0)" id="ph-send" class="easyui-linkbutton" data-options="disabled:true" iconcls="icon-ok" onclick="ph($('#ph-amount').val())">Ok</a>
+            </div>
+        </div>
+
+        <div id="gh-dialog-1" class="easyui-dialog" title="Request to cash out Naira" style="width:80%;height:250px;max-width:600px;padding:10px"
+             data-options="onResize:function(){$(this).dialog('center');},modal:true,closed:true">
+            <p>Select exactly where you want the funds from your cashing in of Naira transferred to.</p>
+            <p>
+                <label><b><input type="radio" name="NGN" value="select" checked="checked"> Select Bank Account or Bitcoin Wallet</b></label></br>
+                <label><b><input type="radio" name="NGN" value="add"> Add new Bank account or Bitcoin Wallet</b></label>
+            </p>
+            <br><br><br>
+            <div id="order_in_buttons" class="text-center_ buttons-list">
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-cancel" onclick="$('#gh-dialog-1').dialog('close')">Cancel</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-ok"
+                   onclick="if($('#select-account').val().length>0){$('#gh-dialog-2').dialog('open')}else {location='{% url 'core:bank-account' %}'}">Next >></a>
+            </div>
+        </div>
+
+        <div id="gh-dialog-2" class="easyui-dialog" title="Request to cash out Naira" style="width:80%;height:250px;max-width:600px;padding:10px"
+             data-options="onResize:function(){$(this).dialog('center');},modal:true,closed:true">
+            <p>Select existing bank card or Wallet/account.</p>
+            <p>
+                <select id="select-account" class="easyui-combobox" name="gh_account" label="GH Account" style="width:60%">
+                    <option value="{{ request.user.member.bank_account.id }}">{{ request.user.member.bank_account.bank.name }} ({{ request.user.member.bank_account.number }})</option>
+                </select>
+            </p>
+            <br><br><br>
+            <div id="order_in_buttons" class="text-center_ buttons-list">
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-back" onclick="$('#gh-dialog-1').dialog('open');$('#gh-dialog-2').dialog('close')"><< Back</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-cancel" onclick="$('#gh-dialog-1,#gh-dialog-2').dialog('close')">Cancel</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-ok" onclick="gh_board('#gh-dialog-3', 'GH', '{% url 'core:gh-board' %}')">Next >></a>
+                {#                <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-ok" onclick="$('#gh-dialog-3').dialog('open');">Next >></a>#}
+            </div>
+        </div>
+
+        <div id="gh-dialog-3" style="padding: 10px"></div>
+
+        <div id="account-detail-dialog" class="easyui-dialog" style="width:900px;height:500px;max-width:900px;padding:10px" data-options="onResize:function(){$(this).dialog('center');},modal:true,closed:true,resizable:true,modal:true,
+                buttons:[{
+                    text:'Close',
+                    iconCls:'icon-cancel',
+                    handler:function(){$('#account-detail-dialog').dialog('close');}
+                }]">
+        </div>
+
+
+        <div id="chat-message-dialog" class="easyui-dialog easyui-layout" title="Chat" style="width:900px;height:500px;max-width:900px"
+             data-options="onResize:function(){$(this).dialog('center');},closed:true,resizable:true,modal:true,split:false">
+            <div data-options="region:'east',split:false" style="width:150px;padding: 10px 5px">Hello</div>
+            <div data-options="region:'center',split:false" style="">
+                <div class="easyui-layout" data-options="fit:true" style="">
+                    <div data-options="region:'center',split:false," style="padding: 10px 5px">
+                        <h1><b>Order: R7878787878</b></h1>
+                    </div>
+                    <div data-options="region:'south',split:false" style="height:180px;padding: 1px">
+                        <textarea cols="120" rows="8" style="margin-bottom: 5px"></textarea>
+                        <a href="#" class="easyui-linkbutton" plain="false" iconCls="icon-save" style="float: right;">Send </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="cancel-ph-dialog" class="easyui-dialog" style="width:400px;height:150px" data-options="title:'Confirm PH Cancellation',modal:true,closed:true,cache: false,">
+            <h2 class="text-center">Are you sure you want to Cancel your PH Order?</h2>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+      function gh_board (selector, title, url) {
+        $(selector).dialog({
+          title: title,
+          width: 800,
+          height: 500,
+          closed: false,
+          cache: false,
+          href: url,
+          modal: true
+        }).dialog('open')
+      }
+
+      // $('#ph-dialog').dialog('setTitle', 'New Title');
+      url = '{% url 'core:account-activities' %}'
+
+      $(document).ready(function () {
+        {% if not request.user.member.bank_account %}
+          $.messager.alert({
+            title: 'Notifications',
+            msg: 'Your account creation was not complete, please click "OK" to added bank details. ',
+            fn: function () {
+              location = '{% url 'core:bank-account' %}'
+            }
+          })
+        {% endif %}
+
+        {% if request.user.member.is_fake %}
+          $.messager.alert({
+            title: 'Notifications',
+            modal: true,
+            msg: '<b>Your registered record was stamped invalid, if you wish to continue participating with us, kindly forward the following details to any of our Admins:<ol><li>Email</li><li>Phone</li><li>Full Name</li><li>Bank Account</li><li>Bank Name</li></ol></b>',
+            fn: function () {location = '{% url 'core:dashboard' %}'}
+          })
+        {% endif %}
+
+      })
+
+      function isPhOkay (amount, term) {
+        $('#ph-send').linkbutton({disabled: !($(amount).val().length > 3 && ($(amount).val() % 1000) === 0 && $(term).is(':checked'))})
+      }
+
+      function ph (amount) {
+        processFeed('{% url 'core:ph' '000000' %}'.replace('000000', amount), {}, 'Processing PH Request...', false, 'POST', function (d) {
+          if (d.type == 'Info') {
+            $.messager.alert('Response', d.msg, 'info')
+          } else if (d.type == 'Refresh') {
+            $.messager.alert({
+              title: 'Response',
+              msg: d.msg,
+              fn: function () {
+                location = '{% url 'core:dashboard' %}'
+              }
+            })
+          }
+        }, function (d) {
+          {#                $.notify({icon: "fa fa-exclamation-triangle", title: "", message: d.responseText}, {type: 'danger', z_index: 9999999});#}
+        })
+        {#            processFeed("{% url 'core:ph' %}", data, blocking, method, successCallback, errorCallback) #}
+      }
+
+      function cancelPh (did) {
+        $('#cancel-ph-dialog').dialog({
+          buttons: [
+            {text: 'Close', iconCls: 'icon-cancel', handler: function () {$('#cancel-ph-dialog').dialog('close')}},
+            {
+              text: 'Yes Cancel Please', iconCls: 'icon-ok', handler: function () {
+              processFeed('{% url 'core:cancel-ph' %}', {did: did}, 'Processing Cancellation Request...', false, 'POST', function (d) {
+                if (d.type == 'Success') {
+                  $.messager.alert({
+                    title: 'Response',
+                    msg: d.msg,
+                    fn: function () {
+                      location = '{% url 'core:dashboard' %}'
+                    }
+                  })
+                } else {
+                  $.messager.alert('Response', d.msg, 'info')
+                }
+              }, function (d) {
+                {#                $.notify({icon: "fa fa-exclamation-triangle", title: "", message: d.responseText}, {type: 'danger', z_index: 9999999});#}
+              })
+            }
+            }
+          ]
+        }).dialog('open')
+
+      }
+
+    </script>
+{% endblock %}

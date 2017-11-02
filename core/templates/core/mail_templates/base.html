@@ -1,0 +1,377 @@
+{% load i18n static %}
+
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+            <tbody>
+            <tr>
+                <td bgcolor="#ffffff" style="font-size: 0.0px;">&nbsp;</td>
+                <td bgcolor="#ffffff" width="660" align="center">
+                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                        <tbody>
+                        <tr>
+                            <td align="center" width="100%">
+                                <table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#f5f5f5" style="
+                                    background: rgb(0, 156, 222);
+                                    ">
+                                    <tbody>
+                                    <tr>
+                                        <td align="center" style="font-family: Calibri , Trebuchet , Arial , sans serif;font-size: 17.0px;line-height: 18.0px;color: #c0e1fb;padding: 20.0px;"
+                                            class="boxed">
+                                            Hello, {{ firstName }} {{ lastName }}<br></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                        <tbody>
+
+
+                        <tr>
+
+                            <td width="600" valign="top" align="center">
+                                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                    <tbody>
+                                    <tr>
+                                        <td align="center" valign="top" bgcolor="#ffffff" style="padding-top: 20.0px;">
+
+                                            {% block mail_body %}{% endblock %}
+
+
+
+
+
+                                            <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                                                <tbody>
+                                                <tr>
+                                                    <td align="center" style="padding: 0.0px 30.0px 30.0px 30.0px;">
+                                                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                                            <tbody>
+                                                            <tr>
+                                                                <td align="center" valign="top" style="font-size: 0.0px;line-height: 0.0px;border-bottom: 1.0px solid rgb(214,214,214);">
+                                                                    &nbsp;
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                                <tbody>
+                                                <tr>
+                                                    <td align="center" style="padding: 0.0px 30.0px 30.0px 30.0px;">
+                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                            <tbody>
+                                                            <tr>
+                                                                <td align="center"
+                                                                    style="vertical-align: top;padding: 0.0px 0.0px 0.0px 0.0px;font-family: Calibri , Trebuchet , Arial , sans serif;font-size: 19.0px;line-height: 24.0px;color: rgba(62,176,247, 1)">
+                                                                    Mutual Helpers Community<br></td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                                <tbody>
+                                                <tr>
+                                                    <td align="center" style="padding: 0.0px 30.0px 0.0px 30.0px;">
+                                                        <table width="30%" align="left" border="0" cellpadding="0" cellspacing="0">
+                                                            <tbody>
+                                                            <tr>
+                                                                <td valign="top">
+                                                                    <table align="center" cellpadding="0" cellspacing="0" border="0">
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td align="center" valign="top"><img width="90" style="display: block;" border="0"
+                                                                                                                 alt="Community" src="{{ rootURL }}/static/images/email/handshake.png">
+                                                                            </td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <table width="68%" align="right" border="0" cellpadding="0" cellspacing="0">
+                                                            <tbody>
+                                                            <tr>
+                                                                <td valign="top">
+                                                                    <table align="center" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td valign="top"
+                                                                                style="font-family: Calibri , Trebuchet , Arial , sans serif;font-size: 17.0px;line-height: 22.0px;color: rgb(51,51,51);">
+                                                                                <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                                                                                    <tbody>
+                                                                                    <tr>
+                                                                                        <td align="center" style="padding: 0.0px 0.0px 30.0px 0.0px;">
+                                                                                            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                                                                                <tbody>
+                                                                                                <tr>
+                                                                                                    <td valign="top"
+                                                                                                        style="font-family: Calibri , Trebuchet , Arial , sans serif;font-size: 17.0px;line-height: 22.0px;color: rgb(51,51,51);">
+                                                                                                        <p style="">Community for people willing to financially help each other in time of need. The
+                                                                                                            excess
+                                                                                                            money in your pocket today may help save life in the community. It may be your turn tomorrow
+                                                                                                            <a
+                                                                                                                    href="{{ rootURL }}" target="_blank"> See eligibility</a>.</p></td>
+                                                                                                </tr>
+                                                                                                </tbody>
+                                                                                            </table>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tbody>
+                                                <tr>
+                                                    <td align="center" style="padding: 0.0px 30.0px 30.0px 30.0px;">
+                                                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                                            <tbody>
+                                                            <tr>
+                                                                <td align="center" valign="top" style="font-size: 0.0px;line-height: 0.0px;border-bottom: 1.0px dotted rgb(153,153,153);">
+                                                                    &nbsp;
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                                <tbody>
+                                                <tr>
+                                                    <td align="center" style="padding: 0.0px 30.0px 0.0px 30.0px;">
+                                                        <table width="30%" align="left" border="0" cellpadding="0" cellspacing="0">
+                                                            <tbody>
+                                                            <tr>
+                                                                <td valign="top">
+                                                                    <table align="center" cellpadding="0" cellspacing="0" border="0">
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td align="center" valign="top">
+                                                                                <img width="90" style="display: block;" border="0" alt="Help & Contact"
+                                                                                     src="{{ rootURL }}/static/images/email/contactbag.png">
+                                                                            </td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <table width="68%" align="right" border="0" cellpadding="0" cellspacing="0">
+                                                            <tbody>
+                                                            <tr>
+                                                                <td valign="top">
+                                                                    <table align="center" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                                                        <tbody>
+                                                                        <tr>
+                                                                            <td valign="top"
+                                                                                style="font-family: Calibri , Trebuchet , Arial , sans serif;font-size: 17.0px;line-height: 22.0px;color: rgb(51,51,51);">
+                                                                                <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                                                                                    <tbody>
+                                                                                    <tr>
+                                                                                        <td align="center" style="padding: 0.0px 0.0px 30.0px 0.0px;">
+                                                                                            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                                                                                <tbody>
+                                                                                                <tr>
+                                                                                                    <td valign="top"
+                                                                                                        style="font-family: Calibri , Trebuchet , Arial , sans serif;font-size: 17.0px;line-height: 22.0px;color: rgb(51,51,51);">
+                                                                                                        Our support team is always available to anwser all your questions. Your can <a
+                                                                                                            href="http://localhost:8000" target="_blank"> learn</a> more about the community
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                                </tbody>
+                                                                                            </table>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </td>
+                                                                        </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                <tbody>
+                                                <tr>
+                                                    <td align="center" style="padding: 0.0px 30.0px 30.0px 30.0px;">
+                                                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                                            <tbody>
+                                                            <tr>
+                                                                <td align="center" valign="top" style="font-size: 0.0px;line-height: 0.0px;border-bottom: 1.0px dotted rgb(153,153,153);">
+                                                                    &nbsp;
+                                                                </td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+
+
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                        <tbody>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td align="center" width="600">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tbody>
+                                    <tr>
+                                        <td align="left" style="vertical-align: top;padding: 0.0px 0.0px 0.0px 0.0px;">
+                                            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                                <tbody>
+                                                <tr>
+                                                    <td width="12" align="center" valign="top"><img width="12" height="141" style="display: block;" border="0" alt=""
+                                                                                                    src="{{ rootURL }}/static/images/email/footer-left-corner.jpg">
+                                                    </td>
+                                                    <td align="center" valign="top"><img width="100%" height="141" style="display: block;" border="0" alt=""
+                                                                                         src="{{ rootURL }}/static/images/email/footer-left-stroke.jpg">
+                                                    </td>
+                                                    <td width="120" align="center" valign="top"><img width="auto" height="141" style="display: block;" border="0"
+                                                                                                     alt="PM Logo" src="{{ rootURL }}/static/images/email/logo.png">
+                                                    </td>
+                                                    <td align="center" valign="top"><img width="100%" height="141" style="display: block;" border="0" alt=""
+                                                                                         src="{{ rootURL }}/static/images/email/footer-right-stroke.jpg">
+                                                    </td>
+                                                    <td width="12" align="center" valign="top"><img width="12" height="141" style="display: block;" border="0" alt=""
+                                                                                                    src="{{ rootURL }}/static/images/email/footer-right-corner.jpg">
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                                <tbody>
+                                                <tr>
+                                                    <td align="center"
+                                                        style="font-family: Calibri , Trebuchet , Arial , sans serif;font-size: 15.0px;line-height: 22.0px;color: rgb(68,68,68);padding: 20.0px;">
+                                                        <a href="http://localhost:8000/faq.pm" target="_blank" style="color: rgba(62,176,247, 1)text-decoration: none;">FAQ</a> &nbsp;|&nbsp; <a
+                                                            href="http://localhost:8000/howitworks.pm" target="_blank" style="color: rgba(62,176,247, 1)text-decoration: none;">How it Works</a> &nbsp;|&nbsp;
+                                                        <a href="http://localhost:8000/packages.pm" target="_blank" style="color: rgba(62,176,247, 1)text-decoration: none;">Packages</a></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                        <tbody>
+                        <tr>
+                            <td align="center" style="padding-bottom: 20.0px;">
+                                <table align="center" cellpadding="0" cellspacing="0" border="0">
+                                    <tbody>
+                                    <tr>
+                                        <td align="left" valign="middle" style="padding: 0.0px 25.0px 0.0px 0.0px;"><a
+                                                href="https://twitter.com/PM"
+                                                target="_blank"><img border="0" width="28" height="29" style="display: block;" alt="twitter"
+                                                                     src="{{ rootURL }}/static/images/email/icon-tw.jpg"></a></td>
+                                        <td align="left" valign="middle" style="padding: 0.0px 25.0px 0.0px 0.0px;"><a
+                                                href="https://www.instagram.com/PM"
+                                                target="_blank"><img border="0" width="28" height="29" style="display: block;" alt="instagram"
+                                                                     src="{{ rootURL }}/static/images/email/icon-ig.jpg"></a></td>
+                                        <td align="left" valign="middle" style="padding: 0.0px 25.0px 0.0px 0.0px;"><a
+                                                href="https://www.facebook.com/PM"
+                                                target="_blank"><img border="0" width="28" height="29" style="display: block;" alt="facebook"
+                                                                     src="{{ rootURL }}/static/images/email/icon-fb.jpg"></a></td>
+                                        <td align="left" valign="middle" style="padding: 0.0px;"><a
+                                                href="http://www.linkedin.com/PM"
+                                                target="_blank"><img border="0" width="28" height="29" style="display: block;" alt="linkedin"
+                                                                     src="{{ rootURL }}/static/images/email/icon-li.jpg"></a></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                        <tbody>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td align="center" width="600" valign="top">
+                                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                    <tbody>
+                                    <tr>
+                                        <td align="left"
+                                            style="font-family: Calibri , Trebuchet , Arial , sans serif;font-size: 13.0px;line-height: 20.0px;color: rgb(153,153,153);padding: 20.0px 30.0px 30.0px 30.0px;">
+                                            <p>PM is committed to preventing fake and fraudulent users. Emails from PM will always contain your full name and sponsorship ID after. <a
+                                                    href="http://localhost:8000/privacy.pm" style="text-decoration: none;" target="_blank">Read our Teams &amp; Conditions</a>.</p>
+                                            <p>Please do not reply to this email. To get in touch, go to the PM website and click&nbsp;<a href="http://localhost:8000/privacy.pm"
+                                                                                                                                          style="text-decoration: none;" target="_blank">Help &amp;
+                                                Contact</a>. </p></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                        <tbody>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td align="center" width="600">
+                                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                    <tbody>
+                                    <tr>
+                                        <td style="padding-left: 29.0px;padding-right: 29.0px;padding-top: 15.0px;padding-bottom: 10.0px;font-family: HelveticaNeueLight , HelveticaNeue-Light , 'Helvetica Neue Light' , HelveticaNeue , Helvetica , Arial , sans-serif;font-size: 11.0px;color: rgb(102,102,102);">
+                                            <span></span></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </td>
+                <td bgcolor="#ffffff" style="font-size: 0.0px;">&nbsp;</td>
+            </tr>
+            </tbody>
+        </table>
